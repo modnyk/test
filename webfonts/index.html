@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+    <title>The New Way To Train Chess</title>
+
+    <!-- JQUERY -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/json3.min.js"></script>
+
+    <!-- cc.fovea.cordova.purchase -->
+    <script type="text/javascript" src="cordova.js"></script>    
+
+    <!-- CHESS.JS -->
+    <link   rel="stylesheet" href="css/chessboard-1.0.0.css">
+    <script src="js/chess.js"></script>
+    <script src="js/chessboard-1.0.0.js"></script>
+
+    <!-- BOOTSTRAP  -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link   rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="css/fontawesome-5.7.2_all.css">
+
+    <!-- PRÓ-MASTER -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="all.css?i=99999999">
+
+    <!-- PLUGINs -->
+    <link rel="stylesheet" href="plugins/rangeslider.js-2.3.0/rangeslider.css">
+    <script src="plugins/rangeslider.js-2.3.0/rangeslider.min.js"></script>
+
+
+<style type="text/css">
+
+</style>
+
+
+
+</head>
+
+<body style="width: 100%; text-align: center; font-family: Trebuchet MS, Helvetica, sans-serif;  background: #ECF7E9;">
+
+
+    <!-- MODAL CARD IMG ************  -->
+    <div id="modal_card_img" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: -30px;">
+            <div class="modal-content" style="border: 6px solid #ffffff; border-radius: 10px;">
+                <img id="img_modal" src="cards/00001.jpg" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+    <button id="show_modal_card_img" type="button" style="display: none;" data-toggle="modal" data-target="#modal_card_img">
+        Trigger Modal
+    </button>
+
+
+   <!-- SECTION: MODAL LANG SEL ************  -->
+    <div id="modal_lang_sel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: -30px;">
+            <div class="modal-content" style="">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color: #000000;">
+                        <div id="lang_selected" style="color: #cc0000; font-weight: bold;">ENGLISH</div>
+                    </h5>
+                </div>
+                <div style="text-align: center; margin: 20px 0px 0px 20px;">
+                    <img id="flag_ENG" onclick="Modal_Flag_Clicked('ENG');" src="img/flags/ENG.png" style="width: 60px; height: 48px; margin-right: 20px; border-radius: 10%; ">
+                    <img id="flag_SPN" onclick="Modal_Flag_Clicked('SPN');" src="img/flags/SPN.png" style="width: 60px; height: 48px; margin-right: 20px; border-radius: 10%; filter: opacity(20%);">
+                    <img id="flag_FRA" onclick="Modal_Flag_Clicked('FRA');" src="img/flags/FRE.png" style="width: 60px; height: 48px; margin-right: 20px; border-radius: 10%; filter: opacity(20%);">
+                </div>
+                <div style="text-align: center; margin: 20px 0px 0px 20px;">
+                    <img id="flag_GER" onclick="Modal_Flag_Clicked('GER');" src="img/flags/GER.png" style="width: 60px; height: 48px; margin-right: 20px; border-radius: 10%; filter: opacity(20%);">
+                    <img id="flag_POR" onclick="Modal_Flag_Clicked('POR');" src="img/flags/POR.png" style="width: 60px; height: 48px; margin-right: 20px; border-radius: 10%; filter: opacity(20%);">
+                    <img id="flag_ITA" onclick="Modal_Flag_Clicked('ITA');" src="img/flags/ITA.png" style="width: 60px; height: 48px; margin-right: 20px; border-radius: 10%; filter: opacity(20%);">
+                </div>
+                <div class="modal-footer" style="margin-top: 30px;">
+                    <button type="button" class="btn btn-warning" style="width: 120px;" data-dismiss="modal" aria-label="Close">
+                        <span style="font-weight: bold;">OK</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="show_modal_lang_sel" type="button" style="display: none;" data-toggle="modal" data-target="#modal_lang_sel">
+        Trigger Modal
+    </button>
+
+
+    <!-- SECTION: BOARD ICONS HELP ************  -->
+    <div id="modal_board_icons"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 150px;">
+        <div class="modal-content" style="border: 6px solid #006600; border-radius: 10px;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-weight: bold; color: #009900;">
+                <span id="lg_364">Useful Buttons</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 20px 20px 30px 20px; font-size: 16px; text-align: left;">
+
+            <div style="margin: 10px; line-height: 130%;">
+                <img src="img/bt_clock.png" style="float: left; width: 50px; padding-right: 10px;">
+                <span id="lg_365">Mostra a barra reguladora do tempo</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div style="margin: 10px; line-height: 130%;">
+                <img src="img/bt_redo.png" style="float: left; width: 50px; padding-right: 10px;">
+                <span id="lg_366">Repete o último exercício</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div style="margin: 10px; line-height: 130%;">
+                <img src="img/bt_raio.png" style="float: left; width: 50px; padding-right: 10px;">
+                <span id="lg_367">Pula os lances da engine</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div style="margin: 10px; line-height: 130%;">
+                <img src="img/bt_report.png" style="float: left; width: 50px; padding-right: 10px;">
+                <span id="lg_368">Envia relatório informando que o exercício está errado</span>
+            </div>
+            <div style="clear: both;"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-warning but_120px">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="show_modal_board_icons" type="button" style="display: none;" data-toggle="modal" data-target="#modal_board_icons">
+        Trigger Modal
+    </button>
+
+    <!-- SECTION: MODAL ZERAR CARD ************  -->
+    <div id="modal_zerar"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 150px;">
+        <div class="modal-content" style="border: 6px solid #006600; border-radius: 10px;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-weight: bold; color: #009900;">
+                <span id="lg_130">Card Reset</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 20px 20px 30px 20px; font-size: 16px; text-align: left;">
+            <div id="lg_131" style="margin-bottom: 10px;">
+                Essa operação apagará todo o histórico de treinamento desse card.
+            </div>
+            <div id="lg_132">
+                Você tem certeza que quer zerar esse card?
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info but_120px" data-dismiss="modal"><span id="lg_133">Cancelar</span></button>
+            &nbsp;&nbsp;&nbsp;
+            <button onclick="But_Zerar_Confirm();" type="button" data-dismiss="modal" class="btn btn-warning but_120px"><span id="lg_134">Confirmar</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="show_modal_zerar" type="button" style="display: none;" data-toggle="modal" data-target="#modal_zerar">
+        Trigger Modal
+    </button>
+
+    <!-- SECTION: MODAL RECREATE ACCOUNT ************  -->
+    <div id="modal_recreate"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 150px;">
+        <div class="modal-content" style="border: 6px solid #006600; border-radius: 10px;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-weight: bold; color: #cc0000;">
+                <span id="lg_xxx">Account Reset</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 20px 20px 30px 20px; font-size: 16px; text-align: left;">
+            <div id="lg_xxx" style="margin-bottom: 10px;">
+                This operation will erase all your data (history, personal data etc...) and create a new account.
+            </div>
+            <div id="lg_xxx">
+                Are you sure you want to delete this account and create a new one?
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal"><span id="lg_xxx">Cancel</span></button>
+            &nbsp;&nbsp;&nbsp;
+            <button onclick="But_Recreate_Confirm();" type="button" data-dismiss="modal" class="btn btn-warning"><span id="lg_xxx">Confirm</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="show_modal_recreate" type="button" style="display: none;" data-toggle="modal" data-target="#modal_recreate">
+        Trigger Modal
+    </button>
+
+    <!-- SECTION: MODAL RESERVA ************  -->
+    <div id="modal_reserva"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 150px;">
+        <div class="modal-content" style="border: 6px solid #006600; border-radius: 10px;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-weight: bold; color: #009900;">
+                <span id="lg_201">Reserva com 30% de Desconto</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 50px 20px 50px 20px; font-size: 18px;">
+            <span id="lg_202">Confirmar reserva?</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" style="font-weight: bold; box-shadow: 3px 3px 8px -1px #000000; width: 120px;">
+                <span id="lg_135">Cancelar</span>
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button onclick="But_Reserva_Confirm();" type="button" data-dismiss="modal" class="btn btn-warning" style="font-weight: bold; box-shadow: 3px 3px 8px -1px #000000; width: 120px;">
+                <span id="lg_136">Sim</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="show_modal_reserva" type="button" style="display: none;" data-toggle="modal" data-target="#modal_reserva">
+        Trigger Modal
+    </button>
+
+    <!-- SECTION: MODAL REPORT ERROR ************  -->
+    <div id="modal_report"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 150px;">
+        <div class="modal-content" style="border: 6px solid #006600; border-radius: 10px;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-weight: bold; color: #009900;">
+                <span id="lg_203">Reportar Erro</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 50px 20px 50px 20px; font-size: 18px;">
+            <span id="lg_204">Esse exercício está errado?</span>
+            <span id="lg_205">Obrigado!</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info but_120px" data-dismiss="modal">
+                <span id="lg_137">Cancelar</span>
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button onclick="But_Report_Error_Confirm();" type="button" class="btn btn-warning but_120px">
+                <span id="lg_138">Sim</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="show_modal_report" type="button" style="display: none;" data-toggle="modal" data-target="#modal_report">
+        Trigger Modal
+    </button>
+
+    <!-- SECTION: MODAL PARABENS ************  -->
+    <div id="modal_msgs"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 150px;">
+        <div class="modal-content" style="border: 6px solid #006600; border-radius: 10px;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-weight: bold; color: #009900;">
+                <span id="lg_008">Modal title</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 50px 20px 50px 20px; font-size: 18px;">
+            <span id="lg_009">Parabéns! Você concluiu esse card!</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning but_120px" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="show_modal_msgs" type="button" style="display: none;" data-toggle="modal" data-target="#modal_msgs">
+        Trigger Modal
+    </button>
+
+    <!-- SECTION: MODAL INFO ************  -->
+    <div id="modal_info"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 150px;">
+        <div class="modal-content" style="border: 6px solid #006600; border-radius: 10px;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-weight: bold; color: #006600;">
+                <span id="modal_info_title">Título</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 20px 10px; font-size: 16px; text-align: left;">
+            <span id="modal_info_body">Texto</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning but_120px" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="show_modal_info" type="button" style="display: none;" data-toggle="modal" data-target="#modal_info">
+        Trigger Modal
+    </button>
+
+    <!-- SECTION: MODAL SEL_COLORS ************  -->
+    <div id="modal_sel_colors" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: -30px;">
+            <div class="modal-content" style="margin: 0% 10% 0% 10%; border: 3px solid #006600; border-radius: 10px; background: #008500; ">
+
+                <div style="margin: 10px 20px 12px 20px; font-size: 18px; color: #eeeeee; font-weight: bold;">
+                    <span id="lg_015">SELECIONE UMA COR</span>
+                </div>
+
+                <div style="border-radius: 0px 0px 10px 10px; background: #ECF7E9;">
+
+                    <table width="100%">
+                        <tr>
+                            <td align="center">
+                                <div onclick="User_Color_Selected('w')" style="width: 50%; margin: 14px 0px 24px 0px;" data-dismiss="modal" aria-label="Close">
+                                    <img src="img/rei_branco.png" style="width: 80px;">
+                                </div>
+                            </td>
+                            <td align="center">
+                                <div onclick="User_Color_Selected('b')" style="width: 50%; margin: 14px 0px 24px 0px;" data-dismiss="modal" aria-label="Close">
+                                    <img src="img/rei_preto.png" style="width: 80px;">
+                                </div>
+                            </td>
+                      </tr>
+                   </table>
+
+               </div>
+            </div>
+        </div>
+    </div>
+    <button id="show_modal_sel_colors" type="button" style="display: none;" data-toggle="modal" data-target="#modal_sel_colors">
+        Trigger Modal
+    </button>
+
+    <!-- SECTION: MODAL GAME STARS ************  -->
+    <div id="modal_game_stars"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 150px;">
+        <div class="modal-content" style="border: 6px solid #006600; border-radius: 10px;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-weight: bold; color: #333333;">
+                <span id="mod_game_stars_title">Avaliação de Partida</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 0px 20px 50px 20px; font-size: 14px;">
+                <div style="font-size: 1.2em; color: #333333; margin: 20px;">
+                    <div id="mod_game_stars_players">Fischer, R. - Spassky, B</div>
+                    <div id="mod_game_stars_place" style="font-size: 12px;">(Leningrado, 1998)</div>
+                </div>
+                <div style="margin: 10px; font-size: 32px;">
+                    <i id="game_star_1" onclick="Game_Star_Clicked(1);" class="fas fa-star" style="color: #cccccc;"></i>
+                    <i id="game_star_2" onclick="Game_Star_Clicked(2);" class="fas fa-star" style="color: #cccccc;"></i>
+                    <i id="game_star_3" onclick="Game_Star_Clicked(3);" class="fas fa-star" style="color: #cccccc;"></i>
+                    <i id="game_star_4" onclick="Game_Star_Clicked(4);" class="fas fa-star" style="color: #cccccc;"></i>
+                    <i id="game_star_5" onclick="Game_Star_Clicked(5);" class="fas fa-star" style="color: #cccccc;"></i>
+                </div>
+          </div>
+          <div class="modal-footer" onclick="But_Game_Star_OK();">
+            <button type="button" class="btn btn-warning but_120px" data-dismiss="modal">OK</button>
+          </div>
+
+        </div>
+      </div>
+      <div id="modal_id_game" style="display: none;">0</div>
+      <div id="modal_avaliacao" style="display: none;">0</div>
+    </div>
+
+    <button id="show_modal_game_stars" type="button" style="display: none;" data-toggle="modal" data-target="#modal_game_stars">
+        Trigger Modal
+    </button>
+
+
+<center>
+
+<!-- SECTION: navbar ------------------------------------------------------------------------------------------------------------------- -->
+<div class="navbar">
+    <img id="menu_img_1" class="menu_bottom" src="img/menu1_off.png" onclick="But_Menu_Clicked(1);">
+    <img id="menu_img_2" class="menu_bottom" src="img/menu2_off.png" onclick="But_Menu_Clicked(2);">
+    <img id="menu_img_3" class="menu_bottom" src="img/menu3_on.png"  onclick="But_Menu_Clicked(3);">
+    <img id="menu_img_4" class="menu_bottom" src="img/menu4_off.png" onclick="But_Menu_Clicked(4);">
+    <img id="menu_img_5" class="menu_bottom" src="img/menu5_off.png" onclick="But_Menu_Clicked(5);">
+</div>
+
+
+<!-- SECTION: sec_boas_vindas ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_boas_vindas" style="display: none; margin-bottom: 100px;">
+    <a name="top"></a>
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            <span id="lg_139">BOAS-VINDAS</span>
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div style="margin: 20px 6px; text-align: left; background: #FFFFF5; font-size: 16px; border-radius: 5px; box-shadow: 3px 3px 8px -1px #000000; ">
+        <div style="border-bottom: 1px solid #009900; font-size: 22px; text-align: center; font-weight: bold; color: #cc0000;">
+            <img src="img/promaster.jpg" style="width: 100%;">
+        </div>
+        <div style="padding: 20px; font-size: 22px; text-align: center; font-weight: bold; color: #cc0000;">
+            <span id="lg_140">O Jeito Mais Fácil e Divertido de Evoluir no Xadrez</span>
+        </div>
+        <div style="padding: 0px 20px; ">
+            <div style="padding: 0px 0px 12px 0px;">
+                <span id="lg_141">O aplicativo <b>Chess Openings Pró-Master</b> contém tudo o que você precisa para entender e dominar o intrincado mundo das Aberturas do Xadrez.</span>
+            </div>
+            <div style="padding: 0px 0px 12px 0px;">
+                <span id="lg_142">Você <b>escolhe a abertura</b> que quer estudar e o sistema vai te mostrando as principais linhas.</span>
+            </div>
+            <div style="padding: 0px 0px 12px 0px;">
+                <span id="lg_143">Tudo o que você precisa fazer é <b>repetir os lances que o computador fizer</b>.</span>
+            </div>
+            <div style="padding: 0px 0px 12px 0px;">
+                <span id="lg_144">No nível 1 são apenas <b>os primeiros 4 movimentos</b> de cada lado. Concluído esse nível, o grau de dificuldade vai aumentando gradativamente para 6, 8, 10 e até 12 lances.</span>
+            </div>
+            <div style="padding: 0px 0px 12px 0px;">
+                <span id="lg_145">Com esse método, além de melhorar o seu jogo na abertura, você vai registrar em seu inconsciente <b>uma enorme quantidade de padrões de jogadas</b>, que passarão a ser acessados intuitivamente nas suas próximas partidas.</span>
+            </div>
+            <div style="padding: 0px 0px 12px 0px;">
+                <span id="lg_146">Treine 30 dias <b>grátis</b>, durante 15 minutos por dia e veja a <b>diferença dos resultados</b>, comparando com qualquer outro tipo de treinamento!</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 20px 0px 50px 0px;">
+            <button onclick="Show_Home_Section();" type="button" class="btn btn-warning" style="background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000; width: 150px;">
+                <span id="lg_147" style="font-weight: bold;">Começar Agora</span>
+            </button>
+        </div>
+
+        <div style="height: 30px;">&nbsp;</div>
+
+        <!--
+        <div style="padding: 20px; text-align: center; color: #0099FF; font-size: 32px;">
+            <a href="#top"><i class="fas fa-chevron-up"></i></a>
+        </div>
+        -->
+    </div>
+
+</div>
+
+<!-- SECTION: sec_home ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_home" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <div style="">
+                <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.gif" style="float: left; display: none; width: 42px;">&nbsp;&nbsp;
+                <img onclick="Menu_Top_Clicked('home');" src="img/bt_menu.png" style="width: 42px;">
+            </div>
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            HOME
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div id="sec_alert_area" style="display: none; border-radius: 3px; margin: 10px 4px; font-size: 18px; font-weight: bold; padding: 10px; background: linear-gradient(180deg, #eeeeee 0%, #ffffff 100%); box-shadow: 0px 3px 8px -1px #000000;">
+        <div style="text-align: right; color: #0066CC;" onclick="Close_Alert();">
+            <span class="fas fa-times"></span>
+        </div>
+        <span id="lg_240">Tá gostando de nosso app?</span>
+        <div style="margin: 20px 0px;">
+            <button onclick="Show_Feedback();" type="button" class="btn btn-warning" style="background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000;">
+                <span id="lg_241" style="font-weight: bold;">Enviar Opinião</span>
+            </button>
+        </div>
+    </div>
+
+    <div style="margin: 20px 10px 10px 10px; background: linear-gradient(180deg, #000000 0%, #555555 100%); box-shadow: 0px 3px 4px -1px #000000; border-radius: 5px;">
+        <table width="100%" align="center">
+            <tr>
+                <td width="30" align="center" onclick="Seta_Bar_Clicked('esq');">
+                    <img src="img/seta_esq.png" width="20" height="28">
+                </td>
+                <td align="center" style="color: #FFFF99; font-weight: bold; font-size: 18px; padding: 4px;">
+                    <div id="menu_tipo">Loading...</div>
+                </td>
+                <td width="30" align="center" onclick="Seta_Bar_Clicked('dir');">
+                    <img src="img/seta_dir.png" width="20" height="28">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="width: 96%; margin-left: 2%; margin-right: 2%; margin-top: 14px; display: block;">
+        <div id="cards_area"></div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+
+
+
+<!-- SECTION: sec_help_details ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_help_details" style="display: none; margin-bottom: 100px;">
+    <div style="margin-bottom: 20px; font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div id="help_details_title" style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            PRIMEIROS PASSOS
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</div>
+
+<!-- SECTION: sec_menu_top ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_menu_top" style="display: none; margin-bottom: 100px;">
+    <div style="margin-bottom: 20px; font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            MENU
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div onclick="Show_Welcome();" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: normal; color: #333333; background: linear-gradient(180deg, #cccccc 0%, #eeeeee 100%); box-shadow: 0px 3px 2px -1px #555555; text-align: left; border: 1px solid #aaaaaa; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #555555;"></i></div>
+        <span id="lg_148">Boas-Vindas</span>
+        <div style="clear: both;"></div>
+    </div>
+    <!--
+    <div onclick="But_Help_Details(2);" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: normal; color: #333333; background: linear-gradient(180deg, #cccccc 0%, #eeeeee 100%); box-shadow: 0px 3px 2px -1px #555555; text-align: left; border: 1px solid #aaaaaa; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #555555;"></i></div>
+        Método
+        <div style="clear: both;"></div>
+    </div>
+    <div onclick="But_Help_Details(3);" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: normal; color: #333333; background: linear-gradient(180deg, #cccccc 0%, #eeeeee 100%); box-shadow: 0px 3px 2px -1px #555555; text-align: left; border: 1px solid #aaaaaa; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #555555;"></i></div>
+        Como treinar
+        <div style="clear: both; display: none;"></div>
+    </div>
+    <div onclick="But_Help_Details(4);" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: normal; color: #333333; background: linear-gradient(180deg, #cccccc 0%, #eeeeee 100%); box-shadow: 0px 3px 2px -1px #555555; text-align: left; border: 1px solid #aaaaaa; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #555555;"></i></div>
+        Partidas
+        <div style="clear: both;"></div>
+    </div>
+    <div onclick="But_Help_Details(5);" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: normal; color: #333333; background: linear-gradient(180deg, #cccccc 0%, #eeeeee 100%); box-shadow: 0px 3px 2px -1px #555555; text-align: left; border: 1px solid #aaaaaa; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #555555;"></i></div>
+        Teoria
+        <div style="clear: both;"></div>
+    </div>
+    -->
+    <div id="but_menu_account" onclick="But_Criar_Conta();" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: bold; color: #ffffff; background: #17A2B8; box-shadow: 0px 3px 4px -1px #000000; text-align: left; border: 1px solid #17A2B8; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #ffffff;"></i></div>
+        <span id="lg_242">Create Account</span>
+        <div style="clear: both;"></div>
+    </div>
+    <div id="but_menu_feedback" onclick="But_Feedback();" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: bold; color: #ffffff; background: #17A2B8; box-shadow: 0px 3px 4px -1px #000000; text-align: left; border: 1px solid #17A2B8; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #ffffff;"></i></div>
+        <span id="lg_243">Send Feedback</span>
+        <div style="clear: both;"></div>
+    </div>
+    <div onclick="But_Config();"  style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: bold; color: #ffffff; background: #17A2B8; box-shadow: 0px 3px 4px -1px #000000; text-align: left; border: 1px solid #17A2B8; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #ffffff;"></i></div>
+        <span id="lg_149">Configurações</span>
+        <div style="clear: both;"></div>
+    </div>
+    <div onclick="But_Suporte();" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: bold; color: #ffffff; background: #17A2B8; box-shadow: 0px 3px 4px -1px #000000; text-align: left; border: 1px solid #17A2B8; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #ffffff;"></i></div>
+        <span id="lg_150">Suporte</span>
+        <div style="clear: both;"></div>
+    </div>
+
+    <!--
+    <div onclick="But_Recover();" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: bold; color: #ffffff; background: #17A2B8; box-shadow: 0px 3px 4px -1px #000000; text-align: left; border: 1px solid #17A2B8; border-radius: 5px;">
+        <div style="float: right;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #ffffff; margin-top: 4px;"></i></div>
+        Recuperar conta
+        <div style="clear: both;"></div>
+    </div>
+    <div onclick="But_About_Us();" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: bold; color: #ffffff; background: #17A2B8; box-shadow: 0px 3px 4px -1px #000000; text-align: left; border: 1px solid #17A2B8; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #ffffff;"></i></div>
+        Sobre nós
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div style="height: 10px;">&nbsp;</div>
+    <div onclick="But_Recreate_Account();" style="font-size: 18px; margin: 12px 10px; padding: 8px; font-weight: bold; color: #ffffff; background: #CC0000; box-shadow: 0px 3px 4px -1px #000000; text-align: left; border: 1px solid #17A2B8; border-radius: 5px;">
+        <div style="float: right; padding: 0px;"><i class="fas fa-chevron-right" style="font-size: 24px; color: #ffffff;"></i></div>
+        <span id="lg_xxx">Reset Account</span>
+        <div style="clear: both;"></div>
+    </div>
+    --> 
+</div>
+
+
+
+<!-- SECTION: sec_board_area ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_board_area" style="display: none; margin-bottom: 100px;">
+
+    <div id="board_header_treino">
+        <div style="padding: 4px; width: 100%; height: 56px; font-weight: normal; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+            <div style="float: right; padding-top: 6px;">
+                <img id="header_board_nivel" src="img/icon_nivel_1.png" style="width: 28px; height: 28px; float: right;">
+                <div id="board_progress" style="font-size: 11px; color: #CCFF99;">20/122</div>
+            </div>
+            <div onclick="But_Back_Board('board');" style="float: left; padding: 0px 10px 0px 0px; font-size: 32px; color: #FFCC00;">
+                <img src="img/seta_esq.png" width="20" height="37">
+            </div>
+            <div style="float: left; margin: 4px 0px 2px 0px;">
+                <div id="board_opening" style="font-size: 14px; color: #CCFF99; line-height: 110%;">C42 - Queen's Indian</div>
+                <div id="board_variant" style="font-size: 11px; color: #CCFF99;">Variante Fischer</div>
+                <progress max="100" value="40" style="float: left; margin-top: 2px;"></progress>
+            </div>
+        </div>
+
+        <div style="clear: both;"></div>
+        <div style="margin-top: 1px;">
+            <div id="chat_area" style="background: linear-gradient(90deg, #ffffff 0%, #eeeeee 100%); color: #777777; height: 58px; padding: 4px 4px 2px 4px;">
+                <img id="but_chat_board_redo" onclick="But_Board_Redo_Clicked();" src="img/bt_redo.png" style="float: right; width: 52px;">
+                <img id="but_chat_board_triangle" onclick="But_Board_Error_Report();" src="img/bt_report.png" style="float: right; width: 52px;">
+                <img id="but_chat_board_clock" onclick="But_Board_Clock_Clicked();" src="img/bt_clock.png" style="float: right; width: 52px;">
+                <img id="but_chat_board_bolt" onclick="But_Board_Bolt_Clicked();" src="img/bt_raio.png" style="float: right; width: 52px;">
+                <img id="img_emoji" src="img/emojis/00001.png" style="height: 50px; float: left;">
+                <div id="board_chat" style="text-align: center; padding: 4px; font-size: 14px;">Clap...</div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div id="board_header_game">
+        <div onclick="But_Back_Board('board');" style="text-align: left; width: 100%;">
+            <div style="float: left; padding: 4px 14px 0px 10px; font-size: 32px; color: #FFCC00;">
+                <img src="img/seta_esq.png" width="20" height="37">
+            </div>
+        </div>
+        <div style="background: linear-gradient(180deg, #006600 0%, #00AD00 100%); border-radius: 5px; color: #CCFF99; height: 56px; padding-top: 4px; box-shadow: 3px 3px 8px -1px #000000;">
+            <div style="padding-top: 4px;">
+                <div id="board_game_result" style="float: right; font-size: 12px; padding: 0px 10px;">1-0</div>
+                <div style="text-align: left; font-size: 16px; font-weight: bold; padding: 0px 8px;">
+                    <div id="board_game_players">Karpov - Kasparov</div>
+                    <div id="board_game_place" style="text-align: left; font-size: 12px; font-style: italic; font-weight: normal;">SBC, 2019</div>
+                </div>
+            </div>
+        </div>
+        <div style="height: 56px; padding: 10px;">
+            <div style="float: right;">
+                <!--
+                <button onclick="But_Video_Clicked();" type="button" class="btn btn-info" style="font-size: 16px; background__: #c1c1c1; box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #777777;width: 40px; height: 34px; padding: 0px;">
+                    <i class="fas fa-video"></i>
+                </button>
+                &nbsp;
+                -->
+                <button onclick="But_Flip_Board_Clicked();" type="button" class="btn btn-info" style="font-size: 16px; background__: #c1c1c1; box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #777777; width: 40px; height: 34px; padding: 0px;">
+                    <i class="fas fa-retweet"></i>
+                </button>
+            </div>
+            <div id="header_game_moves" style="float: left; padding: 8px 10px 0px 0px; text-align: center; color: #0099FF; font-size: 16px; font-weight: bold;">
+                4. ... Nf6
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div style="clear: both;"></div>
+    <div id="container_board" style="width: 100%; text-align: center;">
+        <img id="ok_img"  src="img/check_mark.png"     style="display: none; border-radius: 5%; position: absolute; top: 140px; left: 140px; margin-right: auto; width: 200px; z-index: 10;">
+        <img id="err_img" src="img/check_mark_red.png" style="display: none; border-radius: 5%; position: absolute; top: 140px; left: 140px; margin-right: auto; width: 200px; z-index: 10;">
+        <div style="position: relative;">
+            <div    id="board" style="width: 100%; text-align: center;"></div>
+            <canvas id="layer" style="position: absolute; top: 0px; left: 0px; z-index: 100; opacity: 1; text-align: center;" onclick="Canvas_Clicked(event);" ></canvas>
+         </div>
+    </div>
+    <div id="nav_game_video" style="margin: 10px 0px;">
+        <table width="100%" align="center">
+            <tr>
+                <td width="10%">
+                    <i class="fas fa-minus-circle" style="font-size: 24px; color: #aaaaaa;" onclick="But_Time_Minus();"></i>&nbsp;
+                </td>
+                <td style="margin: 0px 20px 0px 20px; width: 50%;">
+                    <input type="range" min="0" max="100" step="10" value="50">
+                </td>
+                <td width="10%">
+                    &nbsp;<i class="fas fa-plus-circle" style="font-size: 24px; color: #aaaaaa;" onclick="But_Time_Plus();"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="nav_game_buttons" style="margin: 10px 0px; width: 100%;">
+        <table width="80%" align="center">
+            <tr>
+                <td width="25%" align="center" onclick="But_Games_Ini();">
+                    <button type="button" class="btn btn-warning" style="font-size: 18px; background: #DDDDDD; box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #aaaaaa; width: 52px;">
+                        <i class="fas fa-angle-double-left"></i>
+                    </button>
+                </td>
+                <td width="25%" align="center" onclick="But_Games_Back();">
+                    <button type="button" class="btn btn-warning" style="font-size: 18px; background: #DDDDDD; box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #aaaaaa; width: 52px;">
+                        <i class="fas fa-caret-left"></i>
+                    </button>
+                </td>
+                <td width="25%" align="center" onclick="But_Games_Next();">
+                    <button type="button" class="btn btn-warning" style="font-size: 18px; background: #DDDDDD; box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #aaaaaa; width: 52px;">
+                        <i class="fas fa-caret-right"></i>
+                    </button>
+                </td>
+                <td width="25%" align="center" onclick="But_Games_Final();">
+                    <button type="button" class="btn btn-warning" style="font-size: 18px; background: #DDDDDD; box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #aaaaaa; width: 52px;">
+                        <i class="fas fa-angle-double-right"></i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="conf_time_bar" style="margin: 12px 0px 0px 0px; text-align: center; display: none;">
+        <table align="center">
+            <tr>
+                <td width="10%">
+                    <i class="fas fa-minus-circle" style="font-size: 24px; color: #aaaaaa;" onclick="But_Time_Minus();"></i>&nbsp;
+                </td>
+                <td style="margin: 0px 20px 0px 20px; width:260px;">
+                    <input type="range" min="0" max="100" step="10" value="50">
+                </td>
+                <td width="10%">
+                    &nbsp;<i class="fas fa-plus-circle" style="font-size: 24px; color: #aaaaaa;" onclick="But_Time_Plus();"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="time_bar_area" style="margin-top: 10px; display: none; text-align: center;">
+        <img  id="time_bar" src="img/clock_0.png" style="width: 80%;">
+    </div>
+    <div id="next_line_but" style="display: none; margin: 10px 20px; font-size: 36px;">
+        <div id="but_board_left" onclick="But_Board_Left();" style="display: none; width: 10%; float: left; text-align: left; color: #A1A1A1;">
+            <i class="fas fa-arrow-circle-left" style="padding: "></i>
+        </div>
+        <div style="text-align: center;">
+            <img src="img/bt_next.gif" style="width: 160px;" onclick="But_Treinar_Proxima();">
+        </div>
+        <div id="but_board_right" onclick="But_Board_Right();" style="display: none; width: 10%; float: left; text-align: right; color: #D9D9D9;">
+            <i class="fas fa-arrow-circle-right"></i>
+        </div>
+
+
+
+    </div>
+</div>
+
+<!-- SECTION: sec_sel_card ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_sel_card" style="display: none; margin-bottom: 100px;">
+    <div style="padding: 4px; width: 100%; height: 56px; font-weight: normal; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding-top: 6px;">
+            <img id="header_board_nivel_front" src="img/icon_nivel_1.png" style="width: 28px; height: 28px; float: right;">
+            <div id="board_progress_front" style="font-size: 11px; color: #CCFF99;">2/2</div>
+        </div>
+        <div onclick="But_Back_Board('card');" style="float: left; padding: 0px 10px 0px 0px; font-size: 32px; color: #FFCC00;">
+            <img src="img/seta_esq.png" width="20" height="37">
+        </div>
+        <div style="float: left;">
+            <div id="card_sel_opening" style="font-size: 14px; color: #CCFF99;">Queen's Indian</div>
+            <div id="card_sel_eco" style="font-size: 16px; font-weight: bold; color: #fffff0;">
+                C42
+            </div>
+        </div>
+
+    </div>
+    <div style="clear: both;"></div>
+
+    <div style="text-align: left; margin: 20px 10px;">
+        <div onclick="Icon_Fav_Clicked();" style="float: right;">
+            <img id="icon_fav" src="img/menu2_off.png" style="width: 40px; margin-left: 20px;">
+        </div>
+        <div style="text-align: left;">
+            <div onclick="Show_Card_Img();" style="float: left; padding-right: 20px;">
+                <img id="sel_card_img"  src="cards/00002.jpg" style="width: 80px; height: 80px; border-radius: 5px; box-shadow: 3px 3px 8px -1px #000000; ">
+            </div>
+
+            <div id="card_moves" style="font-size: 16px; color: #777777;">
+                1.e4 e6 2.d4
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+
+    </div>
+
+    <div style="text-align: center; margin: 30px 0px 30px 0px;">
+        <!--
+        <button onclick="But_Revisao_Clicked();" type="button" class="btn btn-secondary" style="background: linear-gradient(180deg, #555555 0%, #aaaaaa 100%); box-shadow: 3px 3px 8px -1px #000000; width: 140px;">
+            <span id="lg_xxx" style="font-weight: bold;">REVISÃO</span>
+        </button>
+        &nbsp;&nbsp;
+        -->
+        <button type="button" class="btn btn-warning" onclick="Show_Modal_Sel_Colors('9999');" style="background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000; width: 150px;">
+            <span id="lg_206" style="font-weight: bold;">TREINAR</span>
+        </button>
+    </div>
+
+    <hr>
+
+    <div style="text-align: left; margin: 20px 10px 20px 10px;">
+        <div style="font-size: 14px; ">
+            <div style="font-size: 18px; font-weight: bold; margin: 0px 0px 10px 0px; color: #333333;">
+                <span id="lg_151">1. GENERAL CONCEPTS</span>
+            </div>
+            <div id="sel_card_descr1" style="padding: 4px 10px;">G1</div>
+            <div id="sel_card_descr2" style="padding: 4px 10px;">G2</div>
+            <div id="sel_card_descr3" style="padding: 4px 10px;">G3</div>
+
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <div style="padding: 10px 10px 20px 0px;">
+        <div style="text-align: left; margin: 10px 0px 20px 10px; font-weight: bold; font-size: 18px; color: #333333; ">
+            <span id="lg_152">2. EXERCÍCIOS POR NIVEL</span>
+            <img onclick="Show_Modal_Info(10);" src="img/icon_info.png" style="width: 24px; margin-top: -4px;">
+        </div>
+        <div style="font-size: 11px; color: #999999; margin: 2px; padding-left: 10px;">
+            <table width="100%" align="center" border="1" bordercolor="#006600">
+                <tr>
+                    <td width="20%" align="center">
+                        <div>
+                            <img src="img/icon_nivel_1.png" class="card_sel_icon_nivel">
+                        </div>
+                        <div style="font-size: 10px;">
+                            <span id="lg_153">4 lances</span>
+                        </div>
+                    </td>
+                    <td width="20%" align="center">
+                        <div>
+                            <img src="img/icon_nivel_2.png" class="card_sel_icon_nivel">
+                        </div>
+                        <div style="font-size: 10px;">
+                            <span id="lg_154">6 lances</span>
+                        </div>
+                    </td>
+                    <td width="20%" align="center">
+                        <div>
+                            <img src="img/icon_nivel_3.png" class="card_sel_icon_nivel">
+                        </div>
+                        <div style="font-size: 10px;">
+                            <span id="lg_155">8 lances</span>
+                        </div>
+                    </td>
+                    <td width="20%" align="center">
+                        <div>
+                            <img src="img/icon_nivel_4.png" class="card_sel_icon_nivel">
+                        </div>
+                        <div style="font-size: 10px;">
+                            <span id="lg_156">10 lances</span>
+                        </div>
+                    </td>
+                    <td width="20%" align="center">
+                        <div>
+                            <img src="img/icon_nivel_5.png" class="card_sel_icon_nivel">
+                        </div>
+                        <div style="font-size: 10px;">
+                            <span id="lg_157">12 lances</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="background: #009900; color: #fffff5;">
+                    <td width="20%" align="center">
+                        <div id="sel_card_tot_1" style="padding: 2px; font-weight: bold;"></div>
+                    </td>
+                    <td width="20%" align="center">
+                        <div id="sel_card_tot_2" style="padding: 2px; font-weight: bold;"></div>
+                    </td>
+                    <td width="20%" align="center">
+                        <div id="sel_card_tot_3" style="padding: 2px; font-weight: bold;"></div>
+                    </td>
+                    <td width="20%" align="center">
+                        <div id="sel_card_tot_4" style="padding: 2px; font-weight: bold;"></div>
+                    </td>
+                    <td width="20%" align="center">
+                        <div id="sel_card_tot_5" style="padding: 2px; font-weight: bold;"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="margin: 10px 0px; padding: 10px 10px 20px 10px;">
+        <div style="text-align: left; margin: 10px 0px 20px 10px; font-weight: bold; font-size: 18px; color: #333333; ">
+            <span id="lg_158">3. ECO</span>
+            <img onclick="Show_Modal_Info(11);" src="img/icon_info.png" style="width: 24px; margin-top: -4px;">
+        </div>
+        <div style="font-size: 11px; color: #555555; margin: 2px;">
+            <div id="sel_card_eco_lines"></div>
+        </div>
+    </div>
+    <div id="div_partidas" style="margin: 10px 0px; padding: 10px 0px 20px 0px;">
+        <div style="margin: 20px 0px 20px 0px;">
+            <div style="float: right; font-size: 26px; padding: 0px 10px 0px 0px;">
+                <button type="button" class="btn btn-info btn-sm" onclick="Ordena_Games(1);" style="box-shadow: 3px 3px 8px -1px #000000; width: 120px;">
+                    <span style="font-weight: bold;"><span id="descr_sort">DATE</span> &nbsp;<span id="icon_sort"><i class="fas fa-long-arrow-alt-down"></i></span></span>
+                </button>
+            </div>
+            <div style="text-align: left; margin: 10px 0px 20px 10px; font-weight: bold; font-size: 18px; color: #333333; padding-top: 8px;">
+                <span id="lg_159">4. PARTIDAS</span>
+                <img onclick="Show_Modal_Info(12);" src="img/icon_info.png" style="width: 24px; margin-top: -4px;">
+            </div>
+            <div id="all_games_area"></div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-danger btn-lg btn-block" onclick="But_Zerar_Card();" style="box-shadow: 3px 3px 8px -1px #000000; width: 96%;">
+        <span id="lg_160" style="font-weight: bold;">Zerar esse Card</span>
+    </button>
+
+</div>
+
+
+<!-- SECTION: sec_favoritos ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_favoritos" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('favoritos');" src="img/bt_menu.png" style="width: 42px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            <span id="lg_161">FAVORITOS</span>
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+    <div id="fav_cards"></div>
+</div>
+
+
+
+<!-- SECTION: sec_account ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_account" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('account');" src="img/bt_menu.png" style="width: 42px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            <span id="lg_162">MINHA CONTA</span>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div style="clear: both;"></div>
+    <div style="margin: 20px 10px 0px 10px; font-size: 16px; font-weight: bold; color: #0099FF; line-height: 110%;">
+        <div style="float: right; ">
+            ID: <span id="app_id">A362-ED91-F033-AC3D</span><br>
+            <span style="font-size: 13px; font-weight: normal; color: #555555;">
+                <span id="lg_163">Version:</span> <span id="app_version">1.0.0</span>
+            </span>
+
+        </div>
+        <div style="display: none; text-align: left;">
+            <button type="button" class="btn btn-warning" style="font-weight: bold; padding: 4px 0px 0px 0px; width: 38px; height: 38px; background: linear-gradient(180deg, #D9B56D 0%, #E9D4AA 100%); box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #006600;">
+                <i class="far fa-envelope" style="font-size: 22px; color: #333333; "></i>
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-warning" style="font-weight: bold; padding: 4px 0px 0px 0px; width: 38px; height: 38px; background: linear-gradient(180deg, #D9B56D 0%, #E9D4AA 100%); box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #006600;">
+                <i class="fas fa-chart-line" style="font-size: 22px; color: #333333; "></i>
+            </button>
+
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <div style="margin: 12px 10px;">
+        <div style="background: linear-gradient(180deg, #000000 0%, #777777 100%); border-radius: 5px 5px 0px 0px; padding: 8px; color: #ffffff; font-weight: bold; font-size: 14px; text-align: left;">
+            :: <span id="lg_164">DADOS PESSOAIS</span>
+        </div>
+        <div id="acc_area_guest" style="min-height: 60px; padding: 6px;  border: 2px solid #777777; background: #FFFFFF; text-align: left; border-top: 0px;">
+            <div style="text-align: center; padding: 6px; font-size: 18px; font-weight: bold; color: #333333;">
+                <span id="lg_165">Crie a sua conta agora e ganhe mais 30 dias de acesso Grátis!</span>
+            </div>
+            <div style="text-align: center; font-size: 16px; color: #777777;">
+                <span id="lg_166">Demora menos de 1 minuto!</span>
+            </div>
+            <div onclick="But_Criar_Conta();" style="margin: 20px 0px 10px 0px;">
+                <button class="btn btn-warning" type="button" onclick="" style="font-size: 16px; background: linear-gradient(180deg, #FFCC00 0%, #FFDC52 100%); border: 1px solid #EBBC00; box-shadow: 3px 3px 8px -1px #000000; font-weight: bold;">
+                    <span id="lg_167">Criar conta</span>
+                </button>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div id="acc_area_dados" style="display: none; min-height: 60px; padding: 6px;  border: 2px solid #777777; background: #FFFFFF; text-align: left; border-top: 0px;">
+            <div style="float: right;">
+                <img id="acc_flag" src="img/flags2/IT.png" style="width: 64px;">
+            </div>
+            <div id="acc_name" style="text-align: left; padding: 6px 0px 0px 0px; font-size: 16px; font-weight: bold; color: #333333;">
+                Nome
+            </div>
+            <div id="acc_email" style="text-align: left; font-size: 14px; font-style: italic; color: #777777;">
+                guest@gmail.com
+            </div>
+            <div style="text-align: left; font-size: 14px; font-style: italic; color: #777777;">
+                <span id="acc_age">32</span> yo
+                <span style="display: none;" id="acc_sexo"><i class="fas fa-mars" style="font-size: 18px; color: #999999;"></i></span>
+            </div>
+            <!--
+            <div style="margin: 20px 0px 10px 0px;">
+                <button class="btn btn-primary btn-sm" type="button" onclick="" style="font-weight: normal; font-size: 14px; width: 60px; background: linear-gradient(180deg, #0099CC 0%, #29C9FF 100%); border: 1px solid #006699;">
+                    <i class="fas fa-user-edit"></i>
+                </button>
+            </div>
+            -->
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div style="margin: 12px 10px;">
+        <div style="background: linear-gradient(180deg, #000000 0%, #777777 100%); border-radius: 5px 5px 0px 0px; padding: 8px; color: #ffffff; font-weight: bold; font-size: 14px; text-align: left;">
+            :: <span id="lg_168">ASSINATURA</span>
+        </div>
+        <div style="min-height: 60px; border: 2px solid #777777; background: #FFFFFF; text-align: left; border-top: 0px;">
+            <div style="padding: 0px 6px; display: block;">
+                <div style="padding: 10px 0px; font-size: 14px; color: #333333;">
+                    <div id="val_assinatura" style="float: right; font-size: 14px; font-weight: bold; color: #F038A3;">01 Fev 21</div>
+                    <span id="lg_169">Validade:</span>
+                </div>
+                <div style="clear: both;"></div>
+
+
+                <div id="dados_extrato" style="display: none; padding: 10px;">
+                </div>
+
+                <div style="margin: 20px 0px 10px 0px;">
+                    <button class="btn btn-info btn-sm" type="button" onclick="But_Extrato_Clicked();" style="font-weight: bold; font-size: 14px; box-shadow: 3px 3px 8px -1px #000000;">
+                        <span id="lg_170">Extrato</span>
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-primary btn-sm" type="button" onclick="But_Menu_Clicked(5);" style="font-weight: bold; font-size: 14px; background: linear-gradient(180deg, #FF0198 0%, #FF75C8 100%); box-shadow: 3px 3px 8px -1px #000000; border: 1px solid #F50093;">
+                        <span id="lg_171">Renovar</span>
+                    </button>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+        </div>
+    </div>
+    <div style="margin: 12px 10px;">
+        <div style="background: linear-gradient(180deg, #000000 0%, #777777 100%); border-radius: 5px 5px 0px 0px; padding: 8px; color: #ffffff; font-weight: bold; text-align: left; font-size: 14px; ">
+            :: <span id="lg_172">FEEDBACKS</span>
+        </div>
+        <div style="padding: 0px 6px; border: 2px solid #777777; background: #FFFFFF; display: block;">
+            <div style="padding: 10px 0px; font-size: 14px; color: #777777; text-align: left;">
+                <div style="float: right; font-size: 14px; font-weight: bold; color: #0099CC;">
+                    <div id="last_feedback" style="">01 Fev 2021 às 14:23 hs</div>
+                    <div id="msg_feedback" style="float: right; font-weight: normal; color: #777777;"><span id="lg_173">Thank you! :)</span></div>
+                </div>
+                <span id="lg_174">Último feedback:</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div onclick="But_Feedback();" style="margin: 30px 0px 10px 0px; text-align: left;">
+                <button class="btn btn-info btn-sm" type="button" style="font-weight: bold; font-size: 14px; box-shadow: 3px 3px 8px -1px #000000; ">
+                    <span id="lg_175">Novo Feedback</span>
+                </button>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <br><br><br><br>
+</div>
+
+
+<!-- SECTION: sec_feedback ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_feedback" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            <span id="lg_176">FEEDBACK</span>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div style="margin: 20px;">
+        <div style="font-size: 24px; font-weight: bold; color: #333333; line-height: 120%;">
+           <span id="lg_177">Envie-nos a sua opinião sobre esse app e ganhe + <span style="color: #F038A3">30 dias Grátis!</span></span>
+        </div>
+        <!--
+        <div style="font-size: 16px; font-weight: normal; color: #555555; text-align: left; margin: 10px 0px;">
+            <li>Quais características você gostaria de ver implementada no Chess Openings Pró-Master?</li>
+            <li>As suas sugestões poderão beneficiar muitos outros usuários</li>
+            <li>Você estará nos ajudando a fazer um produto cada vez melhor.</li>
+            <li>Você poderá enviar quantos feedbacks quiser.</li>
+        </div>
+        -->
+    </div>
+
+    <div id="form_feedback">
+        <div style="text-align: left; border: 1px solid #dddddd; background: #eeeeee; margin: 4px;">
+            <div style="font-size: 18px; color: #333333; margin: 10px 20px;">
+                <span id="lg_081">Que nota você daria para cada um dos tópicos abaixo?</span>
+            </div>
+            <div style="margin: 10px; padding: 8px 8px 20px 8px; background: #ffffff; border: 1px solid #F7F7F7; border-radius: 5px; font-weight: normal;">
+                <table width="100%">
+                    <tr>
+                        <td style="padding-top: 10px; font-weight: bold;">
+                            <span id="lg_082">Design</span>
+                        </td>
+                        <td style="text-align: right; font-size: 26px; padding-top: 10px;">
+                            <i id="star_1_1" onclick="Star_Clicked(1, 1);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_1_2" onclick="Star_Clicked(1, 2);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_1_3" onclick="Star_Clicked(1, 3);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_1_4" onclick="Star_Clicked(1, 4);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_1_5" onclick="Star_Clicked(1, 5);" class="fas fa-star" style="color: #cccccc;"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; font-weight: bold;">
+                            <span id="lg_083">Facilidade</span>
+                        </td>
+                        <td style="text-align: right; font-size: 26px; padding-top: 10px;">
+                            <i id="star_2_1" onclick="Star_Clicked(2, 1);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_2_2" onclick="Star_Clicked(2, 2);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_2_3" onclick="Star_Clicked(2, 3);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_2_4" onclick="Star_Clicked(2, 4);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_2_5" onclick="Star_Clicked(2, 5);" class="fas fa-star" style="color: #cccccc;"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; font-weight: bold;">
+                            <span id="lg_084">Método</span>
+                        </td>
+                        <td style="text-align: right; font-size: 26px; padding-top: 10px;">
+                            <i id="star_3_1" onclick="Star_Clicked(3, 1);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_3_2" onclick="Star_Clicked(3, 2);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_3_3" onclick="Star_Clicked(3, 3);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_3_4" onclick="Star_Clicked(3, 4);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_3_5" onclick="Star_Clicked(3, 5);" class="fas fa-star" style="color: #cccccc;"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; font-weight: bold;">
+                            <span id="lg_085">Aberturas</span>
+                        </td>
+                        <td style="text-align: right; font-size: 26px; padding-top: 10px;">
+                            <i id="star_4_1" onclick="Star_Clicked(4, 1);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_4_2" onclick="Star_Clicked(4, 2);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_4_3" onclick="Star_Clicked(4, 3);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_4_4" onclick="Star_Clicked(4, 4);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_4_5" onclick="Star_Clicked(4, 5);" class="fas fa-star" style="color: #cccccc;"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; font-weight: bold;">
+                            <span id="lg_086">Partidas</span>
+                        </td>
+                        <td style="text-align: right; font-size: 26px; padding-top: 10px;">
+                            <i id="star_5_1" onclick="Star_Clicked(5, 1);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_5_2" onclick="Star_Clicked(5, 2);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_5_3" onclick="Star_Clicked(5, 3);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_5_4" onclick="Star_Clicked(5, 4);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_5_5" onclick="Star_Clicked(5, 5);" class="fas fa-star" style="color: #cccccc;"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; font-weight: bold;">
+                            <span id="lg_087">Teoria</span>
+                        </td>
+                        <td style="text-align: right; font-size: 26px; padding-top: 10px;">
+                            <i id="star_6_1" onclick="Star_Clicked(6, 1);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_6_2" onclick="Star_Clicked(6, 2);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_6_3" onclick="Star_Clicked(6, 3);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_6_4" onclick="Star_Clicked(6, 4);" class="fas fa-star" style="color: #cccccc;"></i>
+                            <i id="star_6_5" onclick="Star_Clicked(6, 5);" class="fas fa-star" style="color: #cccccc;"></i>
+                        </td>
+                    </tr>
+                </table>
+                <div style="clear: both;"></div>
+            </div>
+            <div style="font-size: 18px; color: #333333; margin: 20px 20px 10px 20px;">
+                <span id="lg_088">Quais as 3 coisas que você mais gostou em nosso app?</span>
+            </div>
+            <div style="padding: 0px 20px 10px 20px;">
+                <input id="form_best1" type="text" class="form-control feedback_form" placeholder="1" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div style="padding: 0px 20px 10px 20px;">
+                <input id="form_best2" type="text" class="form-control feedback_form" placeholder="2" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div style="padding: 0px 20px 10px 20px;">
+                <input id="form_best3" type="text" class="form-control feedback_form" placeholder="3" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div style="font-size: 18px; color: #333333; margin: 20px 20px 10px 20px;">
+                <span id="lg_089">Quais as 3 coisas que você menos gostou em nosso app?</span>
+            </div>
+            <div style="padding: 0px 20px 10px 20px;">
+                <input id="form_worst1" type="text" class="form-control feedback_form" placeholder="1" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div style="padding: 0px 20px 10px 20px;">
+                <input id="form_worst2" type="text" class="form-control feedback_form" placeholder="2" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div style="padding: 0px 20px 10px 20px;">
+                <input id="form_worst3" type="text" class="form-control feedback_form" placeholder="3" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div style="font-size: 18px; color: #333333; margin: 20px 20px 10px 20px;">
+                <span id="lg_090">Comentários adicionais:</span>
+            </div>
+            <div style="padding: 0px 20px 10px 20px;">
+                <textarea id="form_comments" class="form-control" rows="6"></textarea>
+            </div>
+            <div style="margin: 20px 0px 0px 20px; font-size: 1.25em; color: #CCCCCC;">
+                <button class="btn btn-info" type="button" onclick="But_Survey_Save();" style="width: 120px;box-shadow: 3px 3px 8px -1px #000000; height: 50px; font-weight: bold; font-size: 1em">
+                    <span id="lg_091">Enviar</span>
+                </button>
+            </div>
+            <div style="clear: both; height: 40px;"></div>
+        </div>
+        <div style="padding-top: 80px;"></div>
+    </div>
+ </div>
+
+
+ <!-- SECTION: sec_cadastro ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_cadastro" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            <span id="lg_178">CRIAR CONTA</span>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div id="ret_cadastro" style="display: none;">
+        <div style="text-align: center; margin: 30px 20px; font-weight: bold; font-size: 22px; color: #006600;">
+            <div id="lg_100">O seu cadastro foi efetuado com sucesso!</div>
+            <div style=" font-size: 16px; color: #777777; text-align: left; font-weight: normal; margin-top: 20px;">
+                <li id="lg_101" style="margin-top: 10px;">O seu período gratuito foi estendido por mais 31 dias.</li>
+                <li id="lg_102" style="margin-top: 10px;">Enviamos um email para <b>juca@gmail.com</b></li>
+                <li id="lg_103" style="margin-top: 10px;">Para confirmar a sua conta, por favor, acesse a sua caixa de emails e clique no botão <b>VERIFY</b></li>
+                <li id="lg_104" style="margin-top: 10px;">Se você não recebeu nosso email, por favor verifique a sua caixa de Spam</li>
+                <li id="lg_105" style="margin-top: 10px;">Se precisar de ajuda, clique aqui!</li>
+            </div>
+        </div>
+    </div>
+
+    <div id="form_cadastro">
+        <div style="margin: 20px 10px; text-align: center;">
+            <div style="font-size: 24px; font-weight: bold; color: #333333; line-height: 120%;">
+                <span id="lg_179">Crie a sua conta agora e ganhe + <span style="color: #F038A3">30 dias Grátis</span></span>
+            </div>
+            <hr>
+            <!--
+            <div style="text-align: left; font-size: 14px; font-weight: normal; color: #777777; padding: 4px;">
+                <div style="font-weight: bold;">Outros benefícios:</div>
+                <li>Cópia de segurança automática em nossos servidores</li>
+                <li>Você pode recuperar os seus dados a qualquer momento, mesmo trocando de dispositivo.</li>
+                <li>Demora menos de um minuto</li>
+            </div>
+            -->
+        </div>
+        <div style="margin: 8px; text-align: left; color: #888888; font-weight: bold; border: 1px solid #cccccc; background: linear-gradient(180deg, #eeeeee 0%, #ffffff 100%); border-radius: 5px; padding: 4px;">
+            <div style="margin: 20px 0px 0px 6px; font-size: 16px;">
+                <span id="lg_026">Nome:</span>
+            </div>
+            <div style="padding: 0px 6px;">
+                <input id="user_name" type="text" class="form-control" style="width: 100%; height: 40px; max-width: 400px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div style="margin: 30px 0px 0px 6px; font-size: 16px;" onchange="My_Remove_Class(this.id)">
+                <span id="lg_027">E-mail:</span>
+            </div>
+            <div style="padding: 0px 6px;">
+                <input id="user_email" type="text" class="form-control" style="text-transform: lowercase; width: 100%; height: 40px; max-width: 400px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div style="margin: 30px 0px 0px 6px; font-size: 16px;" onchange="My_Remove_Class(this.id)">
+                <span id="lg_028">País:</span>
+            </div>
+            <div style="padding: 0px 6px;">
+                <select id="user_country" class="form-control" style="width: 240px; height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="0" selected="selected"></option>
+                </select>
+            </div>
+            <div style="margin: 30px 0px 0px 6px; font-size: 16px;" onchange="My_Remove_Class(this.id)">
+                <span id="lg_029">Sexo:</span>
+            </div>
+            <div style="padding: 0px 6px;">
+                <select id="user_sexo" class="form-control" style="width: 240px; height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="0"></option>
+                    <option value="M"><span id="lg_030">Masculino</span></option>
+                    <option value="F"><span id="lg_031">Feminino</span></option>
+                </select>
+            </div>
+            <div style="margin: 30px 0px 0px 6px; font-size: 16px;" onchange="My_Remove_Class(this.id)">
+                <span id="lg_032">Data de nascimento:</span>
+            </div>
+            <div style="padding: 0px 6px;">
+                <select id="user_nasc_dd" class="form-control" style="width: 60px; height: 40px; padding: 0px 10px 0px 10px; float: left; margin-right: 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="0">-</option>
+                </select>
+                <select id="user_nasc_mm" class="form-control" style="width: 80px; height: 40px; padding: 0px 10px 0px 10px; float: left; margin-right: 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="0">-</option>
+                </select>
+                <select id="user_nasc_aa" class="form-control" style="width: 80px; height: 40px; padding: 0px 10px 0px 10px; float: left; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="0">-</option>
+                </select>
+                <div style="clear: both;"></div>
+            </div>
+            <div style="margin: 30px 0px 0px 6px; font-size: 16px;" onchange="My_Remove_Class(this.id)">
+                <span id="lg_033">Há quanto tempo joga Xadrez?</span>
+            </div>
+            <div style="padding: 0px 6px;">
+                <select id="user_tempo" class="form-control" style="width: 240px; height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="0"></option>
+                </select>
+            </div>
+            <div style="margin: 30px 0px 0px 6px; font-size: 16px;" onchange="My_Remove_Class(this.id)">
+                <span id="lg_038">Qual o seu rating?</span>
+            </div>
+            <div style="padding: 0px 6px;">
+                <select id="user_rating" class="form-control" style="width: 240px; height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="0"></option>
+                    <option value="9999"><span id="lg_039">?</span></option>
+                    <option value="800">800</option>
+                    <option value="900">900</option>
+                    <option value="1000">1000</option>
+                    <option value="1100">1100</option>
+                    <option value="1200">1200</option>
+                    <option value="1300">1300</option>
+                    <option value="1400">1400</option>
+                    <option value="1500">1500</option>
+                    <option value="1600">1600</option>
+                    <option value="1700">1700</option>
+                    <option value="1800">1800</option>
+                    <option value="1900">1900</option>
+                    <option value="2000">2000</option>
+                    <option value="2100">2100</option>
+                    <option value="2200">2200</option>
+                    <option value="2300">2300</option>
+                    <option value="2400">2400</option>
+                    <option value="2500+">2500+</option>
+                </select>
+            </div>
+            <div style="margin: 30px 0px 0px 6px; font-size: 16px;" onchange="My_Remove_Class(this.id)">
+                <span id="lg_040">Como descobriu nosso App?</span>
+            </div>
+            <div style="padding: 0px 6px;">
+                <select id="user_source" class="form-control" style="width: 240px; height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="Form_Origem_Changed(this.id)">
+                    <option value="0"></option>
+                </select>
+            </div>
+            <div id="promoter" style="display: none;">
+                <div style="margin: 30px 0px 0px 6px; font-size: 16px;" onchange="My_Remove_Class(this.id)">
+                    <span id="lg_046">Especificar: (opcional)</span>
+                </div>
+                <div style="padding: 0px 6px;">
+                    <input id="user_promoter" type="text" class="form-control" style="height: 40px; max-width: 240px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                </div>
+            </div>
+            <div style="margin: 60px 0px 30px 10px;">
+                <button class="btn btn-warning" type="button" onclick="But_Account_Save();" style="height: 44px; font-weight: bold; font-size: 18px; background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000;">
+                    <span id="lg_207">Criar conta</span>
+                </button>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- SECTION: sec_shopping ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_shopping" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('shopping');" src="img/bt_menu.png" style="width: 42px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            <span id="lg_208">SHOPPING</span>
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div style="margin: 12px 10px;">
+        <div style="text-align: left;">
+            <div style="">
+                1 mês de assinatura
+            </div>
+            <button class="btn btn-warning" type="button" onclick="Call_Store_Billing('sub_01m_p0')" style="height: 44px; font-weight: bold; font-size: 18px; background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000;">
+                <span id="price_sub_01m_p0">R$ 25,00</span>
+            </button>
+            <hr>
+            <div style="">
+                3 meses de assinatura
+            </div>
+            <button class="btn btn-warning" type="button" onclick="Call_Store_Billing('sub_03m_p0')" style="height: 44px; font-weight: bold; font-size: 18px; background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000;">
+                <span id="price_sub_03m_p0">R$ 50,00</span>
+            </button>
+            <hr>
+            <div style="">
+                6 meses de assinatura
+            </div>
+            <button class="btn btn-warning" type="button" onclick="Call_Store_Billing('sub_06m_p0')" style="height: 44px; font-weight: bold; font-size: 18px; background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000;">
+                <span id="price_sub_06m_p0">R$ 75,00</span>
+            </button>
+            <hr>
+            <div style="">
+                12 meses de assinatura
+            </div>
+            <button class="btn btn-warning" type="button" onclick="Call_Store_Billing('sub_12m_p0')" style="height: 44px; font-weight: bold; font-size: 18px; background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000;">
+                <span id="price_sub_12m_p0">R$ 125,00</span>
+            </button>
+            <hr>
+            <div style="">
+                24 meses de assinatura
+            </div>
+            <button class="btn btn-warning" type="button" onclick="Call_Store_Billing('sub_24m_p0')" style="height: 44px; font-weight: bold; font-size: 18px; background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000;">
+                <span id="price_sub_24m_p0">R$ 219,00</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- SECTION: sec_suporte ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_support" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            <span id="lg_195">SUPORTE</span>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div id="support_home">
+        <div style="margin: 20px 10px 30px 10px;">
+            <div style="text-align: left; color: #333333; font-size: 16px;">
+                <div style="margin: 10px;">
+                    <span id="lg_196">Esse canal serve para você rapidamente reportar <b>eventuais problemas</b> do aplicativo, bem como enviar suas <b>dúvidas</b>, <b>críticas</b> e <b>sugestões</b>.</span>
+                    <img onclick="Show_Modal_Info(40);" src="img/icon_info.png" style="width: 24px; margin-top: -4px;">
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin: 10px 0px; padding: 4px; background: #9CDE9C;">
+            <div style="font-weight: bold; font-size: 18px; color: #333333;">
+                <span id="lg_197">Mensagens anteriores</span>
+            </div>
+        </div>
+        <div id="support_msgs" style="margin: 20px 0px 40px 0px;"></div>
+        <div style="text-align: center; margin: 20px 0px; padding: 4px; background: #9CDE9C;">
+            <div style="font-weight: bold; font-size: 18px; color: #333333;">
+                <span id="lg_198">Envie sua mensagem</span>
+            </div>
+        </div>
+        <div style="margin: 20px 10px;">
+            <div style="margin: 10px 0px;">
+                <input id="suporte_new_subj" type="text" class="form-control" style="height: 40px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)" placeholder="Subject">
+            </div>
+            <textarea id="suporte_new_texto" rows="5" style="white-space: pre; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" class="form-control" placeholder="Your message" onchange="My_Remove_Class(this.id)"></textarea>
+            <button class="btn btn-warning" type="button" onclick="But_Enviar_Msg_Suporte();" style="margin: 20px 0px 80px 0px; font-weight: bold; width: 100px; background: linear-gradient(180deg, #FFCC00 0%, #FFE270 100%); box-shadow: 3px 3px 8px -1px #000000;">
+                <span id="lg_199">Enviar</span>
+            </button>
+        </div>
+        <br><br><br><br><br><br><br><br>
+    </div>
+
+    <div id="support_msg" style="display: none; margin: 20px 10px; text-align: left;">
+        <div id="sup_msg_status" style="float: right; font-size: 12px; ">Open</div>
+        <div id="sup_msg_data" style="font-size: 11px; ">21 May 21</div>
+        <div id="sup_msg_titulo" style="font-size: 18px; font-weight: bold; color: #333333; padding-bottom: 10px;">Titulo</div>
+        <div style="clear: both;"></div>
+        <div style="border: 1px solid #999999; margin-top: 0px;"></div>
+        <div id="supp_msg_talk"></div>
+    </div>
+
+</div>
+
+
+<!-- SECTION: sec_config ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_config" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            <span id="lg_200">CONFIGURAÇÕES</span>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div style="margin: 30px 20px 20px 20px;">
+        <div id="conf_sound" onclick="Conf_Sound_Clicked();" style="float: right;">
+            <button type="button" class="btn btn-success" style="font-weight: bold; color: #99FF00; width: 60px; background: #555555; box-shadow: 2px 2px 8px -1px #aaaaaa; border: 1px solid #aaaaaa;">
+                ON
+            </button>
+        </div>
+        <div style="float: left; padding-left: 10px; padding-top: 10px; font-weight: bold;">
+            <span id="lg_011">Som: </span>
+        </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div style="margin: 20px 20px;">
+        <div style="float: right;">
+            <div style="">
+                <select id="conf_lang" onchange="Conf_Lang_Clicked();"  class="form-control" style="height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="ENG">English</option>
+                    <option value="POR">Português</option>
+                    <option value="GER">Deutsche</option>
+                    <option value="FRA">Français</option>
+                    <option value="SPN">Español</option>
+                    <option value="ITA">Italiano</option>
+                </select>
+            </div>
+        </div>
+        <div style="float: left; padding-left: 10px; font-weight: bold;">
+            <span id="lg_012">Idioma: </span>
+        </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <!--
+    <div style="margin: 20px 20px;">
+        <div style="float: right;">
+            <div style="">
+                <select onchange="Conf_Chances_Clicked();" id="conf_chances" class="form-control" style="height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+        <div style="float: left; padding-left: 10px; font-weight: bold;">
+            <span id="lg_xxx">Chances: <i onclick="Show_Modal_Info(20);" class="fas fa-question-circle" style="font-size: 18px; color: #0099FF;"></i></span>
+        </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div style="margin: 20px 20px;">
+        <div style="float: right;">
+            <div style="">
+                <select onchange="Conf_Time_Exerc_Clicked();" id="conf_time_exerc" class="form-control" style="height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="15">15 secs</option>
+                    <option value="30">30 secs </option>
+                    <option value="45">45 secs</option>
+                    <option value="60">60 secs</option>
+                    <option value="90">90 secs</option>
+                    <option value="9999">Sem tempo</option>
+                </select>
+            </div>
+        </div>
+        <div style="float: left; padding-left: 10px; font-weight: bold;">
+            <span id="lg_xxx">Tempo por exerc: <i onclick="Show_Modal_Info(21);" class="fas fa-question-circle" style="font-size: 18px; color: #0099FF;"></i></span>
+        </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div style="margin: 20px 20px;">
+        <div style="float: right;">
+            <div style="">
+                <select onchange="Conf_Secs_Exerc_Clicked();" id="conf_secs_exerc" class="form-control" style="height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="1">1 secs</option>
+                    <option value="2">2 secs </option>
+                    <option value="3">3 secs</option>
+                    <option value="5">5 secs</option>
+                    <option value="10">10 secs</option>
+                    <option value="15">15 secs</option>
+                </select>
+            </div>
+        </div>
+        <div style="float: left; padding-left: 10px; font-weight: bold;">
+            <span id="lg_xxx">Secs/move Exercs: <i onclick="Show_Modal_Info(22);" class="fas fa-question-circle" style="font-size: 18px; color: #0099FF;"></i></span>
+        </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div style="margin: 20px 20px;">
+        <div style="float: right;">
+            <div style="">
+                <select onchange="Conf_Secs_Games_Clicked();" id="user_secs_games" class="form-control" style="height: 40px; padding: 0px 10px 0px 10px; box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.27);" onchange="My_Remove_Class(this.id)">
+                    <option value="1">1 secs</option>
+                    <option value="2">2 secs </option>
+                    <option value="3">3 secs</option>
+                    <option value="5">5 secs</option>
+                    <option value="10">10 secs</option>
+                    <option value="15">15 secs</option>
+                </select>
+            </div>
+        </div>
+        <div style="float: left; padding-left: 10px; font-weight: bold;">
+            <span id="lg_xxx">Secs/move Games: <i onclick="Show_Modal_Info(23);" class="fas fa-question-circle" style="font-size: 18px; color: #0099FF;"></i></span>
+        </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div style="margin: 30px 0px 0px 0px; border-top: 2px solid #eeeeee; padding-top: 20px; padding-bottom: 0px;">
+        <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close" style="box-shadow: 3px 3px 8px -1px #000000;">
+            <span id="lg_xxx" style="font-weight: bold;">Restore Default</span>
+        </button>
+    </div>
+    -->
+
+</div>
+
+
+
+
+<!-- SECTION: sec_recover ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_recover" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            RECUPERAR CONTA
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div style="margin: 50px">
+        TEXTO RECOVER
+    </div>
+
+ </div>
+
+<!-- SECTION: sec_about_us ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_about_us" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('close');" src="img/bt_close_rosa.png" style="width: 38px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            SOBRE NÓS
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div style="margin: 50px">
+        TEXTO ABOUT US
+    </div>
+
+ </div>
+
+<!-- SECTION: sec_teoria ------------------------------------------------------------------------------------------------------------------- -->
+<div id="sec_teoria" style="display: none; margin-bottom: 100px;">
+    <div style="font-size: 12px; padding: 4px 0px 0px 10px; width: 100%; height: 56px; font-weight: normal; color: #CCFF99; background: linear-gradient(180deg, #006600 0%, #00AD00 100%); box-shadow: 0px 3px 8px -1px #000000; text-align: left;">
+        <div style="float: right; padding: 4px 10px;">
+            <img onclick="Menu_Top_Clicked('teoria');" src="img/bt_menu.png" style="width: 42px;">
+        </div>
+        Chess Openings Pró-Master
+        <div style="font-size: 18px; font-weight: bold; color: #fffff0; padding: 2px 0px 0px 0px;">
+            TEORIA DE ABERTURAS
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div style="font-size: 22px; font-weight: bold; color: #333333; margin: 20px 0px 0px 0px;">
+        <span id="lg_300">Some...</span>
+    </div>
+    <div style="text-align: left; margin: 20px;">
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_301">1</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_302">T</span> </li>
+            <li><span id="lg_303">O</span> </li>
+            <li><span id="lg_304">T</span> </li>
+        </div>
+        <div style="position: relative; width: 80%; margin: 20px 0px 10px 10px;">
+            <div id="board_t01" style="width: 230px;"></div>
+       </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_305">2</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_306">W</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_307">3</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_308">T</span> </li>
+            <li><span id="lg_309">I</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_310">4</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_311">P</span> </li>
+            <li><span id="lg_312">G</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_313">5</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_314">A</span> </li>
+            <li><span id="lg_315">M</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_316">6</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_317">A</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_318">7</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_319">S</span> </li>
+            <li><span id="lg_320">T</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_321">8</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_322">G</span> </li>
+            <li><span id="lg_323">W</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_324">9</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_325">T</span> </li>
+            <li><span id="lg_326">T</span> </li>
+            <li><span id="lg_327">C</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_328">10</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_329">K</span> </li>
+            <li><span id="lg_330">O</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_331">11</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_332">I</span> </li>
+            <li><span id="lg_333">O</span> </li>
+            <li><span id="lg_334">M</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_335">12</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_336">T</span> </li>
+            <li><span id="lg_337">O</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_338">13</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_339">A</span> </li>
+            <li><span id="lg_340">F</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_341">14</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_342">T</span> </li>
+            <li><span id="lg_343">P</span> </li>
+        </div>
+        <div style="position: relative; width: 80%; margin: 20px 0px 10px 10px;">
+            <div id="board_t14" style="width: 230px;"></div>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_344">15</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_345">I</span> </li>
+            <li><span id="lg_346">T</span> </li>
+        </div>
+        <div style="position: relative; width: 80%; margin: 20px 0px 10px 10px;">
+            <div id="board_t15" style="width: 230px;"></div>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_347">16</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_348">I</span> </li>
+        </div>
+        <div style="position: relative; width: 80%; margin: 20px 0px 10px 10px;">
+            <div id="board_t16" style="width: 230px;"></div>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_349">17</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_350">S</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_351">18</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_352">D</span> </li>
+            <li><span id="lg_353">G</span> </li>
+            <li><span id="lg_354">H</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_355">19</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_356">T</span> </li>
+            <li><span id="lg_357">W</span> </li>
+            <li><span id="lg_358">W</span> </li>
+            <li><span id="lg_359">W</span> </li>
+        </div>
+        <div style="font-size: 18px; font-weight: bold; margin: 40px 0px 10px 0px; color: #006600;">
+            <span id="lg_360">20</span>
+        </div>
+        <div style="margin-left: 10px; color: #555555;">
+            <li><span id="lg_361">C</span> </li>
+            <li><span id="lg_362">O</span> </li>
+            <li><span id="lg_363">I</span> </li>
+        </div>
+    </div>
+    <div style="text-align: center; margin: 20px 0px; font-size: 14px;">
+        &copy; 2021 - Pró-Master Chess
+    </div>
+    <div style="clear: both; border-top: 1px solid #cccccc;"></div>
+</div>
+
+
+
+
+
+    </center>
+
+    <script src="class_general.js"></script>
+    <script src="class_const.js"></script>
+    <script src="x_const.js"></script>
+    <script src="class_init.js"></script>
+
+    <script src="tab_linhas_A.js"></script>
+    <script src="tab_linhas_B.js"></script>
+    <script src="tab_linhas_C.js"></script>
+    <script src="tab_linhas_D.js"></script>
+    <script src="tab_linhas_E.js"></script>
+    <script src="tab_games.js"></script>
+    <script src="tab_eco.js"></script>
+
+    <script src="class_emojis.js"></script>
+    <script src="class_games.js"></script>
+    <script src="class_lang.js"></script>
+    <script src="class_lang_cards.js"></script>
+    <script src="class_linhas.js"></script>
+
+    <script src="class_ajax.js"></script>
+    <script src="class_account.js"></script>
+    <script src="class_html.js"></script>
+    <script src="class_naveg.js"></script>
+    <script src="main.js"></script>
+
+    <script src="class_graph.js"></script>
+
+
+</body>
+
+</html>
+

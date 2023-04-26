@@ -1,0 +1,4182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <title>The New Way To Train Chess</title>
+
+    <!-- JQUERY  -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/json3.min.js"></script>
+
+    <!-- Necessário para carregar o plugin que conecta com Google Payment   -->
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+
+
+    <!-- CHESS.JS  -->
+    <link   rel="stylesheet" href="css/chessboard-1.0.0.css">
+    <script src="js/chess.js"></script>
+    <script src="js/chessboard-1.0.0.js"></script>
+
+    <!-- BOOTSTRAP  -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link   rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- FONTAWESOME  -->
+    <link rel="stylesheet" href="css/fontawesome-5.7.2_all.css">
+
+    <!-- PROMASTER  -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/all.css">
+
+    <link rel="stylesheet" href="css/0200_0299px.css">
+    <link rel="stylesheet" href="css/0300_0399px.css">
+    <link rel="stylesheet" href="css/0400_0699px.css">
+    <link rel="stylesheet" href="css/0700_1999px.css">
+
+    <!-- PLUGINs -->
+
+
+</head>
+
+<body>
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_HOME POPUP
+    <!-- ................................................................................................................................. -->
+
+    <div id="modal_home" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="mod_home_titulo">Título</span>
+            </div>
+            <div class="my_modal_body">
+                <div id="mod_home_msg_1" class="my_modal_body_h2">Mensagem</div>
+                <div id="mod_home_msg_2" class="my_modal_body_h4" style="margin-top: 20px;">Bobby Fischer</div>
+            </div>
+            <div class="my_modal_footer">
+                <table align="center">
+                    <tr>
+                        <td align="center">
+                            <button id="mod_home_but_1" data-dismiss="modal" class="btn btn-warning btn_verde" type="button" onclick="But_Home_Modal_Clicked(1);">
+                                <span id="mod_home_bt1">cancel</span>
+                            </button>
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            <button id="mod_home_but_2" data-dismiss="modal" class="btn btn-warning btn_verde" type="button" onclick="But_Home_Modal_Clicked(2);">
+                                <span id="mod_home_bt2">ok</span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button id="show_modal_home" type="button" style="display: none;" data-toggle="modal" data-target="#modal_home"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_SHORT_MSG
+    <!-- ................................................................................................................................. -->
+    <div id="modal_short_msg" class="my_modal">
+        <div class="my_modal_content my_modal_body_h2">
+            <div id="msg_short_texto" style="padding: 30px 20px; background: #FAF3EA; margin-top: 12px;">
+                <div>Você mudou para o modo PLAY. Vamos jogar?</div>
+                <div>Você começa! Boa sorte!</div>
+            </div>
+        </div>
+    </div>
+    <button id="show_modal_short_msg" type="button" style="display: none;" data-toggle="modal" data-target="#modal_short_msg"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_CARD_IMG
+    <!-- ................................................................................................................................. -->
+    <div id="modal_card_img" class="my_modal">
+        <div class="my_modal_content">
+            <img id="img_modal" src="cards/00001.jpg" style="width: 100%;">
+        </div>
+    </div>
+    <button id="show_modal_card_img" type="button" style="display: none;" data-toggle="modal" data-target="#modal_card_img"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_SYNC_ALERT
+    <!-- ................................................................................................................................. -->
+    <div id="modal_sync_alert" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="lgw_041">Conflito de Sincronização</span>
+            </div>
+            <div class="my_modal_body">
+                <div id="lgw_042" style="padding: 10px;">Existe uma atualização de um outro dispositivo com data mais recente.</div>
+                <div id="lgw_043" style="padding: 10px;">Qual você quer manter?</div>
+                <div style="padding: 10px;">
+                    <span style="background: #FF9900; color: #333333; border: 1px solid #D17D00; padding: 3px 9px; border-radius: 5px; font-size: 18px; font-weight: bold;">1</span>
+                    <span id="lgw_044" style="padding-left: 10px;">
+                        Manter as atualizações feitas no outro dispositivo
+                    </span>&nbsp;
+                    <div style="color: #43321e; font-weight: bold;">
+                        Updated on:&nbsp; <span id="sync_alert_data_db">12-12-21 at 11:45</span>
+                    </div>
+                </div>
+                <div style="padding: 10px;">
+                    <span style="background: #FF9900; color: #333333;border: 1px solid #D17D00; padding: 3px 9px; border-radius: 5px; font-weight: bold; font-size: 18px;">2</span>
+                    <span id="lgw_045" style="padding-left: 10px;">
+                        Manter as atualizações feitas nesse dispositivo
+                    </span>
+                    <div style="color: #43321e; font-weight: bold;">
+                        Updated on:&nbsp; <span id="sync_alert_data_local">12-12-21 at 11:45</span>
+                    </div>
+                </div>
+            </div>
+            <div class="my_modal_footer">
+                <button onclick="But_Force_Recover(1);" data-dismiss="modal" class="btn btn-warning btn_verde" type="button">
+                    <span style="font-weight: bold; text-shadow: 1px 1px #777777;">1</span>
+                </button>
+                &nbsp;&nbsp;
+                <button onclick="But_Force_Recover(2);" data-dismiss="modal" class="btn btn-warning btn_verde" type="button">
+                    <span style="font-weight: bold; text-shadow: 1px 1px #777777;">2</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <button id="show_modal_sync_alert" type="button" style="display: none;" data-toggle="modal"  data-target="#modal_sync_alert"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_CUPOM
+    <!-- ................................................................................................................................. -->
+    <div id="modal_cupom" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <h5 style="font-weight: bold; color: #009900;">
+                    <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                    <span id="lgw_046">Ganhe um desconto agora!</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="lgw_047" style="padding: 20px;">
+                Please, enter your Discount Coupon code:
+            </div>
+            <div style="padding: 0px 6px; text-align: center;">
+                <input id="cupom_desc" type="text" style="height: 40px; max-width: 120px; border-radius: 5px; border: 1px solid #cccccc; text-align: center; text-transform: uppercase;" onchange="My_Remove_Class(this.id);" maxlength="8">
+            </div>
+            <div class="my_modal_footer">
+                <button type="button" class="btn btn-warning" style="width: 180px;" data-dismiss="modal" aria-label="Close" onclick="Validade_Cupom();">
+                    <span id="lgw_048" style="font-weight: bold;">Validate Cupom</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <button id="show_modal_cupom" type="button" style="display: none;" data-toggle="modal" data-target="#modal_cupom"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_LANG_SEL
+    <!-- ................................................................................................................................. -->
+    <div id="modal_lang_sel" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <h5 class="modal-title">
+                    <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                    <div id="lang_selected" style="color: #f6e5e1; font-weight: bold;">ENGLISH</div>
+                </h5>
+            </div>
+            <div class="my_modal_body modal_flags_area">
+                <img id="flag_ENG" onclick="Modal_Flag_Clicked('ENG');" src="img/flags/ENG.png" class="modal_flags" style="filter: opacity(100%);">
+                &nbsp;
+                <img id="flag_SPN" onclick="Modal_Flag_Clicked('SPN');" src="img/flags/SPN.png" class="modal_flags">
+                &nbsp;
+                <img id="flag_FRA" onclick="Modal_Flag_Clicked('FRA');" src="img/flags/FRE.png" class="modal_flags">
+            </div>
+            <div class="my_modal_body modal_flags_area">
+                <img id="flag_GER" onclick="Modal_Flag_Clicked('GER');" src="img/flags/GER.png" class="modal_flags">
+                &nbsp;
+                <img id="flag_POR" onclick="Modal_Flag_Clicked('POR');" src="img/flags/POR.png" class="modal_flags">
+                &nbsp;
+                <img id="flag_ITA" onclick="Modal_Flag_Clicked('ITA');" src="img/flags/ITA.png" class="modal_flags">
+            </div>
+            <div class="my_modal_footer">
+                <button data-dismiss="modal" class="btn btn-warning btn_verde" type="button">
+                    <span style="font-weight: bold;">OK</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <button id="show_modal_lang_sel" type="button" style="display: none;" data-toggle="modal" data-target="#modal_lang_sel"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_ZERAR CARD
+    <!-- ................................................................................................................................. -->
+    <div id="modal_zerar" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="lg_130">Card Reset</span>
+            </div>
+            <div class="my_modal_body">
+                <div id="lg_131" style="margin-bottom: 10px;">
+                    Essa operação apagará todo o histórico de treinamento desse card.
+                </div>
+                <div id="lg_132">
+                    Você tem certeza que quer zerar esse card?
+                </div>
+            </div>
+            <div class="my_modal_footer">
+                <button data-dismiss="modal" class="btn btn-warning modal_zerar_btn" type="button">
+                    <span id="lg_133">Cancelar</span>
+                </button>
+                <button  onclick="Zerar_Card_Confirm();" data-dismiss="modal" class="btn btn-warning modal_zerar_btn" type="button">
+                    <span id="lg_134">Confirmar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <button id="show_modal_zerar" type="button" style="display: none;" data-toggle="modal" data-target="#modal_zerar"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_MERGE
+    <!-- ................................................................................................................................. -->
+    <div id="modal_merge" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="lgx_087">Mensagem de confirmação</span>
+            </div>
+            <div class="my_modal_body">
+                <div id="lgx_088" style="margin-bottom: 10px;">
+                    Você desabilitou (OFF) um ou mais exercícios do treinamento atual.<br>
+                    Clique em CONFIRMAR se quiser que os exercícios desabilitados não apareçam nos próximos treinamentos desse Card.<br>
+                    Ao clicar em CONFIRMAR, o nível de treinamento mais recente desse Card será reiniciado.
+                </div>
+            </div>
+            <div class="my_modal_footer">
+                <button onclick="But_Cancela_Merge();" data-dismiss="modal" class="btn btn-warning btn_verde" type="button">
+                        <span id="lgx_089">Cancelar</span>
+                </button>
+                <button onclick="But_Confirma_Merge();" data-dismiss="modal" class="btn btn-warning btn_verde" type="button">
+                        <span id="lgx_090">Confirmar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="show_modal_merge" type="button" style="display: none;" data-toggle="modal" data-target="#modal_merge"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_NIVEL COMEÇADO
+    <!-- ................................................................................................................................. -->
+    <div id="modal_nivel" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="lgx_007">Treino começado</span>
+            </div>
+            <div class="my_modal_body">
+                <div id="lgx_008" style="margin-bottom: 10px;">
+                    Você tem um treino nesse nível já começado.
+                </div>
+            </div>
+
+            <div class="my_modal_footer">
+                <button onclick="But_Start_Nivel_Novo();" data-dismiss="modal" class="btn btn-warning btn_verde" type="button">
+                    <span id="lgx_009">Novo</span>
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <button onclick="But_Continua_Train_Nivel();" data-dismiss="modal" class="btn btn-warning btn_verde" type="button">
+                    <span id="lgx_010">Continuar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="show_modal_nivel" type="button" style="display: none;" data-toggle="modal" data-target="#modal_nivel"></button>
+
+
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_CONCEPTS
+    <!-- ................................................................................................................................. -->
+    <div id="modal_concepts" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="concepts_titulo">Título</span>
+            </div>
+            <div class="my_modal_body concepts_txt">
+                <div id="concepts_1" class="concepts_lines">Concepts 1</div>
+                <div id="concepts_2" class="concepts_lines">Concepts 2</div>
+                <div id="concepts_3" class="concepts_lines">Concepts 3</div>
+            </div>
+            <div class="my_modal_footer">
+                <button id="mod_home_but_2" data-dismiss="modal" class="btn btn-warning btn_verde" type="button">
+                    <span id="LG_MODAL_CONCEPTS_BTN_CLOSE">CLOSE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="show_modal_concepts" type="button" style="display: none;" data-toggle="modal" data-target="#modal_concepts"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_MSGS
+    <!-- ................................................................................................................................. -->
+    <div id="modal_msgs" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="mod_msg_title">Modal title</span>
+            </div>
+            <div style="margin: 30px 20px; text-align: left; min-height: 100px; font-size: 16px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; font-weight: normal;">
+                <span id="mod_msg_body">Parabéns! Você concluiu esse card!</span>
+            </div>
+            <div id="box_modal_msg_area" style="margin: 0px 0px 10px 10px; text-align: left; font-size: 14px;">
+                <input id="box_modal_msg" type="checkbox">&nbsp;
+                <span id="lgx_083">Não exibir essa mensagem novamente</span>
+            </div>
+            <div class="my_modal_footer">
+                <div id="modal_msg_button_OK">
+                    <button type="button" class="btn btn-warning btn_verde" data-dismiss="modal" style="width: 60px;">OK</button>
+                </div>
+                <div id="modal_msg_buttons_train_buy">
+                    <button id="but_trial" type="button"  data-dismiss="modal" onclick='But_Inicia_Eval();' class="btn btn-warning btn_verde">
+                        <span id="LG_BUT_30D_GRATIS">30 dias GRÁTIS</span>
+                    </button>
+                    <button type="button"  data-dismiss="modal" onclick='But_Menu_Clicked(5);' class="btn btn-warning btn_verde">
+                        <span id="lgx_085">Versão Premium</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="show_modal_msgs" type="button" style="display: none;" data-toggle="modal" data-target="#modal_msgs"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_INFO
+    <!-- ................................................................................................................................. -->
+    <div id="modal_info" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="modal_info_title">Título</span>
+            </div>
+            <div class="my_modal_body">
+                <span id="modal_info_body">Texto</span>
+            </div>
+            <div class="my_modal_footer">
+                <button type="button" class="btn btn-warning btn_verde" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+    <div id="modal_info_param" style="display: none;"></div>
+
+    <button id="show_modal_info" type="button" style="display: none;" data-toggle="modal" data-target="#modal_info"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_EVAL 30 DIAS
+    <!-- ................................................................................................................................. -->
+    <div id="modal_eval" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="LG_POPINFO_EVAL_TIT">Modal title</span>
+            </div>
+            <div class="my_modal_body">
+                <div id="LG_POPINFO_EVAL_P1">P1</div>
+                <div id="LG_POPINFO_EVAL_P2" style="margin-top: 6px;">P2</div>
+                <div id="LG_POPINFO_EVAL_P3" style="margin-top: 6px;">P3</div>
+            </div>
+            <div id="modal_msg_buttons_train_buy" class="my_modal_footer">
+                <button id="but_trial" type="button"  data-dismiss="modal" class="btn btn-warning btn_verde">
+                    <span id="LG_POPINFO_EVAL_BUT1">Agora não</span>
+                </button>
+                <button type="button"  data-dismiss="modal" onclick='But_Inicia_Eval();' class="btn btn-warning btn_verde">
+                    <span id="LG_POPINFO_EVAL_BUT2">Avaliar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="show_modal_eval" type="button" style="display: none;" data-toggle="modal" data-target="#modal_eval"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL_SEL_COLORS
+    <!-- ................................................................................................................................. -->
+    <div id="modal_sel_colors" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <span id="lg_015">SELECIONE UMA COR</span>
+            </div>
+            <div class="my_modal_body">
+                <table width="90%" align="center">
+                    <tr>
+                        <td width="50%" align="center">
+                            <div onclick="User_Color_Selected('w')" class="sel_color_piece" data-dismiss="modal" aria-label="Close">
+                                <img src="img/rei_branco.png" class="sel_color_piece_size">
+                            </div>
+                        </td>
+                        <td width="50%" align="center">
+                            <div onclick="User_Color_Selected('b')" class="sel_color_piece" data-dismiss="modal" aria-label="Close">
+                                <img src="img/rei_preto.png" class="sel_color_piece_size">
+                            </div>
+                        </td>
+                  </tr>
+               </table>
+           </div>
+        </div>
+    </div>
+    <button id="show_modal_sel_colors" type="button" style="display: none;" data-toggle="modal" data-target="#modal_sel_colors"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL GAME STARS
+    <!-- ................................................................................................................................. -->
+    <div id="modal_game_stars" class="my_modal">
+        <div class="my_modal_content">
+            <div class="my_modal_header">
+                <div style="float: right;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+                <span id="mod_game_stars_title">Avaliação de Partida</span>
+            </div>
+            <div class="my_modal_body">
+                <div style="color: #333333; margin: 10px;">
+                    <div id="mod_game_stars_players" class="my_modal_body_h2">Fischer, R. - Spassky, B</div>
+                    <div id="mod_game_stars_place" class="my_modal_body_h4">(Leningrado, 1998)</div>
+                </div>
+                <div class="my_modal_stars">
+                    <i id="game_star_1" onclick="Game_Star_Clicked(1);" class="fas fa-star" style="color: #cccccc;"></i>
+                    <i id="game_star_2" onclick="Game_Star_Clicked(2);" class="fas fa-star" style="color: #cccccc;"></i>
+                    <i id="game_star_3" onclick="Game_Star_Clicked(3);" class="fas fa-star" style="color: #cccccc;"></i>
+                    <i id="game_star_4" onclick="Game_Star_Clicked(4);" class="fas fa-star" style="color: #cccccc;"></i>
+                    <i id="game_star_5" onclick="Game_Star_Clicked(5);" class="fas fa-star" style="color: #cccccc;"></i>
+                </div>
+            </div>
+            <div class="my_modal_footer" onclick="But_Game_Star_OK();">
+                <button data-dismiss="modal" class="btn btn-warning btn_verde" type="button" style="width: 60px;">
+                    <span>OK</span>
+                </button>
+            </div>
+      </div>
+      <div id="modal_id_game" style="display: none;">0</div>
+      <div id="modal_avaliacao" style="display: none;">0</div>
+    </div>
+
+    <button id="show_modal_game_stars" type="button" style="display: none;" data-toggle="modal" data-target="#modal_game_stars"></button>
+
+
+
+    <!-- ................................................................................................................................. -->
+    <!-- SECTION: MODAL BOARD HELP
+    <!-- ................................................................................................................................. -->
+    <div id="modal_board_help" class="my_modal">
+        <div class="my_modal_content">
+            <div style="float: right; margin: 4px;" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle my_modal_icon_close"></i></div>
+            <div class="my_modal_body board_help">
+                <div id="modal_board_help_with_status">
+                    <table align="center" cellpadding="6">
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/but_back_cafe.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P1"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_status_on.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P2"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_status_off.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P3"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_turn.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P4"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_conf_cafe.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P5"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_play.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P6"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_engine.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P7"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_back_to_train.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P8"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="modal_board_help_without_status">
+                    <table align="center" cellpadding="6">
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/but_back_cafe.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P1a"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_turn.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P4a"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_conf_cafe.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P5a"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_play.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P6a"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_engine.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P7a"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <img src="img/bt_board_back_to_train.png" class="board_help_img">
+                            </td>
+                            <td class="board_help_txt">
+                                <span id="LG_POPUP_HELP_BOARD_P8a"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="my_modal_footer">
+                <button type="button" class="btn btn-warning btn_verde" data-dismiss="modal" style="width: 60px;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="show_modal_board_help" type="button" style="display: none;" data-toggle="modal" data-target="#modal_board_help"></button>
+
+<center>
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: NAVBAR
+<!-- ................................................................................................................................. -->
+<div id="navbar" class="navbar">
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="20%" align="center">
+                <img id="menu_img_1" src="img/menu1_off.png" onclick="But_Menu_Clicked_User(1);" class="navbar_img">
+            </td>
+            <td width="20%" align="center">
+                <img id="menu_img_2" src="img/menu2_off.png" onclick="But_Menu_Clicked_User(2);" class="navbar_img">
+            </td>
+            <td width="20%" align="center">
+                <img id="menu_img_3" src="img/menu3_on.png"  onclick="But_Menu_Clicked_User(3);" class="navbar_img">
+            </td>
+            <td width="20%" align="center">
+                <img id="menu_img_4" src="img/menu4_off.png" onclick="But_Menu_Clicked_User(4);" class="navbar_img">
+            </td>
+            <td width="20%" align="center">
+                <img id="menu_img_5" src="img/menu5_off.png" onclick="But_Menu_Clicked_User(5);" class="navbar_img">
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: NAVBAR_BOARD
+<!-- ................................................................................................................................. -->
+<div id="navbar_board_train" class="navbar" style="display: none;">
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="16%" align="center">
+                <img src="img/bt_help_cafe.png" onclick="But_Board_Help();" class="but_navbar_board">
+            </td>
+            <td width="17%" align="center">
+                <img id="bt_board_status_on" src="img/bt_board_status_on.png" onclick="But_Board_Status();" class="but_navbar_board">
+                <img id="bt_board_status_off" src="img/bt_board_status_off.png" onclick="But_Board_Status();" class="but_navbar_board" style="display: none;">
+            </td>
+            <td width="16%" align="center">
+                <img src="img/bt_board_turn.png"  onclick="But_Flip_Board();" class="but_navbar_board">
+            </td>
+            <td width="17%" align="center">
+                <img src="img/bt_conf_cafe.png" onclick="Show_Config_From_Train();" class="but_navbar_board">
+            </td>
+            <td width="17%" align="center">
+                <img id="btn_nav_train_play_back" src="img/bt_board_back_to_train.png" onclick="But_Back_To_Using();" class="but_navbar_board" style="display: none;">
+                <img id="btn_nav_train_play" src="img/bt_board_play.png" onclick="But_Play_Mode();" class="but_navbar_board">
+            </td>
+            <td width="16%" align="center">
+                <img id="btn_nav_train_engine_back" src="img/bt_board_back_to_train.png" onclick="But_Back_To_Using();" class="but_navbar_board" style="display: none;">
+                <img id="btn_nav_train_engine" src="img/bt_board_engine.png" onclick="But_Analyse_Mode();" class="but_navbar_board">
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="navbar_board_games" class="navbar" style="display: none;">
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="20%" align="center">
+                <img src="img/bt_help_cafe.png" onclick="But_Board_Help();" style="width: 44px; height: 44px;">
+            </td>
+            <td width="20%" align="center">
+                <img src="img/bt_board_turn.png"  onclick="But_Flip_Board();" style="width: 44px; height: 44px;">
+            </td>
+            <td width="20%" align="center">
+                <img src="img/bt_conf_cafe.png" onclick="Show_Config_From_Train();" style="width: 44px; height: 44px;">
+            </td>
+            <td width="20%" align="center">
+                <img id="btn_nav_games_play_back" src="img/bt_board_back_to_train.png" onclick="But_Back_To_Using();" style="width: 44px; height: 44px; display: none;">
+                <img id="btn_nav_games_play" src="img/bt_board_play.png" onclick="But_Play_Mode();" style="width: 44px; height: 44px;">
+            </td>
+            <td width="20%" align="center">
+                <img id="btn_nav_games_engine_back" src="img/bt_board_back_to_train.png" onclick="But_Back_To_Using();" style="width: 44px; height: 44px; display: none;">
+                <img id="btn_nav_games_engine" src="img/bt_board_engine.png" onclick="But_Analyse_Mode();" style="width: 44px; height: 44px;">
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: HOME
+<!-- ................................................................................................................................. -->
+<div id="sec_home" class="section_body">
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.png" style="float: left; display: none; margin-right: 4px;">
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <div id="home_label">HOME</div>
+            <div id="home_promo" style="display: none; color: #D8B27E;">
+                <span id="home_promo_perc">18% OFF:</span>
+                <span style="color: #FFFFFF;">
+                    <span id="promo_home_days">01</span>:<span id="promo_home_hours">04</span>:<span id="promo_home_mins">05</span>:<span id="promo_home_secs">01</span>
+                </span>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div class="bar_home">
+        <table width="98%" align="center" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="12%" align="left" onclick="Seta_Bar_Clicked('esq');">
+                    <img src="img/arrow_bar_left.png">
+                </td>
+                <td align="center">
+                    <div id="menu_tipo">Loading...</div>
+                </td>
+                <td width="12%" align="right" onclick="Seta_Bar_Clicked('dir');">
+                    <img src="img/arrow_bar_right.png">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="cards_home">
+        <div id="cards_area"></div>
+    </div>
+
+    <div onclick="Show_Suporte_From_Home();" class="box_home_support">
+        <div id="LG_BOX_HOME_SUPPORT_P1">
+            Encontrou algum problema?
+        </div>
+        <div id="LG_BOX_HOME_SUPPORT_P2">
+            Tem alguma dúvida ou sugestão de melhoria?
+        </div>
+        <div id="LG_BOX_HOME_SUPPORT_P3" class="box_home_support_envie">
+            Envie uma mensagem para nós
+        </div>
+    </div>
+
+    <div style="clear: both; height: 30px;"></div>
+
+    <div class="box_home_coming">
+        <div id="LG_HOME_COMING_SOON_TIT">
+            Coming Soon
+        </div>
+        <div class="box_home_coming_txt">
+            <li id="LG_HOME_COMING_SOON_P1">Versão iOS</li>
+            <li id="LG_HOME_COMING_SOON_P2">+ 250 Cards novos</li>
+            <li id="LG_HOME_COMING_SOON_P3">+ 40.000 Games</li>
+            <li id="LG_HOME_COMING_SOON_P4">Busca por Abertura/Variante</li>
+            <li id="LG_HOME_COMING_SOON_P5">Complemento do General Concepts</li>
+            <li id="LG_HOME_COMING_SOON_P6">Estatísticas do Treinamento</li>
+            <li id="LG_HOME_COMING_SOON_P7">Traduções para: Indonésio, Polonês, Russo, Hindi, Norueguês, Sueco, Romeno e Finlandês.</li>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: BOARD_AREA
+<!-- ................................................................................................................................. -->
+<div id="sec_board_area" class="section_body">
+
+    <div id="board_header_train">
+        <div id="board_header_train_main" class="wood_header">
+            <div style="float: right;">
+                <img id="header_board_nivel" src="img/icon_nivel_1.png" class="board_icon_nivel_size">
+                <div id="board_progress" class="board_done">20/122</div>
+            </div>
+            <div class="wood_header_back_but" onclick="But_Back_Board('board_train');">
+                <img src="img/but_back_cafe.png">
+            </div>
+            <div class="board_header_info">
+                <div id="board_opening_train" class="board_header_opening">C42 - Queen's Indian</div>
+                <div id="board_variant_train" class="board_header_variante">Variante Fischer</div>
+                <div class="progress board_header_progress">
+                    <div id="board_progress_bar" class="progress-bar" role="progressbar" max="100" value="40" style="background: #BB9468;">
+                </div>
+            </div>
+            </div>
+            <div style="clear: both; display: none;"></div>
+        </div>
+        <div id="board_header_train_sub" class="board_blackbar_train">
+            <table width="100%">
+                <tr>
+                    <td class="board_blackbar_train_col1">
+                        <div class="board_blackbar_train_col1_a">
+                            <span id="LG_LBL_ACERTOS">acertos:</span>
+                            <img onclick="Show_Modal_Info('acertos');" src="img/icon_info.png">
+                        </div>
+                        <div id="board_acertos" class="board_blackbar_train_col1_b">2</div>
+                    </td>
+                    <td class="board_blackbar_train_col2">
+                        <span id="clock">00:00</span>
+                    </td>
+                    <td class="board_blackbar_train_col3">
+                        <div class="board_blackbar_train_col3_a">
+                            <img onclick="Show_Modal_Info('record');" src="img/icon_info.png">
+                            <span id="LG_LBL_RECORDE">recorde:</span>
+                        </div>
+                        <div id="board_record" class="board_blackbar_train_col3_b">4</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="board_header_games">
+        <div id="board_header_games_main" class="wood_header">
+            <div class="wood_header_back_but" onclick="But_Back_Board('games_sec');">
+                <img src="img/but_back_cafe.png">
+            </div>
+            <div id="board_game_result" class="board_game_result">2-0</div>
+            <div class="board_header_info">
+                <div id="board_game_players" class="board_game_players">Karpov - Kasparov</div>
+                <div id="board_game_place" class="board_game_place">SBC, 2019</div>
+            </div>
+            <div style="clear: both; display: none;"></div>
+        </div>
+        <div id="board_header_games_sub" class="board_blackbar_games">
+            <div id="header_game_moves" class="games_header_moves">
+                4. ... Nf6
+            </div>
+        </div>
+    </div>
+
+    <div id="board_header_play">
+        <div id="board_header_play_main" class="wood_header">
+            <div style="float: right;">
+                <i id="header_play_who" class="fas fa-circle board_play_who"></i>
+            </div>
+            <div class="wood_header_back_but" onclick="But_Back_To_Using();">
+                <img src="img/but_back_cafe.png">
+            </div>
+            <div class="board_header_info">
+                <div id="board_players_play" class="board_header_play">
+                    <span id="white_player">User</span>  x <span id="black_player">Stockfish</span>
+                </div>
+                <div id="play_mode" class="board_header_playmode">
+                    <span id="LG_LBL_PLAY_MODE">Playing mode</span>
+                    <img onclick="Show_Modal_Info('play');" src="img/icon_info.png">
+                </div>
+            </div>
+            <div style="clear: both; display: none;"></div>
+        </div>
+        <div id="board_header_play_sub" class="board_play_subheader">?</div>
+    </div>
+
+    <div id="board_header_engine">
+        <div id="board_header_engine_main" class="wood_header">
+            <div style="float: right;">
+                <i id="engine_turn" class="fas fa-circle board_play_who"></i>
+            </div>
+            <div class="wood_header_back_but" onclick="But_Back_To_Using();">
+                <img src="img/but_back_cafe.png">
+            </div>
+            <div class="board_header_info">
+                <div id="board_players_play" class="board_header_play">
+                    Stockfish
+                </div>
+                <div id="play_mode" class="board_header_playmode">
+                    <span id="LG_LBL_ANALYSE_MODE">Analyse mode</span>
+                    <img onclick="Show_Modal_Info('analyse');" src="img/icon_info.png">
+                </div>
+            </div>
+            <div style="clear: both; display: none;"></div>
+        </div>
+        <div id="board_header_engine_sub" class="board_engine_subheader">
+            <table width="100%">
+                <tr>
+                    <td class="board_engine_sub_col1">
+                        <div class="board_engine_best_label">
+                            <span id="LG_LBL_BEST">best:</span>
+                            <img onclick="Show_Modal_Info('best');" src="img/icon_info.png">
+                        </div>
+                        <span id="engine_hint" class="board_engine_best_hint">-</span>
+                    </td>
+                    <td class="board_engine_sub_col2">
+
+                    </td>
+                    <td class="board_engine_sub_col3">
+                        <div class="board_engine_score_label">
+                            <img onclick="Show_Modal_Info('score');" src="img/icon_info.png">
+                            <span id="LG_LBL_SCORE">score:</span>
+                        </div>
+                        <div id="engine_score" class="board_engine_score_val">0.00</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="board_container">
+        <div id="container_board" class="board_container">
+            <img id="ok_img"  src="img/check_mark.png" class="board_ok_img">
+            <img id="err_img" src="img/check_mark_red.png" class="board_ok_img">
+            <div style="position: relative;">
+                <div id="board" style="text-align: center;"></div>
+                <canvas id="layer" class="board_canvas" onclick="Canvas_Clicked(event);" ></canvas>
+             </div>
+        </div>
+    </div>
+
+    <div id="board_buttons_train" class="board_buttons_area">
+        <table width="100%" align="center">
+            <tr>
+                <td style="board_buttons_train_col1" >
+                    <div id="but_board_left_on" onclick="But_Treinar_Backward();" >
+                        <img src="img/but_board_back_on.png" class="board_but_left">
+                    </div>
+                    <div id="but_board_left_off" style="display: none;">
+                        <img src="img/but_board_back_off.png" class="board_but_left">
+                    </div>
+                </td>
+                <td style="board_buttons_train_col2">
+                    <div id="but_board_skip_on" onclick="But_Skip();" style="display: none;">
+                        <img src="img/board_skip_on.png" class="board_but_center">
+                    </div>
+                    <div id="but_board_next_on" style="display: none;">
+                        <div onclick="But_Treinar_Proxima();" >
+                            <img src="img/but_board_next_on.png" class="board_but_center">
+                        </div>
+                    </div>
+                    <div id="but_board_next_off" style="display: none;">
+                        <img src="img/but_board_next_off.png" class="board_but_center">
+                    </div>
+                </td>
+                <td style="board_buttons_train_col3">
+                    <div id="but_board_right_on" onclick="But_Treinar_Forward();" >
+                        <img src="img/but_board_forward_on.png" class="board_but_right">
+                    </div>
+                    <div id="but_board_right_off" style="display: none;" >
+                        <img src="img/but_board_forward_off.png" class="board_but_right">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="board_buttons_lines" class="board_play_buttons_area">
+        <table width="80%" align="center">
+            <tr>
+                <td width="50%" align="center">
+                    <div id="but_board_lines_left_on" onclick="But_Back_Lines();" >
+                        <img src="img/but_board_back_on.png" class="board_but_left">
+                    </div>
+                    <div id="but_board_lines_left_off" style="display: none;">
+                        <img src="img/but_board_back_off.png" class="board_but_left">
+                    </div>
+                </td>
+                <td width="50%" align="center">
+                    <div id="but_board_lines_right_on" onclick="But_Forward_Lines();" >
+                        <img src="img/but_board_forward_on.png" class="board_but_right">
+                    </div>
+                    <div id="but_board_lines_right_off" style="display: none;" >
+                        <img src="img/but_board_forward_off.png" class="board_but_right">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="board_buttons_games">
+        <div id="nav_game_buttons" class="board_game_buttons_area">
+            <table width="80%" align="center">
+                <tr>
+                    <td width="25%" align="center" onclick="Show_Games_Ini();">
+                        <img id="but_games_start" src="img/but_board_start_on.png" class="board_but_left">
+                    </td>
+                    <td width="25%" align="center" onclick="Show_Games_Back();">
+                        <img id="but_games_back" src="img/but_board_back_on.png" class="board_but_left">
+                    </td>
+                    <td width="25%" align="center" onclick="Show_Games_Next();">
+                        <img id="but_games_forward" src="img/but_board_forward_on.png" class="board_but_right">
+                    </td>
+                    <td width="25%" align="center" onclick="Show_Games_Posic_Final();">
+                        <img id="but_games_final" src="img/but_board_end_on.png" class="board_but_right">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="board_buttons_play" class="board_play_buttons_area">
+        <table width="80%" align="center">
+            <tr>
+                <td width="50%" align="center" onclick="But_Play_Back();">
+                    <img id="but_play_back" src="img/but_board_back_on.png" class="board_but_left">
+                </td>
+                <td width="50%" align="center" onclick="But_Play_Forward();">
+                    <img id="but_play_forward" src="img/but_board_forward_on.png" class="board_but_right">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="board_buttons_engine" class="board_engine_buttons_area">
+        <table width="80%" align="center">
+            <tr>
+                <td width="50%" align="center" onclick="But_Engine_Back();">
+                    <img id="but_eng_back" src="img/but_board_back_on.png" class="board_but_left">
+                </td>
+                <td width="50%" align="center" onclick="But_Engine_Forward();">
+                    <img id="but_eng_forward" src="img/but_board_forward_on.png" class="board_but_right">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: SEL_CARD
+<!-- ................................................................................................................................. -->
+<div id="sec_sel_card" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.png" style="float: left; display: none;">&nbsp;
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_back_but" onclick="But_Back_Board('card');">
+            <img src="img/but_back_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="card_sel_eco">C25-C29</span>
+            <img onclick="Show_Modal_Info('eco');" src="img/icon_info.png">
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+
+    <div class="sel_card_sub">
+        <div onclick="Icon_Fav_Clicked('9999');">
+            <img class="sel_card_fav_icon" id="icon_fav" src="img/but_fav_off.png">
+        </div>
+        <div>
+            <div id="card_sel_opening" class="sel_card_opening">Ruy Lopes Opening</div>
+            <div id="card_sel_variante" class="sel_card_variante">Variante</div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+
+    <div id="card_moves" class="sel_card_moves">
+        1.e4 e6 2.d4
+    </div>
+
+    <div class="sel_card_box_linhas">
+        <table width="100%" align="center">
+            <tr>
+                <td width="20%" align="center">
+                    <div>
+                        <img class="sel_card_box_icon_nivel" src="img/icon_nivel_1.png">
+                    </div>
+                    <div class="sel_card_nivel">
+                        <div class="sel_card_num_lances"><span id="lg_153">4 lances</span></div>
+                        <div class="sel_card_txt_lines">
+                            <div id="sel_card_tot_1">18 lines</div>
+                        </div>
+                    </div>
+                </td>
+                <td width="20%" align="center">
+                    <div>
+                        <img class="sel_card_box_icon_nivel" src="img/icon_nivel_2.png">
+                    </div>
+                    <div class="sel_card_nivel">
+                        <div class="sel_card_num_lances"><span id="lg_154">6 lances</span></div>
+                        <div class="sel_card_txt_lines">
+                            <div id="sel_card_tot_2">18 lines</div>
+                        </div>
+                    </div>
+                </td>
+                <td width="20%" align="center">
+                    <div>
+                        <img class="sel_card_box_icon_nivel" src="img/icon_nivel_3.png">
+                    </div>
+                    <div class="sel_card_nivel">
+                        <div class="sel_card_num_lances"><span id="lg_155">8 lances</span></div>
+                        <div class="sel_card_txt_lines">
+                            <div id="sel_card_tot_3">18 lines</div>
+                        </div>
+                    </div>
+                </td>
+                <td width="20%" align="center">
+                    <div>
+                        <img class="sel_card_box_icon_nivel" src="img/icon_nivel_4.png">
+                    </div>
+                    <div class="sel_card_nivel">
+                        <div class="sel_card_num_lances"><span id="lg_156">10 lances</span></div>
+                        <div class="sel_card_txt_lines">
+                            <div id="sel_card_tot_4">18 lines</div>
+                        </div>
+                    </div>
+                </td>
+                <td width="20%" align="center">
+                    <div>
+                        <img class="sel_card_box_icon_nivel" src="img/icon_nivel_5.png">
+                    </div>
+                    <div class="sel_card_nivel">
+                        <div class="sel_card_num_lances"><span id="lg_157">12 lances</span></div>
+                        <div class="sel_card_txt_lines">
+                            <div id="sel_card_tot_5">18 lines</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div onclick="Show_Card_Img();" style="text-align: center;">
+        <div class="sel_card_img_container">
+            <img id="sel_card_img_locked" class="sel_card_img_locked" src="img/cadeado.png">
+            <img id="sel_card_img" class="sel_card_img_card" src="cards/00002.jpg">
+        </div>
+    </div>
+
+    <div id="msg_limit" class="sel_card_msg_limit">
+        <span id="LG_SEL_CARD_LBL_LIMIT">ESSE CARD TEM ACESSO LIMITADO</span>&nbsp;
+        <img class="sel_card_msg_limit_info" onclick="Show_Modal_Info('acesso_limitado');" src="img/icon_info.png">
+        <div style="margin: 20px;">
+            <button class="btn btn-primary but_testar_gratis" type="button" onclick="Show_Modal_Eval();">
+                <span id="LG_SEL_CARD_LBL_30_DIAS">Testar 30 dias Grátis</span>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="sel_card_buttons">
+        <div>
+            <button onclick="Show_Modal_Info('how_to_train');" type="button" class="btn btn-warning sel_card_btn_train" >
+                <span id="LG_SEL_CARD_BTN_TRAIN">TRAIN LINES</span>
+            </button>
+        </div>
+        <div>
+            <button onclick="Show_Level_Section();" type="button" class="btn btn-warning sel_card_btn" >
+                <span id="LG_SEL_CARD_BTN_LEVEL">TRAIN LEVEL</span>
+            </button>
+        </div>
+        <div>
+            <button onclick="Show_Games_Section('9999');" type="button" class="btn btn-warning sel_card_btn">
+                <span id="LG_SEL_CARD_BTN_GAMES">VIEW GAMES</span>
+            </button>
+        </div>
+        <div>
+            <button onclick="Show_Modal_Info('browser_lines');" type="button" class="btn btn-warning sel_card_btn">
+                <span id="LG_SEL_CARD_BTN_LINES">BROWSER LINES</span>
+            </button>
+        </div>
+        <div style="margin-top: 30px;">
+            <table align="center" width="96%">
+                <tr>
+                    <td width="33%" align="center" >
+                        <div class="sel_card_btn_aux" onclick="Show_General_Concepts();">
+                            <span id="LG_SEL_CARD_BTN_CONCEPTS">Concepts</span>
+                        </div>
+                    </td>
+                    <td width="34%" align="center" onclick="Show_Modal_Info('stats');">
+                        <div class="sel_card_btn_aux" style="background: #E3DDD2; color: #555555;">
+                            <span id="LG_SEL_CARD_BTN_STATS">Estatísticas</span>
+                        </div>
+                    </td>
+                    <td width="33%" align="center">
+                        <div class="sel_card_btn_aux" onclick="But_Zerar_Card();">
+                            <span id="LG_SEL_CARD_BTN_RESET">Reset</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: LEVEL
+<!-- ................................................................................................................................. -->
+<div id="sec_level" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_back_but" onclick="But_Back_Board('sel_card');">
+            <img src="img/but_back_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="LG_NVL_BTN_TREINAR_NIVEL">Treinar Nível</span>
+            <img onclick="Show_Modal_Info('lines_how_to');" src="img/icon_info.png">
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div class="sel_card_sub">
+        <div id="level_sel_opening" class="sel_card_opening">Ruy Lopes Opening</div>
+        <div id="level_sel_variante" class="sel_card_variante">Variante</div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div style="margin-top: 50px;">
+
+    </div>
+
+    <button onclick="But_Train_Nivel_From_Nivel(1);" type="button" class="btn btn-warning sel_card_btn">
+        <div id="LG_BUT_NIVEL_1">Nível 1</div>
+        <div id="LG_BUT_NIVEL_1_MOVES" class="but_train_nivel_line2">4 lances</div>
+    </button>
+
+    <button onclick="But_Train_Nivel_From_Nivel(2);" type="button" class="btn btn-warning sel_card_btn">
+        <div id="LG_BUT_NIVEL_2">Nível 2</div>
+        <div id="LG_BUT_NIVEL_2_MOVES" class="but_train_nivel_line2">6 lances</div>
+    </button>
+
+    <button onclick="But_Train_Nivel_From_Nivel(3);" type="button" class="btn btn-warning sel_card_btn">
+        <div id="LG_BUT_NIVEL_3">Nível 3</div>
+        <div id="LG_BUT_NIVEL_3_MOVES" class="but_train_nivel_line2">8 lances</div>
+    </button>
+
+    <button onclick="But_Train_Nivel_From_Nivel(4);" type="button" class="btn btn-warning sel_card_btn">
+        <div id="LG_BUT_NIVEL_4">Nível 4</div>
+        <div id="LG_BUT_NIVEL_4_MOVES" class="but_train_nivel_line2">10 lances</div>
+    </button>
+
+    <button onclick="But_Train_Nivel_From_Nivel(5);" type="button" class="btn btn-warning sel_card_btn">
+        <div id="LG_BUT_NIVEL_5">Nível 5</div>
+        <div id="LG_BUT_NIVEL_5_MOVES" class="but_train_nivel_line2">12 lances</div>
+    </button>
+
+
+</div>
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: lINES
+<!-- ................................................................................................................................. -->
+<div id="sec_lines" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.png" style="float: left; display: none;">&nbsp;
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_back_but" onclick="But_Back_Board('sel_card');">
+            <img src="img/but_back_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lgx_035">LINES</span>
+            <img onclick="Show_Modal_Info('lines_how_to');" src="img/icon_info.png">
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+
+    <div class="sel_card_sub">
+        <div onclick="Icon_Fav_Clicked('9999');">
+            <img class="sel_card_fav_icon" id="icon_fav_lines" src="img/but_fav_off.png">
+        </div>
+        <div>
+            <div id="card_sel_opening_lines" class="sel_card_opening">Ruy Lopes Opening</div>
+            <div id="card_sel_eco_lines" class="sel_card_variante">Variante</div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div class="lines_box_container">
+        <div class="lines_box_label_nivel">
+            <span id="lgx_134">Nivel</span>&nbsp;<span id="label_nivel">1</span>&nbsp;
+        </div>
+        <div class="lines_box_buts_nivel">
+            <img id="but_nivel_rosa_1" onclick="But_Nivel_Selec_User(1);" src="img/but_rosa_n1.png">
+            <img id="but_nivel_rosa_2" onclick="But_Nivel_Selec_User(2);" src="img/but_rosa_n2_off.png">
+            <img id="but_nivel_rosa_3" onclick="But_Nivel_Selec_User(3);" src="img/but_rosa_n3_off.png">
+            <img id="but_nivel_rosa_4" onclick="But_Nivel_Selec_User(4);" src="img/but_rosa_n4_off.png">
+            <img id="but_nivel_rosa_5" onclick="But_Nivel_Selec_User(5);" src="img/but_rosa_n5_off.png">
+        </div>
+        <button onclick="But_Train_Nivel();" type="button" class="btn btn-warning lines_box_but_train">
+            <span id="lgx_036">Treinar nível</span>
+        </button>
+        <div class="lines_box_footer">
+            <table width="100%">
+                <tr>
+                    <td style="text-align: left;">
+                        <div class="badge badge-dark lines_box_badge">
+                            <span id="label_tot_lines">41</span> <span id="lgx_133">linhas</span>
+                        </div>
+                    </td>
+                    <td style="text-align: right;">
+                        <div class="badge badge-dark lines_box_badge">
+                            <span id="label_off">2</span> = Off
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="lines_box_all_buts">
+        <div style="float: right;">
+            <button class="btn btn-primary lines_box_but_all" type="button" onclick="But_Set_All_ON();">
+            <span id="LG_BUT_ALL_ON">All ON</span>
+            </button>
+        </div>
+        <div style="text-align: left;">
+            <button class="btn btn-primary lines_box_but_all" type="button" onclick="But_Set_All_OFF();">
+            <span id="LG_BUT_ALL_OFF">All OFF</span>
+            </button>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div id="lines_area"></div>
+
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: GAMES
+<!-- ................................................................................................................................. -->
+<div id="sec_games" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.png" style="float: left; display: none;">&nbsp;
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_back_but" onclick="But_Back_Board('sel_card');">
+            <img src="img/but_back_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lgx_038">GAMES</span>
+            <img onclick="Show_Modal_Info('games');" src="img/icon_info.png">
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div class="games_list_container">
+        <div class="games_list_sub">
+            <span id="games_open_name">Ruy Lopes Opening</span>
+        </div>
+        <div class="games_list_classif_area">
+            <img class="games_list_info" onclick="Show_Modal_Info('games_sort');" src="img/icon_info.png">
+            <button class="btn btn-warning games_list_but" type="button" onclick="Ordena_Games(1);">
+                <span id="descr_sort">DATE</span> &nbsp;
+                <span id="icon_sort">
+                    <i class="fas fa-long-arrow-alt-down"></i>
+                </span>
+            </button>
+        </div>
+
+        <div id="all_games_area"></div>
+    </div>
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: FAVORITOS
+<!-- ................................................................................................................................. -->
+<div id="sec_favoritos" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.png" style="float: left; display: none;">&nbsp;
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lg_161">FAVORITOS</span>
+            <img onclick="Show_Modal_Info('favoritos');" src="img/icon_info.png">
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div id="fav_cards"></div>
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: ACCOUNT
+<!-- ................................................................................................................................. -->
+<div id="sec_account" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.png" style="float: left; display: none;">&nbsp;
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lg_162">MINHA CONTA</span>
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+   <div id="ret_cadastro">
+        <div class="account_ret_cadastro">
+            <div id="lg_100">O seu cadastro foi efetuado com sucesso!</div>
+            <div class="account_ret_cadastro_body">
+                <li id="lg_102">Enviamos um email para <b>juca@gmail.com</b></li>
+                <li id="lg_103">Para confirmar a sua conta, por favor, acesse a sua caixa de emails e clique no botão <b>VERIFY</b></li>
+                <li id="lg_104">Se você não recebeu nosso email, por favor verifique a sua caixa de Spam</li>
+                <li id="lg_105">Se precisar de ajuda, clique aqui!</li>
+            </div>
+        </div>
+    </div>
+
+    <div id="user_account" class="account_perfil_area">
+
+        <div class="account_perfil_item">
+            <span id="lgx_056">Nome:</span>
+        </div>
+        <div id="acc_name" class="account_perfil_dados">
+            NOME
+        </div>
+        <div class="account_perfil_item">
+            <span id="lgx_039">E-mail:</span>
+        </div>
+        <div id="acc_email" class="account_perfil_dados">
+            machado_de_assis@brasil.com
+        </div>
+        <div class="account_perfil_item">
+            <span id="lgx_040">Idade:</span>
+        </div>
+        <div id="acc_age" class="account_perfil_dados">
+            35 anos
+        </div>
+        <div class="account_perfil_item">
+            <div id="lgx_041">País:</div>
+            <img id="acc_flag" src="img/flags2/AU.png" class="account_perfil_flag">
+        </div>
+
+        <div onclick="Show_Feedback();" class="account_show_fb">
+            <div id="lgx_057" class="account_show_fb_chamada">Como podemos melhorar?</div>
+            <div id="lgx_058">Envie-nos suas críticas e sugestões e tenha um produto cada vez melhor.</div>
+            <button class="btn btn-warning account_show_fb_but" type="button">
+                <span id="LG_ACC_BUT_SEND_FEEDBACK">Do it now</span>
+            </button>
+        </div>
+    </div>
+
+
+    <div id="form_cadastro">
+        <div class="account_banner_crie">
+            <span id="lgx_059">Crie a sua conta...</span>&nbsp;
+            <span id="lgx_060">É Grátis!</span>
+        </div>
+
+        <div class="account_form_sec">
+            <div class="account_form_label">
+                <span id="lg_026">Nome:</span>
+            </div>
+            <div class="account_form_recuo">
+                <input id="user_name" type="text" class="form-control account_form_input" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div class="account_form_label" onchange="My_Remove_Class(this.id)">
+                <span id="lg_027">E-mail:</span>
+            </div>
+            <div class="account_form_recuo">
+                <input id="user_email" type="text" class="form-control account_form_input" style="text-transform: lowercase;" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div class="account_form_label" onchange="My_Remove_Class(this.id)">
+                <span id="lg_028">País:</span>
+            </div>
+            <div class="account_form_recuo">
+                <select id="user_country" class="form-control account_form_combo" onchange="My_Remove_Class(this.id)">
+                    <option value="0" selected="selected"></option>
+                </select>
+            </div>
+            <div class="account_form_label" onchange="My_Remove_Class(this.id)">
+                <span id="lg_029">Sexo:</span>
+            </div>
+            <div class="account_form_recuo">
+                <select id="user_sexo" class="form-control account_form_combo" onchange="My_Remove_Class(this.id)">
+                    <option value="0" disabled="disabled" selected></option>
+                    <option value="M"><span id="lg_030">Masculino</span></option>
+                    <option value="F"><span id="lg_031">Feminino</span></option>
+                </select>
+            </div>
+            <div class="account_form_label" onchange="My_Remove_Class(this.id)">
+                <span id="lg_032">Data de nascimento:</span>
+            </div>
+            <div class="account_form_recuo">
+                <select id="user_nasc_dd" class="form-control account_form_combo_date" onchange="My_Remove_Class(this.id)">
+                    <option value="0" disabled="disabled" selected>-</option>
+                </select>
+                <select id="user_nasc_mm" class="form-control account_form_combo_date" onchange="My_Remove_Class(this.id)">
+                    <option value="0" disabled="disabled" selected>-</option>
+                </select>
+                <select id="user_nasc_aa" class="form-control account_form_combo_date" onchange="My_Remove_Class(this.id)">
+                    <option value="0" disabled="disabled" selected>-</option>
+                </select>
+                <div style="clear: both;"></div>
+            </div>
+            <div class="account_form_label" onchange="My_Remove_Class(this.id)">
+                <span id="lg_033">Há quanto tempo joga Xadrez?</span>
+            </div>
+            <div class="account_form_recuo">
+                <select id="user_tempo" class="form-control account_form_combo" onchange="My_Remove_Class(this.id)">
+                    <option value="0" disabled="disabled" selected></option>
+                </select>
+            </div>
+            <div class="account_form_label" onchange="My_Remove_Class(this.id)">
+                <span id="lg_038">Qual o seu rating?</span>
+            </div>
+            <div class="account_form_recuo">
+                <select id="user_rating" class="form-control account_form_combo" onchange="My_Remove_Class(this.id)">
+                    <option value="0" disabled="disabled" selected></option>
+                    <option value="9999"><span id="lg_039">?</span></option>
+                    <option value="800">800</option>
+                    <option value="900">900</option>
+                    <option value="1000">1000</option>
+                    <option value="1100">1100</option>
+                    <option value="1200">1200</option>
+                    <option value="1300">1300</option>
+                    <option value="1400">1400</option>
+                    <option value="1500">1500</option>
+                    <option value="1600">1600</option>
+                    <option value="1700">1700</option>
+                    <option value="1800">1800</option>
+                    <option value="1900">1900</option>
+                    <option value="2000">2000</option>
+                    <option value="2100">2100</option>
+                    <option value="2200">2200</option>
+                    <option value="2300">2300</option>
+                    <option value="2400">2400</option>
+                    <option value="2500+">2500+</option>
+                </select>
+            </div>
+            <div class="account_form_label" onchange="My_Remove_Class(this.id)">
+                <span id="lg_040">Como descobriu nosso App?</span>
+            </div>
+            <div class="account_form_recuo">
+                <select id="user_source" class="form-control account_form_combo" onchange="Form_Origem_Changed(this.id)">
+                    <option value="0" disabled="disabled" selected></option>
+                </select>
+            </div>
+            <div id="promoter" style="display: none;">
+                <div class="account_form_label" onchange="My_Remove_Class(this.id)">
+                    <span id="lg_046">Especificar: (opcional)</span>
+                </div>
+                <div style="padding: 0px 6px;">
+                    <input id="user_promoter" type="text" class="form-control account_form_input" onchange="My_Remove_Class(this.id)">
+                </div>
+            </div>
+            <div class="account_form_but_area">
+                <button class="btn btn-warning account_form_but_send" type="button" onclick="Account_Save();">
+                    <span id="lg_207">Criar conta</span>
+                </button>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div class="account_box_seu_id">
+        <div>
+            <span id="lgx_042">Seu ID:</span>
+            <img onclick="Show_Modal_Info('id_app');" src="img/icon_info.png" class="account_box_info">
+        </div>
+        <div class="account_box_seu_id_id">
+            <div id="app_id">AAAA-BBBB-DDDD-FFFF</div>
+        </div>
+    </div>
+
+    <div class="account_device">
+        <div>
+            <div id="lgw_049">This device:</div>
+            <span id="num_disp" style="font-weight: bold;">0</span>&nbsp;<span id="name_disp" style="font-weight: bold;">(Main)</span>
+            <img onclick="Show_Modal_Info('esse_disp');" src="img/icon_info.png" class="account_box_info">
+        </div>
+    </div>
+
+    <div class="account_version">
+        <button class="btn btn-warning account_version_but" type="button">
+            <div>Version: <span id="app_version">1.5.140</span></div>
+        </button>
+    </div>
+
+
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: FEEDBACK
+<!-- ................................................................................................................................. -->
+<div id="sec_feedback" class="section_body">
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="But_Header_Close('menu');" src="img/but_header_close_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lg_176">FEEDBACK</span>
+        </div>
+    </div>
+
+    <div class="feedback_header">
+        <span id="lgx_073">Envie-nos a sua opinião sobre esse app e ajude-nos a fazer um produto cada vez melhor.</span>
+    </div>
+
+   <div id="form_feedback">
+        <div class="feedback_form">
+            <div class="feedback_subheader">
+                <span id="lg_088">Quais as 3 coisas que você mais gostou em nosso app?</span>
+            </div>
+            <div class="feedback_form_container">
+                <input id="form_best1" type="text" class="form-control feedback_form_item" placeholder="1" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div class="feedback_form_container">
+                <input id="form_best2" type="text" class="form-control feedback_form_item" placeholder="2" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div class="feedback_form_container">
+                <input id="form_best3" type="text" class="form-control feedback_form_item" placeholder="3" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div class="feedback_subheader">
+                <span id="lg_089">Quais as 3 coisas que você menos gostou em nosso app?</span>
+            </div>
+            <div class="feedback_form_container">
+                <input id="form_worst1" type="text" class="form-control feedback_form_item" placeholder="1" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div class="feedback_form_container">
+                <input id="form_worst2" type="text" class="form-control feedback_form_item" placeholder="2" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div class="feedback_form_container">
+                <input id="form_worst3" type="text" class="form-control feedback_form_item" placeholder="3" onchange="My_Remove_Class(this.id)">
+            </div>
+            <div class="feedback_subheader">
+                <span id="lg_090">Comentários adicionais:</span>
+            </div>
+            <div class="feedback_form_container">
+                <textarea id="form_comments" class="form-control feedback_form_item" rows="6"></textarea>
+            </div>
+            <div class="feedback_but_area">
+                <button class="btn btn-warning feedback_send_but" type="button" onclick="But_Survey_Save();">
+                    <span id="lg_091">Enviar</span>
+                </button>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div style="padding-top: 40px;"></div>
+    </div>
+
+
+ </div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: SHOPPING
+<!-- ................................................................................................................................. -->
+<div id="sec_shopping" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.png" style="float: left; display: none;">&nbsp;
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lgx_043">STORE</span>
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+    <div class="shop_banner">
+        <img src="img/banner_store.png">
+    </div>
+    <div class="shop_subheader_sm">
+         <div id="LG_SHOP_SUB_VALORIZE">Valorize o seu tempo</div>
+         <div id="LG_SHOP_SUB_ESTUDE">Estude menos, aprenda mais!</div>
+    </div>
+
+    <div id="price_area_top" class="shop_content">
+        <div id="LG_SHOP_MONEY_BACK_1" class="shop_garantia" onclick="Show_Modal_Info('money_back');">
+            90 DAYS MONEY-BACK GARANTEE
+        </div>
+        <div id="price_area_top_promo" style="display: none;">
+            <div class="shop_chamada_promo">
+                <div id="LG_SHOP_PROMO1_TIT">
+                    Aproveite nossa promoção com 40% de desconto
+                </div>
+                <div class="shop_chamada_img">
+                    <img id="promo_img_top" src="img/promo_40.png">
+                </div>
+            </div>
+            <div class="shop_promo_regular">
+                <span id="LG_SHOP_PROMO1_REGULAR_LBL">Regular price:</span>
+                <span id="shop_promo1_regular_price" style="text-decoration: line-through; font-weight: bold;">59.90</span>
+            </div>
+            <div class="shop_promo_regular">
+                <span id="LG_SHOP_PROMO1_TODAY_LBL">Today:</span>
+                <span id="shop_promo1_today_price" class="shop_promo_price">29.90</span>
+            </div>
+            <div class="shop_promo_timer">
+                <div id="LG_SHOP_PROMO1_EXPIRA_LBL" class="shop_promo_timer_header">
+                    Essa promoção expira em:
+                </div>
+                <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="center">
+                            <div id="promo_time_days_top" class="shop_promo_timer_numbers">05</div>
+                        </td>
+                        <td align="center">
+                            <div style="">:</div>
+                        </td>
+                        <td align="center">
+                            <div id="promo_time_hours_top" class="shop_promo_timer_numbers">13</div>
+                        </td>
+                        <td align="center">
+                            <div style="">:</div>
+                        </td>
+                        <td align="center">
+                            <div id="promo_time_mins_top" class="shop_promo_timer_numbers">27</div>
+                        </td>
+                        <td align="center">
+                            <div style="">:</div>
+                        </td>
+                        <td align="center" >
+                            <div id="promo_time_secs_top" class="shop_promo_timer_numbers">38</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <div class="shop_promo_timer_labels"><span id="lgx_120_xxxxxx">Days</span></div>
+                        </td>
+                        <td align="center">
+                            <div></div>
+                        </td>
+                        <td align="center">
+                            <div class="shop_promo_timer_labels"><span id="lgx_121_xxxxxx">Hrs</span></div>
+                        </td>
+                        <td align="center">
+                            <div></div>
+                        </td>
+                        <td align="center">
+                            <div class="shop_promo_timer_labels"><span id="lgx_122_xxxxxx">Mins</span></div>
+                        </td>
+                        <td align="center">
+                            <div></div>
+                        </td>
+                        <td align="center">
+                            <div class="shop_promo_timer_labels"><span id="lgx_123_xxxxxxx">Secs</span></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin: 20px;">
+                <button class="btn btn-warning shop_buy_but" type="button" onclick="Call_Store_Billing();">
+                    <span id="LG_SHOP_BUT_BUY_TOP">Versão Premium</span>
+                </button>
+            </div>
+        </div>
+        <div id="price_area_top_normal">
+            <div class="shop_chamada_principal">
+                <span id="LG_SHOP_ADQUIRA_AGORA_TOP">Adquira agora a sua versão completa por apenas:</span>
+            </div>
+            <div class="shop_price">
+                <span id="price_p0_top">Us$ 16.90</span>
+            </div>
+            <div style="margin: 20px;">
+                <button class="btn btn-warning shop_buy_but" type="button" onclick="Call_Store_Billing();">
+                    <span id="LG_SHOP_BUT_BUY_TOP_PROMO">Versão Premium</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="area_trial" style="display: none;" class="shop_trial_container">
+        <div class="shop_trial_header">
+            <span id="lgx_078">Your trial period ends in:</span>
+        </div>
+        <table width="90%" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center">
+                    <div id="trial_time_days" class="shop_trial_numbers">06</div>
+                </td>
+                <td align="center">
+                    <div style="">:</div>
+                </td>
+                <td align="center">
+                    <div id="trial_time_hours" class="shop_trial_numbers">23</div>
+                </td>
+                <td align="center">
+                    <div style="">:</div>
+                </td>
+                <td align="center">
+                    <div id="trial_time_mins" class="shop_trial_numbers">27</div>
+                </td>
+                <td align="center">
+                    <div style="">:</div>
+                </td>
+                <td align="center" >
+                    <div id="trial_time_secs" class="shop_trial_numbers">38</div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <div class="shop_trial_labels"><span id="lgx_079">Days</span></div>
+                </td>
+                <td align="center">
+                    <div></div>
+                </td>
+                <td align="center">
+                    <div class="shop_trial_labels"><span id="lgx_080">Hrs</span></div>
+                </td>
+                <td align="center">
+                    <div></div>
+                </td>
+                <td align="center">
+                    <div class="shop_trial_labels"><span id="lgx_081">Mins</span></div>
+                </td>
+                <td align="center">
+                    <div></div>
+                </td>
+                <td align="center">
+                    <div class="shop_trial_labels"><span id="lgx_082">Secs</span></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="area_cliente" class="shop_license_key_container">
+        <div class="store_license_key_label"><span id="lgx_101">License Key:</span></div>
+        <div id="app_key" class="shop_license_key">AAAA-BBBB-CCCC-DDDD</div>
+    </div>
+
+    <div id="area_to_sell">
+        <div class="shop_subheader_sm">
+            <span id="lgx_107">O método mais rápido e eficiente para evoluir no Xadrez!</span>
+        </div>
+        <div class="shop_content" style="text-align: left;">
+            <div class="shop_line_check">
+                <img src="img/icon_check.png">
+                <span>149 cards</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="shop_line_check">
+                <img src="img/icon_check.png">
+                <span id="lgx_108">8.079 linhas das aberturas mais jogadas nos últimos 50 anos</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="shop_line_check">
+                <img src="img/icon_check.png">
+                <span id="lgx_109">4.500 partidas dos maiores jogadores do mundo (clássicas e modernas)</span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div id="shop_review_1" class="shop_review">
+            <div class="shop_review_stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <img src="img/user_icon.svg.png">
+                <div id="LG_SHOP_REVIEW_TXT_001" class="shop_review_txt"></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="LG_SHOP_REVIEW_USER_001" class="shop_review_sign"></div>
+        </div>
+
+        <div class="shop_subheader_sm">
+             <span id="lgx_110">Menos esforço, maior tempo de retenção</span>
+        </div>
+
+        <div class="shop_content" style="text-align: left;">
+            <div class="shop_line_check">
+                <img src="img/icon_check.png">
+                <span id="lgx_111">Desenvolva a sua intuição</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="shop_line_check">
+                <img src="img/icon_check.png">
+                <span id="lgx_112">Jogue mais rapidamente</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="shop_line_check">
+                <img src="img/icon_check.png">
+                <span id="lgx_113">Melhore a sua capacidade de cálculo</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="shop_line_check">
+                <img src="img/icon_check.png">
+                <span id="lgx_114">Melhore a sua concentração</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="shop_line_check">
+                <img src="img/icon_check.png">
+                <span id="lgx_115">Comece a ganhar mais partidas</span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div id="shop_review_2" class="shop_review">
+            <div class="shop_review_stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <img src="img/user_icon.svg.png">
+                <div id="LG_SHOP_REVIEW_TXT_002" class="shop_review_txt"></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="LG_SHOP_REVIEW_USER_002" class="shop_review_sign"></div>
+        </div>
+
+        <div class="shop_subheader_lg">
+             <span id="lgx_116">Resultados melhores e mais rápidos do que qualquer outro método</span>
+        </div>
+
+
+        <div class="shop_content" style="text-align: left;">
+            <div class="shop_chamada_principal">
+                <span id="lgx_127">Adquirindo essa versão você terá:</span>
+            </div>
+            <div style="">
+                <div class="shop_line_check">
+                    <img src="img/icon_check.png">
+                    <span id="lgx_128">Acesso completo por tempo indefinido</span>
+                </div>
+                <div style="clear: both;"></div>
+                <div class="shop_line_check">
+                    <img src="img/icon_check.png">
+                    <span id="lgx_129">Atualizações gratuitas</span>
+                </div>
+                <div style="clear: both;"></div>
+                <div class="shop_line_check">
+                    <img src="img/icon_check.png">
+                    <span id="lgx_130">Suporte preferencial</span>
+                </div>
+                <div style="clear: both;"></div>
+                <div class="shop_line_check">
+                    <img src="img/icon_check.png">
+                    <span id="lgx_131">Acesso instantâneo</span>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+
+        <div id="shop_review_3" class="shop_review">
+            <div class="shop_review_stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <img src="img/user_icon.svg.png">
+                <div id="LG_SHOP_REVIEW_TXT_003" class="shop_review_txt"></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="LG_SHOP_REVIEW_USER_003" class="shop_review_sign"></div>
+        </div>
+
+        <div class="shop_subheader_sm">
+             <div><span id="lgx_125">XADREZ</span> -
+             <span id="lgx_126">A melhor ginástica para o seu cérebro</span></div>
+        </div>
+
+        <div id="price_area_bottom" class="shop_content">
+            <div id="LG_SHOP_MONEY_BACK_2" class="shop_garantia" onclick="Show_Modal_Info('money_back');">
+                90 DAYS MONEY-BACK GARANTEE
+            </div>
+            <div id="price_area_bottom_promo" style="display: none;">
+                <div class="shop_chamada_promo">
+                    <div id="LG_SHOP_PROMO2_TIT">
+                        Aproveite nossa promoção com 40% de desconto
+                    </div>
+                    <div class="shop_chamada_img">
+                        <img id="promo_img_bottom" src="img/promo_40.png">
+                    </div>
+                </div>
+                <div class="shop_promo_regular">
+                    <span id="LG_SHOP_PROMO2_REGULAR_LBL">Regular price:</span>
+                    <span id="shop_promo2_regular_price" style="text-decoration: line-through; font-weight: bold;">59.90</span>
+                </div>
+                <div class="shop_promo_regular">
+                    <span id="LG_SHOP_PROMO2_TODAY_LBL">Today:</span>
+                    <span id="shop_promo2_today_price" class="shop_promo_price">29.90</span>
+                </div>
+                <div class="shop_promo_timer">
+                    <div class="shop_promo_timer_header">
+                        <span id="LG_SHOP_PROMO2_EXPIRA_LBL">Essa promoção expira em:</span>
+                    </div>
+                    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center">
+                                <div id="promo_time_days_bottom" class="shop_promo_timer_numbers">05</div>
+                            </td>
+                            <td align="center">
+                                <div style="">:</div>
+                            </td>
+                            <td align="center">
+                                <div id="promo_time_hours_bottom" class="shop_promo_timer_numbers">13</div>
+                            </td>
+                            <td align="center">
+                                <div style="">:</div>
+                            </td>
+                            <td align="center">
+                                <div id="promo_time_mins_bottom" class="shop_promo_timer_numbers">27</div>
+                            </td>
+                            <td align="center">
+                                <div style="">:</div>
+                            </td>
+                            <td align="center" >
+                                <div id="promo_time_secs_bottom" class="shop_promo_timer_numbers">38</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <div class="shop_promo_timer_labels"><span id="lgx_120_xxxxxx">Days</span></div>
+                            </td>
+                            <td align="center">
+                                <div></div>
+                            </td>
+                            <td align="center">
+                                <div class="shop_promo_timer_labels"><span id="lgx_121_xxxxxx">Hrs</span></div>
+                            </td>
+                            <td align="center">
+                                <div></div>
+                            </td>
+                            <td align="center">
+                                <div class="shop_promo_timer_labels"><span id="lgx_122_xxxxxx">Mins</span></div>
+                            </td>
+                            <td align="center">
+                                <div></div>
+                            </td>
+                            <td align="center">
+                                <div class="shop_promo_timer_labels"><span id="lgx_123_xxxxxxx">Secs</span></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="margin: 20px;">
+                    <button class="btn btn-warning shop_buy_but" type="button" onclick="Call_Store_Billing();">
+                        <span id="LG_SHOP_BUT_BUY_BOTTOM_PROMO">Versão Premium</span>
+                    </button>
+                </div>
+            </div>
+            <div id="price_area_bottom_normal">
+                <div class="shop_chamada_principal">
+                    <span id="LG_SHOP_ADQUIRA_AGORA_BOTTOM">Adquira agora a sua versão completa por apenas:</span>
+                </div>
+                <div class="shop_price">
+                    <span id="price_p0_bottom">Us$ 16.90</span>
+                </div>
+                <div style="margin: 20px;">
+                    <button class="btn btn-warning shop_buy_but" type="button" onclick="Call_Store_Billing();">
+                        <span id="LG_SHOP_BUT_BUY_BOTTOM">Versão Premium</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="shop_review_4" class="shop_review">
+            <div class="shop_review_stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <img src="img/user_icon.svg.png">
+                <div id="LG_SHOP_REVIEW_TXT_004" class="shop_review_txt"></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="LG_SHOP_REVIEW_USER_004" class="shop_review_sign"></div>
+        </div>
+
+        <div id="shop_review_5" class="shop_review">
+            <div class="shop_review_stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <img src="img/user_icon.svg.png">
+                <div id="LG_SHOP_REVIEW_TXT_005" class="shop_review_txt"></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="LG_SHOP_REVIEW_USER_005" class="shop_review_sign"></div>
+        </div>
+
+        <div id="shop_review_6" class="shop_review">
+            <div class="shop_review_stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <img src="img/user_icon.svg.png">
+                <div id="LG_SHOP_REVIEW_TXT_006" class="shop_review_txt"></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="LG_SHOP_REVIEW_USER_006" class="shop_review_sign"></div>
+        </div>
+
+        <div id="shop_review_7" class="shop_review">
+            <div class="shop_review_stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <img src="img/user_icon.svg.png">
+                <div id="LG_SHOP_REVIEW_TXT_007" class="shop_review_txt"></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="LG_SHOP_REVIEW_USER_007" class="shop_review_sign"></div>
+        </div>
+
+        <div id="shop_review_8" class="shop_review">
+            <div class="shop_review_stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <img src="img/user_icon.svg.png">
+                <div id="LG_SHOP_REVIEW_TXT_008" class="shop_review_txt"></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="LG_SHOP_REVIEW_USER_008" class="shop_review_sign"></div>
+        </div>
+
+        <div id="review_lote_2" style="display: none;">
+            <div id="shop_review_9" class="shop_review" >
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_009" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_009" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_10" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_010" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_010" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_11" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_011" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_011" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_12" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_012" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_012" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_13" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_013" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_013" class="shop_review_sign"></div>
+            </div>
+            <div id="shop_review_14" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_014" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_014" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_15" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_015" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_015" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_16" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_016" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_016" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_17" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_017" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_017" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_18" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_018" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_018" class="shop_review_sign"></div>
+            </div>
+
+        </div>
+
+        <div id="review_lote_3" style="display: none;">
+            <div id="shop_review_19" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_019" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_019" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_20" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_020" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_020" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_21" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_021" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_021" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_22" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_022" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_022" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_23" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_023" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_023" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_24" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_024" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_024" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_25" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_025" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_025" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_26" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_026" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_026" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_27" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_027" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_027" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_28" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_028" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_028" class="shop_review_sign"></div>
+            </div>
+
+
+
+
+        </div>
+
+        <div id="review_lote_4" style="display: none;">
+            <div id="shop_review_29" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_029" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_029" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_30" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_030" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_030" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_31" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_031" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_031" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_32" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_032" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_032" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_33" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_033" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_033" class="shop_review_sign">Subhajit (India)</div>
+            </div>
+
+            <div id="shop_review_34" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_034" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_034" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_35" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_035" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_035" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_36" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_036" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_036" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_37" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_037" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_037" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_38" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_038" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_038" class="shop_review_sign"></div>
+            </div>
+
+        </div>
+
+        <div id="review_lote_5" style="display: none;">
+
+            <div id="shop_review_39" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_039" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_039" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_40" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_040" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_040" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_41" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_041" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_041" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_42" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_042" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_042" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_43" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_043" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_043" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_44" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_044" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_044" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_45" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_045" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_045" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_46" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_046" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_046" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_47" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_047" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_047" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_48" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_048" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_048" class="shop_review_sign"></div>
+            </div>
+
+        </div>
+
+        <div id="review_lote_6" style="display: none;">
+
+            <div id="shop_review_49" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_049" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_049" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_50" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_050" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_050" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_51" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_051" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_051" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_52" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_052" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_052" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_53" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_053" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_053" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_54" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_054" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_054" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_55" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_055" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_055" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_56" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_056" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_056" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_57" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_057" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_057" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_58" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_058" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_058" class="shop_review_sign"></div>
+            </div>
+
+        </div>
+
+        <div id="review_lote_7" style="display: none;">
+
+            <div id="shop_review_59" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_059" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_059" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_60" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_060" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_060" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_61" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_061" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_061" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_62" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_062" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_062" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_63" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_063" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_063" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_64" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_064" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_064" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_65" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_065" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_065" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_66" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_066" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_066" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_67" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_067" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_067" class="shop_review_sign"></div>
+            </div>
+
+            <div id="shop_review_68" class="shop_review">
+                <div class="shop_review_stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <img src="img/user_icon.svg.png">
+                    <div id="LG_SHOP_REVIEW_TXT_068" class="shop_review_txt"></div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="LG_SHOP_REVIEW_USER_068" class="shop_review_sign"></div>
+            </div>
+
+        </div>
+
+        <div id="but_more_reviews" onclick="But_More_Reviews();">
+            <img src="img/icon_down.png" style="width: 80px; height: auto; margin-top: 20px;">
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: SUPORTE
+<!-- ................................................................................................................................. -->
+<div id="sec_support" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="But_Header_Close('suporte');" src="img/but_header_close_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lg_195">SUPORTE</span>
+            <img onclick="Show_Modal_Info('suporte');" src="img/icon_info.png">
+        </div>
+    </div>
+
+    <div id="support_home">
+        <div class="support_subheader">
+            <span id="lg_197">Mensagens anteriores</span>
+        </div>
+        <div id="support_msgs" class="support_msgs_headers"></div>
+
+        <div class="support_subheader">
+            <span id="lg_198">Envie sua mensagem</span>
+        </div>
+        <div style="margin: 20px 10px 60px 10px;">
+            <div style="margin: 10px 0px;">
+                <input id="suporte_new_subj" type="text" class="form-control support_form_subj" onchange="My_Remove_Class(this.id)" placeholder="Subject">
+            </div>
+            <textarea id="suporte_new_texto" rows="5" class="form-control support_form_text" placeholder="Your message" onchange="My_Remove_Class(this.id)"></textarea>
+
+            <button class="btn btn-warning support_send_but" type="button" onclick="Send_New_Msg_Suporte();">
+                <span id="lg_199">Enviar</span>
+            </button>
+
+        </div>
+    </div>
+
+    <div id="support_msg" class="support_one_msg">
+        <div id="sup_msg_status" class="support_one_msg_status">Open</div>
+        <div style="clear: both;"></div>
+        <div class="support_separador"></div>
+        <div id="supp_msg_talk" class="support_talk"></div>
+    </div>
+
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: CONFIG
+<!-- ................................................................................................................................. -->
+<div id="sec_config" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="But_Header_Close('config');" src="img/but_header_close_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lg_200">CONFIGURAÇÕES</span>
+        </div>
+    </div>
+
+    <div class="config_container">
+        <div class="config_item">
+            <div id="lg_012">
+                Idioma:
+            </div>
+            <div class="config_sel">
+                <select id="conf_lang" onchange="Conf_Lang_Clicked();" class="form-control config_combo" onchange="My_Remove_Class(this.id)">
+                    <option value="ENG">English</option>
+                    <option value="POR">Português</option>
+                    <option value="GER">Deutsch</option>
+                    <option value="FRA">Français</option>
+                    <option value="SPN">Español</option>
+                    <option value="ITA">Italiano</option>
+                </select>
+            </div>
+        </div>
+        <div class="config_item">
+            <div>
+                <span id="lgx_048">Time per move:</span>
+                <img onclick="Show_Modal_Info('time_per_move');" src="img/icon_info.png" class="config_info">
+            </div>
+            <div class="config_sel">
+                <select id="board_time_teacher" onchange="Conf_Time_Teacher_Change();" class="form-control config_combo" onchange="My_Remove_Class(this.id)">
+                    <option value="900">Rápido</option>         <!-- lgx_044 -->
+                    <option value="1500">Normal</option>        <!-- lgx_045 -->
+                    <option value="2500">Moderado</option>      <!-- lgx_046 ???????????????????????????????   -->
+                    <option value="5000">Lento</option>         <!-- lgx_046 -->
+                    <option value="10000">Muito lento</option>  <!-- lgx_047 -->
+                </select>
+            </div>
+        </div>
+        <div class="config_item">
+            <div>
+                <span id="LG_CONFIG_LBL_TIME_PER_EXERC">Time per exerc:</span>
+                <img onclick="Show_Modal_Info('time_per_exerc');" src="img/icon_info.png" class="config_info">
+            </div>
+            <div class="config_sel">
+                <select id="board_time_per_exerc" onchange="Conf_Time_Per_Exerc();" class="form-control config_combo" onchange="My_Remove_Class(this.id)">
+                    <option id="LG_CONFIG_TIME_EXERC_P1" value="60">1 min</option>
+                    <option id="LG_CONFIG_TIME_EXERC_P2" value="90">1.5 min</option>
+                    <option id="LG_CONFIG_TIME_EXERC_P3" value="120">2 min</option>
+                    <option id="LG_CONFIG_TIME_EXERC_P4" value="150">2.5 min</option>
+                    <option id="LG_CONFIG_TIME_EXERC_P5" value="180">3 min</option>
+                    <option id="LG_CONFIG_TIME_EXERC_P6" value="240">4 min</option>
+                    <option id="LG_CONFIG_TIME_EXERC_P7" value="300">5 min</option>
+                </select>
+            </div>
+        </div>
+        <div class="config_item">
+            <div>
+                <span id="lgx_053">Show solution:</span>
+                <img onclick="Show_Modal_Info('show_solution');" src="img/icon_info.png" class="config_info">
+            </div>
+            <div class="config_sel">
+                <select id="chances_exerc" onchange="Conf_Chances_Clicked('conf');"  class="form-control config_combo" onchange="My_Remove_Class(this.id)">
+                    <option value="1">After 1 error</option>     <!-- lgx_049 -->
+                    <option value="2">After 2 error</option>     <!-- lgx_050 -->
+                    <option value="3">After 3 error</option>     <!-- lgx_051 -->
+                    <option value="99">Never</option>            <!-- lgx_052 -->
+                </select>
+            </div>
+        </div>
+        <div class="config_item">
+            <div>
+                <span id="LG_CONFIG_BOARD_COLOR_LBL">Cor dos tabuleiros:</span>
+                <img onclick="Show_Modal_Info('board_colors');" src="img/icon_info.png" class="config_info">
+            </div>
+            <div style="margin-top: 10px;">
+                <div id="LG_CONFIG_BOARD_TREINAR_LBL" class="config_item_board">Treinar</div>
+                <table>
+                    <tr>
+                        <td>
+                            <select id="color_train" class="form-control config_combo_colors" onchange="Combo_Conf_Color(1);">
+                                <option value="army">Army</option>
+                                <option value="coffee">Coffee</option>
+                                <option value="light_blue">Light blue</option>
+                                <option value="dark_blue">Dark blue</option>
+                                <option value="cinza_claro">Light gray</option>
+                                <option value="cinza_escuro">Dark gray</option>
+                                <option value="green">Green</option>
+                                <option value="dark_green">Dark green</option>
+                                <option value="maroon">Maroon</option>
+                                <option value="ocre">Ocre</option>
+                                <option value="olive">Olive</option>
+                                <option value="orange">Orange</option>
+                                <option value="pink">Pink</option>
+                                <option value="purple">Purple</option>
+                                <option value="teal">Teal</option>
+                                <option value="violet">Violet</option>
+                                <option value="wood">Wood</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="config_color_box" onclick="Combo_Conf_Color_Squares(1);">
+                                <div id="color_train_1" class="config_color_box_sq">&nbsp;</div>
+                                <div id="color_train_2" class="config_color_box_sq">&nbsp;</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div style="margin-top: 10px;">
+                <div id="LG_CONFIG_BOARD_JOGAR_LBL" class="config_item_board">Jogar</div>
+                <table>
+                    <tr>
+                        <td>
+                            <select id="color_play" class="form-control config_combo_colors" onchange="Combo_Conf_Color(2);">
+                                <option value="army">Army</option>
+                                <option value="coffee">Coffee</option>
+                                <option value="light_blue">Light blue</option>
+                                <option value="dark_blue">Dark blue</option>
+                                <option value="cinza_claro">Light gray</option>
+                                <option value="cinza_escuro">Dark gray</option>
+                                <option value="green">Green</option>
+                                <option value="dark_green">Dark green</option>
+                                <option value="maroon">Maroon</option>
+                                <option value="ocre">Ocre</option>
+                                <option value="olive">Olive</option>
+                                <option value="orange">Orange</option>
+                                <option value="pink">Pink</option>
+                                <option value="purple">Purple</option>
+                                <option value="teal">Teal</option>
+                                <option value="violet">Violet</option>
+                                <option value="wood">Wood</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="config_color_box" onclick="Combo_Conf_Color_Squares(2);">
+                                <div id="color_play_1" class="config_color_box_sq">&nbsp;</div>
+                                <div id="color_play_2" class="config_color_box_sq">&nbsp;</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div style="margin-top: 10px;">
+                <div id="LG_CONFIG_BOARD_ANALISAR_LBL" class="config_item_board">Analisar</div>
+                <table>
+                    <tr>
+                        <td>
+                            <select id="color_analise" class="form-control config_combo_colors" onchange="Combo_Conf_Color(3);">
+                                <option value="army">Army</option>
+                                <option value="coffee">Coffee</option>
+                                <option value="light_blue">Light blue</option>
+                                <option value="dark_blue">Dark blue</option>
+                                <option value="cinza_claro">Light gray</option>
+                                <option value="cinza_escuro">Dark gray</option>
+                                <option value="green">Green</option>
+                                <option value="dark_green">Dark green</option>
+                                <option value="maroon">Maroon</option>
+                                <option value="ocre">Ocre</option>
+                                <option value="olive">Olive</option>
+                                <option value="orange">Orange</option>
+                                <option value="pink">Pink</option>
+                                <option value="purple">Purple</option>
+                                <option value="teal">Teal</option>
+                                <option value="violet">Violet</option>
+                                <option value="wood">Wood</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="config_color_box" onclick="Combo_Conf_Color_Squares(3);">
+                                <div id="color_analise_1" class="config_color_box_sq">&nbsp;</div>
+                                <div id="color_analise_2" class="config_color_box_sq">&nbsp;</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+
+        <div class="config_item">
+            <div id="lgx_054">
+                Som:
+            </div>
+            <div id="conf_sound" onclick="Conf_Sound_Clicked();">
+                <button type="button" class="btn btn-dark config_but_som">
+                    ON
+                </button>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div onclick="But_Default_Config();" class="config_but_default_area">
+        <button id="LG_CONF_BUT_DEFAULT" type="button" class="btn btn-info config_but_default">Restaurar Default</button>
+    </div>
+
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: RECOVER
+<!-- ................................................................................................................................. -->
+<div id="sec_recover" class="section_body">
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="But_Header_Close('menu');" src="img/but_header_close_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lgw_008">RECUPERAR CONTA</span>
+        </div>
+    </div>
+    <div class="recover_container">
+        <div class="recover_explain">
+            <div class="recover_explain_line">
+                <li><span id="lgw_009">A recuperação de conta...</span></li>
+            </div>
+            <div class="recover_explain_line">
+                <li>
+                    <span id="lgw_010">
+                        Para realizar...
+                    </span>
+                    <span style="font-weight: bold;">
+                        Icon: <img src="img/menu4_on.png" style="width: 26px;">
+                    </span>
+                </li>
+            </div>
+            <div class="recover_explain_line">
+                <li>
+                    <span id="lgw_011">Se você... </span>
+                    <span id="lgw_012" style="color: #0066FF; font-weight: bold;" onclick="Show_Suporte_Section();">clicando aqui</span>.
+                </li>
+            </div>
+            <div class="recover_explain_line">
+                <li>
+                    <span id="lgw_013">IMPORTANTE!</span>
+                </li>
+            </div>
+        </div>
+        <div class="recover_id">
+            <input id="rec_id_app_1" class="form-control form_id_app" maxlength="4" onchange="My_Remove_Class(this.id)">
+            <div class="form_id_app_separator">-</div>
+            <input id="rec_id_app_2" class="form-control form_id_app" maxlength="4" onchange="My_Remove_Class(this.id)">
+            <div class="form_id_app_separator">-</div>
+            <input id="rec_id_app_3" class="form-control form_id_app" maxlength="4" onchange="My_Remove_Class(this.id)">
+            <div class="form_id_app_separator">-</div>
+            <input id="rec_id_app_4" class="form-control form_id_app" maxlength="4" onchange="My_Remove_Class(this.id)">
+            <div style="clear: both;"></div>
+        </div>
+        <button class="btn btn-warning recover_send_but" type="button" onclick="But_Recover_Send();">
+            <span id="lgw_014">Iniciar Recuperação</span>
+        </button>
+        <div style="height: 30px;"></div>
+    </div>
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: SYNC
+<!-- ................................................................................................................................. -->
+<div id="sec_sync" class="section_body">
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="But_Header_Close('menu');" src="img/but_header_close_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lgw_015">SINCRONIZAR CONTAS</span>
+        </div>
+    </div>
+
+
+
+    <div id="area_sync_main" class="sync_page_1">
+
+        <div class="sync_chamada">
+            <span id="lgw_022">Agora você pode utilizar a mesma conta em vários dispositivos.</span>
+            <img onclick="Show_Modal_Info('sync_varios');" src="img/icon_info.png">
+        </div>
+        <div id="lgw_023" class="sync_parag">Para sincronizar as contas você precisa:</div>
+        <li class="sync_parag">
+            <span id="lgw_024">Fazer o cadastro no dispositivo que você quer sincronizar.</span>
+            <img onclick="Show_Modal_Info('sync_cadastro');" src="img/icon_info.png">
+        </li>
+        <li class="sync_parag">
+            <span id="lgw_025">Digitar nos campos abaixo o ID do dispositivo que você quer sincronizar.</span>
+            <img onclick="Show_Modal_Info('sync_id_disp');" src="img/icon_info.png">
+        </li>
+        <li class="sync_parag">
+            <span id="lgw_026">Na tela seguinte, digitar o código de confirmação que enviaremos para o seu email.</span>
+            <img onclick="Show_Modal_Info('sync_email');" src="img/icon_info.png">
+        </li>
+
+        <div class="sync_id">
+            <input id="sync_id_app_1" class="form-control form_id_app" maxlength="4" onchange="My_Remove_Class(this.id)">
+            <div class="form_id_app_separator">-</div>
+            <input id="sync_id_app_2" class="form-control form_id_app" maxlength="4" onchange="My_Remove_Class(this.id)">
+            <div class="form_id_app_separator">-</div>
+            <input id="sync_id_app_3" class="form-control form_id_app" maxlength="4" onchange="My_Remove_Class(this.id)">
+            <div class="form_id_app_separator">-</div>
+            <input id="sync_id_app_4" class="form-control form_id_app" maxlength="4" onchange="My_Remove_Class(this.id)">
+            <div style="clear: both;"></div>
+        </div>
+
+        <button class="btn btn-warning sync_but_1" type="button" onclick="But_Sincronizar_Send();">
+            <span id="lgw_027">Sincronizar</span>
+        </button>
+        <br>
+        <br>
+
+    </div>
+
+    <div id="area_sync_confirm" class="sync_area_confirm">
+        <div class="sync_txt_confirm">
+            <span id="lgw_016">Digite o código de confirmação de 4 dígitos enviado para o e-mail:</span>
+            <div id="email_cod_sync" class="sync_sent_email">xxxx@xxxxx.com</div>
+        </div>
+        <div class="sync_cod_conf_area">
+            <input id="cod_sync_1" class="form-control form_id_app" maxlength="1" onchange="My_Remove_Class(this.id)">
+            <div style="display: inline-block;">&nbsp;</div>
+            <input id="cod_sync_2" class="form-control form_id_app" maxlength="1" onchange="My_Remove_Class(this.id)">
+            <div style="display: inline-block;">&nbsp;</div>
+            <input id="cod_sync_3" class="form-control form_id_app" maxlength="1" onchange="My_Remove_Class(this.id)">
+            <div style="display: inline-block;">&nbsp;</div>
+            <input id="cod_sync_4" class="form-control form_id_app" maxlength="1" onchange="My_Remove_Class(this.id)">
+            <div style="clear: both;"></div>
+        </div>
+        <button class="btn btn-warning sync_but_1" type="button" onclick="But_Sincronizar_Confirm();">
+            <span id="lgw_017">Sincronizar</span>
+        </button>
+
+        <div class="sync_txts_ajuda">
+            <li>&nbsp;<span id="lgw_018">Se você <b>não recebeu</b> o nosso e-mail com o código de confirmação, por favor verifique a sua caixa de Spam.</span>
+        </div>
+        <div class="sync_txts_ajuda">
+            <li>&nbsp;<span id="lgw_019">Para <b>reenviar</b> o código</span>&nbsp;<span id="lgw_028" onclick="Reenviar_Cod_To_Sync();" style="color: #0066FF; font-weight: bold;">clique aqui</span>.
+        </div>
+        <div class="sync_txts_ajuda">
+            <li>&nbsp;<span id="lgw_020">Se precisar de <b>ajuda</b>, envie uma mensagem para nosso Suporte</span>&nbsp;<span id="lgw_021" onclick="Show_Suporte_Section();" style="color: #0066FF; font-weight: bold;">clicando aqui.</span>
+        </div>
+        <div style="margin: 20px;"></div>
+    </div>
+
+</div>
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: MENU
+<!-- ................................................................................................................................. -->
+<div id="sec_menu" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="But_Header_Close('home');" src="img/but_header_close_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            MENU
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div style="height: 10px;">&nbsp;</div>
+
+    <div id="but_trial_menu" onclick="Show_Modal_Eval();" class="menu_help_bg_dark">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="LG_MENU_EVAL_30DAYS">Testar 30 dias GRÁTIS!</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Config_From_Menu();" class="menu_help_bg_light">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="LG_MENU_CONFIG">Config</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Suporte_Section();" class="menu_help_bg_dark">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lg_150">Suporte</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Feedback();" class="menu_help_bg_light">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgx_132">Feedback</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="But_Recover();" class="menu_help_bg_dark">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgw_003">Recuperar conta</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="But_Sincronizar();" class="menu_help_bg_light">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgw_004">Sincronizar contas</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="But_Exit();" class="menu_help_bg_dark">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgw_005">Sair</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="menu_help_sub">
+        <span id="lg_xxxx">HELP</span>
+    </div>
+
+    <div onclick="Show_Welcome();" class="menu_help_bg_dark">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lg_148">Boas-Vindas</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Help(1);" class="menu_help_bg_light">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgx_024">Nosso método</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Help(2);" class="menu_help_bg_dark">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgx_025">Como treinar</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Help(3);" class="menu_help_bg_light">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgx_026">Monte o seu treinamento</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Help(4);" class="menu_help_bg_dark">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgx_027">Partidas</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Help(5);" class="menu_help_bg_light">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgx_028">Teoria de aberturas</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Help(6);" class="menu_help_bg_dark">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgx_029">Favoritos</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div onclick="Show_Help(7);" class="menu_help_bg_light">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="menu_help_txt">
+                    <div id="lgx_030">Cadastro</div>
+                </td>
+                <td class="menu_help_chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: BOAS_VINDAS
+<!-- ................................................................................................................................. -->
+<div id="sec_boas_vindas" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="But_Header_Close('home');" src="img/but_header_close_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lg_139">BOAS-VINDAS</span>
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div class="boas_vindas_area">
+        <div class="boas_vindas_chamada">
+            <span id="lg_140">O Jeito Mais Fácil...</span>
+        </div>
+        <div style="padding: 0px 20px; ">
+            <div style="">
+                <span id="lg_141">O aplicativo...</span>
+            </div>
+            <div class="welcome_par">
+                <span id="lg_142">Você escolhe...</span>
+            </div>
+            <div class="welcome_par">
+                <span id="lg_143">Tudo o que...</span>
+            </div>
+            <div class="welcome_par">
+                <span id="lg_144">No nível 1...</span>
+            </div>
+            <div class="welcome_par">
+                <span id="lg_145">Com esse método...</span>
+            </div>
+            <div class="welcome_par">
+                <span id="lg_146">Treine 15 dias...</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 20px 0px 50px 0px;">
+            <button class="btn btn-warning but_boas_vindas" type="button" onclick="Show_Home_Section()">
+                <span id="lg_147">Começar Agora</span>
+            </button>
+        </div>
+
+        <div style="height: 30px;">&nbsp;</div>
+
+    </div>
+
+</div>
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: HELP_DETAIL
+<!-- ................................................................................................................................. -->
+<div id="sec_help_detail" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img onclick="But_Header_Close('menu');" src="img/but_header_close_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="help_header">NOSSO MÉTODO</span>
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div id="help_detail" class="help_detail"></div>
+</div>
+
+
+<!-- ................................................................................................................................. -->
+<!-- SECTION: TEORIA
+<!-- ................................................................................................................................. -->
+<div id="sec_teoria" class="section_body">
+
+    <div class="wood_header">
+        <div class="wood_header_buts">
+            <img id="alert_msg" onclick="Alert_Icon_Clicked();" src="img/bt_msg_rosa.png" style="float: left; display: none;">&nbsp;
+            <img onclick="Show_Config();" src="img/bt_conf_cafe.png">
+            <img onclick="Show_Menu_Section();" src="img/bt_menu_cafe.png">
+        </div>
+        <div class="wood_header_chapeu">
+            Promaster Chess Openings
+        </div>
+        <div class="wood_header_label">
+            <span id="lg_023" style="text-transform: uppercase;">TEORIA DE ABERTURAS</span>
+        </div>
+        <div style="clear: both; display: none;"></div>
+    </div>
+
+    <div class="header_teoria">
+        <span id="lg_300">Some...</span>
+    </div>
+
+    <div style="text-align: left;">
+        <div class="teoria_subheader">
+            <span id="lg_301">1</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_302">T</span> </li>
+            <li><span id="lg_303">O</span> </li>
+            <li><span id="lg_304">T</span> </li>
+            <img src="img/board/board_01.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+
+        <div class="teoria_subheader">
+            <span id="lg_305">2</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_306">W</span> </li>
+            <img src="img/board/board_02.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_307">3</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_308">T</span> </li>
+            <li><span id="lg_309">I</span> </li>
+            <img src="img/board/board_03.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_310">4</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_311">P</span> </li>
+            <li><span id="lg_312">G</span> </li>
+            <img src="img/board/board_04.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_313">5</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_314">A</span> </li>
+            <li><span id="lg_315">M</span> </li>
+            <img src="img/board/board_05.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_316">6</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_317">A</span> </li>
+            <img src="img/board/board_06.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_318">7</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_319">S</span> </li>
+            <li><span id="lg_320">T</span> </li>
+            <img src="img/board/board_07.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_321">8</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_322">G</span> </li>
+            <li><span id="lg_323">W</span> </li>
+            <img src="img/board/board_08.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_324">9</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_325">T</span> </li>
+            <li><span id="lg_326">T</span> </li>
+            <li><span id="lg_327">C</span> </li>
+            <img src="img/board/board_09.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_328">10</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_329">K</span> </li>
+            <li><span id="lg_330">O</span> </li>
+            <img src="img/board/board_10.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_331">11</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_332">I</span> </li>
+            <li><span id="lg_333">O</span> </li>
+            <li><span id="lg_334">M</span> </li>
+            <img src="img/board/board_11.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_335">12</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_336">T</span> </li>
+            <li><span id="lg_337">O</span> </li>
+            <img src="img/board/board_12.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_338">13</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_339">A</span> </li>
+            <li><span id="lg_340">F</span> </li>
+            <img src="img/board/board_13.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_341">14</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_342">T</span> </li>
+            <li><span id="lg_343">P</span> </li>
+            <img src="img/board/board_14.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_344">15</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_345">I</span> </li>
+            <li><span id="lg_346">T</span> </li>
+            <img src="img/board/board_15.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_347">16</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_348">I</span> </li>
+            <img src="img/board/board_16.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_349">17</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_350">S</span> </li>
+            <img src="img/board/board_17.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_351">18</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_352">D</span> </li>
+            <li><span id="lg_353">G</span> </li>
+            <li><span id="lg_354">H</span> </li>
+            <img src="img/board/board_18.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_355">19</span>
+        </div>
+        <div class="box_teoria">
+            <li><span id="lg_356">T</span> </li>
+            <li><span id="lg_357">W</span> </li>
+            <li><span id="lg_358">W</span> </li>
+            <li><span id="lg_359">W</span> </li>
+            <img src="img/board/board_19.jpg" style="box-shadow: 3px 3px 8px -1px #777777;">
+        </div>
+        <div class="teoria_subheader">
+            <span id="lg_360">20</span>
+        </div>
+        <div class="box_teoria" style="margin-bottom: 80px;">
+            <li><span id="lg_361">C</span> </li>
+            <li><span id="lg_362">O</span> </li>
+            <li><span id="lg_363">I</span> </li>
+        </div>
+    </div>
+</div>
+
+
+    </center>
+
+
+
+<!-- ................................................................................................................................. -->
+<!-- SCRIPTS
+<!-- ................................................................................................................................. -->
+
+    <script src="class_basic.js"></script>
+    <script src="class_const.js"></script>
+
+    <script src="lang/class_lang_1.js"></script>
+    <script src="lang/class_lang_2.js"></script>
+    <script src="lang/class_quotes.js"></script>
+    <script src="lang/class_concepts.js"></script>
+    <script src="lang/class_lg_const.js"></script>
+    <script src="lang/class_lg_const_POR.js"></script>
+    <script src="lang/class_lg_const_ENG.js"></script>
+    <script src="lang/class_lg_const_SPN.js"></script>
+    <script src="lang/class_lg_const_FRA.js"></script>
+    <script src="lang/class_lg_const_ITA.js"></script>
+    <script src="lang/class_lg_const_GER.js"></script>
+
+    <script src="class_train.js"></script>
+
+    <script src="tabs/tab_cards.js"></script>
+    <script src="tabs/tab_eco.js"></script>
+    <script src="tabs/tab_games.js"></script>
+    <script src="tabs/tab_linhas_A.js"></script>
+    <script src="tabs/tab_linhas_B.js"></script>
+    <script src="tabs/tab_linhas_C.js"></script>
+    <script src="tabs/tab_linhas_D.js"></script>
+    <script src="tabs/tab_linhas_E.js"></script>
+
+    <script src="class_games.js"></script>
+    <script src="class_popup.js"></script>
+    <script src="class_store.js"></script>
+
+    <script src="class_ajax.js"></script>
+    <script src="class_account.js"></script>
+    <script src="class_naveg.js"></script>
+    <script src="main.js"></script>
+    <script src="class_engine.js"></script>
+
+    <script src="class_graph.js"></script>
+
+
+</body>
+
+</html>
