@@ -1,0 +1,560 @@
+
+"use strict";
+
+var Tab_Eco = [];
+
+Tab_Eco[0]  = ["A00","Grob/Sokolsky/Benko´s opening | Main line"];
+Tab_Eco[1]  = ["A01","Larsen attack | Main line"];
+Tab_Eco[2]  = ["A02","Bird´s opening | Main line"];
+Tab_Eco[3]  = ["A03","Bird´s opening | Williams gambit/Lasker variation"];
+Tab_Eco[4]  = ["A04","Reti opening | Pirc-Lisitsin gambit"];
+Tab_Eco[5]  = ["A05","Reti opening | King's Indian Attack Smyslov-Spassky´s Variation"];
+Tab_Eco[6]  = ["A06","Reti opening | Old Indian Attack/Zukertort Gambit"];
+Tab_Eco[7]  = ["A07","Reti opening | King´s Indian attack - Yugoslav Variation"];
+Tab_Eco[8]  = ["A08","Reti opening | King´s Indian attack - French Variation"];
+Tab_Eco[9]  = ["A09","Reti opening | Keres/Advance variation"];
+
+Tab_Eco[10] = ["A10","English opening | Anglo-Dutch/Adorjan defense"];
+Tab_Eco[11] = ["A11","English opening | Caro-Kann system"];
+Tab_Eco[12] = ["A12","English opening | London/Caro-Kann system"];
+Tab_Eco[13] = ["A13","English opening | Romanishin gambit/Neo-Catalan"];
+Tab_Eco[14] = ["A14","English opening | Neo-Catalan declined"];
+Tab_Eco[15] = ["A15","English opening | Anglo-Indian defense"];
+Tab_Eco[16] = ["A16","English opening | Anglo-Gruenfeld defense"];
+Tab_Eco[17] = ["A17","English opening | Queens Indian formation"];
+Tab_Eco[18] = ["A18","English opening | Mikenas-Carls variation"];
+Tab_Eco[19] = ["A19","English opening | Mikenas-Carls/Sicilian variation"];
+
+Tab_Eco[20] = ["A20","English opening | Nimzovich variation"];
+Tab_Eco[21] = ["A21","English opening | Smyslov defence/Kramnik-Shirov counterattack"];
+Tab_Eco[22] = ["A22","English opening | Bremen system"];
+Tab_Eco[23] = ["A23","English opening | Bremen system, Keres variation"];
+Tab_Eco[24] = ["A24","English opening | Bremen system g6 variation"];
+Tab_Eco[25] = ["A25","English opening | Closed system"];
+Tab_Eco[26] = ["A26","English opening | Botvinnik system"];
+Tab_Eco[27] = ["A27","English opening | Three knights system"];
+Tab_Eco[28] = ["A28","English opening | Four knights variation"];
+Tab_Eco[29] = ["A29","English opening | Four knights (Kingside fianchetto)"];
+
+Tab_Eco[30] = ["A30","English opening | Symmetrical variation"];
+Tab_Eco[31] = ["A31","English opening | Symmetrical/Benoni formation"];
+Tab_Eco[32] = ["A32","English opening | Symmetrical variation"];
+Tab_Eco[33] = ["A33","English opening | Symmetrical/Geller variation"];
+Tab_Eco[34] = ["A34","English opening | Symmetrical/Rubinstein system"];
+Tab_Eco[35] = ["A35","English opening | Symmetrical/Four knights system"];
+Tab_Eco[36] = ["A36","English opening | Symmetrical/Botvinnik system"];
+Tab_Eco[37] = ["A37","English opening | Symmetrical/Botvinnik system reversed"];
+Tab_Eco[38] = ["A38","English opening | Symmetrical/Main line with d3/b3"];
+Tab_Eco[39] = ["A39","English opening | Symmetrical/Main line with d4"];
+
+Tab_Eco[40] = ["A40","Queen´s pawn | -"];
+Tab_Eco[41] = ["A41","Old Indian | Tartakower/Rossolimo variation"];
+Tab_Eco[42] = ["A42","Modern defence | Averbakh system"];
+Tab_Eco[43] = ["A43","Old Benoni defence | -"];
+Tab_Eco[44] = ["A44","Semi-Benoni defence | -"];
+Tab_Eco[45] = ["A45","Trompovsky attack | -"];
+Tab_Eco[46] = ["A46","Queen´s pawn | Torre attack"];
+Tab_Eco[47] = ["A47","Queen´s Indian | Marienbad system"];
+Tab_Eco[48] = ["A48","King´s Indian | London system"];
+Tab_Eco[49] = ["A49","King´s Indian | Fianchetto without c4"];
+
+Tab_Eco[50] = ["A50","Queen´s Indian accelerated | -"];
+Tab_Eco[51] = ["A51","Budapest defence | Fajarowicz/Steiner variation"];
+Tab_Eco[52] = ["A52","Budapest defence | Rubinstein/Alekhine variation"];
+Tab_Eco[53] = ["A53","Old Indian defence | Janowski variation"];
+Tab_Eco[54] = ["A54","Old Indian defence | Ukrainian variation"];
+Tab_Eco[55] = ["A55","Old Indian defence | Main line"];
+Tab_Eco[56] = ["A56","Benoni defence | -"];
+Tab_Eco[57] = ["A57","Benko gambit | Half accepted/Zaitsev system"];
+Tab_Eco[58] = ["A58","Benko gambit accepted | -"];
+Tab_Eco[59] = ["A59","Benko gambit | Main line"];
+
+Tab_Eco[60] = ["A60","Benoni defence | -"];
+Tab_Eco[61] = ["A61","Benoni defence | Nimzovich variation"];
+Tab_Eco[62] = ["A62","Benoni defence | Fianchetto variation"];
+Tab_Eco[63] = ["A63","Benoni defence | Fianchetto variation"];
+Tab_Eco[64] = ["A64","Benoni defence | Fianchetto variation"];
+Tab_Eco[65] = ["A65","Benoni defence | Modern variation"];
+Tab_Eco[66] = ["A66","Benoni defence | Mikenas variation"];
+Tab_Eco[67] = ["A67","Benoni defence | Taimanov variation"];
+Tab_Eco[68] = ["A68","Benoni defence | Four pawns attack"];
+Tab_Eco[69] = ["A69","Benoni defence | Four pawns attack - Main Line"];
+
+Tab_Eco[70] = ["A70","Benoni defence | Classical system"];
+Tab_Eco[71] = ["A71","Benoni defence | Classical system 8. Bg5"];
+Tab_Eco[72] = ["A72","Benoni defence | Classical system without 9. O-O"];
+Tab_Eco[73] = ["A73","Benoni defence | Classical system 9. O-O"];
+Tab_Eco[74] = ["A74","Benoni defence | Classical system 9... a6 10. a4"];
+Tab_Eco[75] = ["A75","Benoni defence | Classical system 9... a6 10. Bg4"];
+Tab_Eco[76] = ["A76","Benoni defence | Classical system 9... Re8"];
+Tab_Eco[77] = ["A77","Benoni defence | Classical system 9... Re8 10. Nd2"];
+Tab_Eco[78] = ["A78","Benoni defence | Classical system 9... Re8 10. Na6"];
+Tab_Eco[79] = ["A79","Benoni defence | Classical system 11. f3"];
+
+Tab_Eco[80] = ["A80","Dutch defence | Spielmann/Krejcik gambit"];
+Tab_Eco[81] = ["A81","Dutch defence | Leningrad/Karlsbad variation"];
+Tab_Eco[82] = ["A82","Dutch defence | Staunton gambit - Tartakower Variation"];
+Tab_Eco[83] = ["A83","Dutch defence | Staunton gambit"];
+Tab_Eco[84] = ["A84","Dutch defence | Rubinstein/Bladel variation"];
+Tab_Eco[85] = ["A85","Dutch defence | With c4 & Nc3"];
+Tab_Eco[86] = ["A86","Dutch defence | Leningrad variation - Hort-Antoshin System"];
+Tab_Eco[87] = ["A87","Dutch defence | Leningrad main variation"];
+Tab_Eco[88] = ["A88","Dutch defence | Leningrad main Variation with c6"];
+Tab_Eco[89] = ["A89","Dutch defence | Leningrad main Variation with Nc6"];
+
+Tab_Eco[90] = ["A90","Dutch defence | Alekhine variation"];
+Tab_Eco[91] = ["A91","Dutch defence | -"];
+Tab_Eco[92] = ["A92","Dutch defence | Stonewall/Botwinnik variation"];
+Tab_Eco[93] = ["A93","Dutch defence | Stonewall/Botvinnik Variation"];
+Tab_Eco[94] = ["A94","Dutch defence | Stonewall with Ba3"];
+Tab_Eco[95] = ["A95","Dutch defence | Stonewall/Chekhover variation"];
+Tab_Eco[96] = ["A96","Dutch defence | Classical variation"];
+Tab_Eco[97] = ["A97","Dutch defence | Ilyin-Genevsky, Winter Variation"];
+Tab_Eco[98] = ["A98","Dutch defence | Ilyin-Genevsky Variation with Qc2"];
+Tab_Eco[99] = ["A99","Dutch defence | Ilyin-Genevsky Variation with b3"];
+
+Tab_Eco[100] = ["B00","King´s pawn opening | St. George/Nimzovich defence"];
+Tab_Eco[101] = ["B01","Scandinavian defence | -"];
+Tab_Eco[102] = ["B02","Alekhine´s defence | Spielmann/Maroczy variation"];
+Tab_Eco[103] = ["B03","Alekhine´s defence | Four pawns attack"];
+Tab_Eco[104] = ["B04","Alekhine´s defence | Modern variation"];
+Tab_Eco[105] = ["B05","Alekhine´s defence | Panov/Flohr variation"];
+Tab_Eco[106] = ["B06","Robatsch defence | Gurgenidze/Two knights variation"];
+Tab_Eco[107] = ["B07","Pirc defence | Sveshnikov/Geller´s system"];
+Tab_Eco[108] = ["B08","Pirc defence | Classical system"];
+Tab_Eco[109] = ["B09","Pirc defence | Austrian attack"];
+
+Tab_Eco[110] = ["B10","Caro-Kann defence | Spielmann/Two knights variation"];
+Tab_Eco[111] = ["B11","Caro-Kann defence | Two Knights variation"];
+Tab_Eco[112] = ["B12","Caro-Kann defence | Tartakower/Advance variation "];
+Tab_Eco[113] = ["B13","Caro-Kann defence | Panov-Botvinnik attack - Czerniak Variation"];
+Tab_Eco[114] = ["B14","Caro-Kann defence | Panov-Botvinnik Attack 5...e6 / 5...g6"];
+Tab_Eco[115] = ["B15","Caro-Kann defence | Alekhine gambit/Gurgenidze system"];
+Tab_Eco[116] = ["B16","Caro-Kann defence | Bronstein-Larsen variation"];
+Tab_Eco[117] = ["B17","Caro-Kann defence | Steinitz variation"];
+Tab_Eco[118] = ["B18","Caro-Kann defence | Classical/Flohr variation"];
+Tab_Eco[119] = ["B19","Caro-Kann defence | Classical/Spassky variation"];
+
+Tab_Eco[120] = ["B20","Sicilian defence | Carlsbad/Keres variation"];
+Tab_Eco[121] = ["B21","Sicilian defence | Grand Prix attack/Smith-Morra gambit"];
+Tab_Eco[122] = ["B22","Sicilian defence | Alapin´s variation"];
+Tab_Eco[123] = ["B23","Sicilian defence | Closed/Chameleon variation"];
+Tab_Eco[124] = ["B24","Sicilian defence | Closed/Smyslov variation"];
+Tab_Eco[125] = ["B25","Sicilian defence | Closed/Botvinnik variation"];
+Tab_Eco[126] = ["B26","Sicilian defence | Closed variation - 6.Be3"];
+Tab_Eco[127] = ["B27","Sicilian defence | Katalimov/Hungarian variation"];
+Tab_Eco[128] = ["B28","Sicilian defence | O´Kelly variation"];
+Tab_Eco[129] = ["B29","Sicilian defence | Nimzovich-Rubinstein variation"];
+
+Tab_Eco[130] = ["B30","Sicilian defence | Nimzovich-Rossolimo attack (without ...d6)"];
+Tab_Eco[131] = ["B31","Sicilian defence | Nimzovich-Rossolimo attack (with ...g6)"];
+Tab_Eco[132] = ["B32","Sicilian defence | Labourdonnais-Loewenthal variation"];
+Tab_Eco[133] = ["B33","Sicilian defence | Pelikan/Sveshnikov variation"];
+Tab_Eco[134] = ["B34","Sicilian defence | Accelerated fianchetto/Exchange variation"];
+Tab_Eco[135] = ["B35","Sicilian defence | Accelerated fianchetto/Modern variation with Bc4"];
+Tab_Eco[136] = ["B36","Sicilian defence | Accelerated fianchetto/Maroczy variation"];
+Tab_Eco[137] = ["B37","Sicilian defence | Accelerated fianchetto/Simagin variation"];
+Tab_Eco[138] = ["B38","Sicilian defence | Accelerated fianchetto/Maroczy 6.Be3"];
+Tab_Eco[139] = ["B39","Sicilian defence | Accelerated fianchetto/Breyer variation"];
+
+Tab_Eco[140] = ["B40","Sicilian defence | Marshall/Pin variation"];
+Tab_Eco[141] = ["B41","Sicilian defence | Kan/Bronstein variation"];
+Tab_Eco[142] = ["B42","Sicilian defence | Kan/Polugaievsky variation"];
+Tab_Eco[143] = ["B43","Sicilian defence | Kan variation 5.Nc3"];
+Tab_Eco[144] = ["B44","Sicilian defence | Szen variation"];
+Tab_Eco[145] = ["B45","Sicilian defence | Paulsen/Taimanov variation - American Attack"];
+Tab_Eco[146] = ["B46","Sicilian defence | Paulsen/Taimanov variation"];
+Tab_Eco[147] = ["B47","Sicilian defence | Paulsen/Taimanov variation"];
+Tab_Eco[148] = ["B48","Sicilian defence | Paulsen/Taimanov variation"];
+Tab_Eco[149] = ["B49","Sicilian defence | Paulsen/Taimanov variation"];
+
+Tab_Eco[150] = ["B50","Sicilian defence | Kopec variation"];
+Tab_Eco[151] = ["B51","Sicilian defence | Canal-Sokolsky attack"];
+Tab_Eco[152] = ["B52","Sicilian defence | Canal-Sokolsky attack"];
+Tab_Eco[153] = ["B53","Sicilian defence | Checkhover variation"];
+Tab_Eco[154] = ["B54","Sicilian defence | Prins variation"];
+Tab_Eco[155] = ["B55","Sicilian defence | Prins variation"];
+Tab_Eco[156] = ["B56","Sicilian defence | Venice attack"];
+Tab_Eco[157] = ["B57","Sicilian defence | Sozin-Benko variation"];
+Tab_Eco[158] = ["B58","Sicilian defence | Boleslavsky variation"];
+Tab_Eco[159] = ["B59","Sicilian defence | Boleslavsky variation"];
+
+Tab_Eco[160] = ["B60","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[161] = ["B61","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[162] = ["B62","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[163] = ["B63","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[164] = ["B64","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[165] = ["B65","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[166] = ["B66","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[167] = ["B67","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[168] = ["B68","Sicilian defence | Richter-Rauzer attack"];
+Tab_Eco[169] = ["B69","Sicilian defence | Richter-Rauzer attack"];
+
+Tab_Eco[170] = ["B70","Sicilian defence | Dragon variation"];
+Tab_Eco[171] = ["B71","Sicilian defence | Dragon variation"];
+Tab_Eco[172] = ["B72","Sicilian defence | Dragon variation"];
+Tab_Eco[173] = ["B73","Sicilian defence | Dragon variation"];
+Tab_Eco[174] = ["B74","Sicilian defence | Dragon variation"];
+Tab_Eco[175] = ["B75","Sicilian defence | Dragon variation"];
+Tab_Eco[176] = ["B76","Sicilian defence | Dragon variation"];
+Tab_Eco[177] = ["B77","Sicilian defence | Dragon variation"];
+Tab_Eco[178] = ["B78","Sicilian defence | Dragon variation"];
+Tab_Eco[179] = ["B79","Sicilian defence | Dragon variation"];
+
+Tab_Eco[180] = ["B80","Sicilian defence | Scheveningen variation"];
+Tab_Eco[181] = ["B81","Sicilian defence | Scheveningen variation"];
+Tab_Eco[182] = ["B82","Sicilian defence | Scheveningen variation"];
+Tab_Eco[183] = ["B83","Sicilian defence | Scheveningen variation"];
+Tab_Eco[184] = ["B84","Sicilian defence | Scheveningen variation"];
+Tab_Eco[185] = ["B85","Sicilian defence | Scheveningen variation"];
+Tab_Eco[186] = ["B86","Sicilian defence | Scheveningen variation"];
+Tab_Eco[187] = ["B87","Sicilian defence | Scheveningen variation"];
+Tab_Eco[188] = ["B88","Sicilian defence | Scheveningen variation"];
+Tab_Eco[189] = ["B89","Sicilian defence | Scheveningen variation"];
+
+Tab_Eco[190] = ["B90","Sicilian defence | Najdorf variation"];
+Tab_Eco[191] = ["B91","Sicilian defence | Najdorf variation"];
+Tab_Eco[192] = ["B92","Sicilian defence | Najdorf variation"];
+Tab_Eco[193] = ["B93","Sicilian defence | Najdorf variation"];
+Tab_Eco[194] = ["B94","Sicilian defence | Najdorf variation"];
+Tab_Eco[195] = ["B95","Sicilian defence | Najdorf variation"];
+Tab_Eco[196] = ["B96","Sicilian defence | Najdorf variation"];
+Tab_Eco[197] = ["B97","Sicilian defence | Najdorf variation"];
+Tab_Eco[198] = ["B98","Sicilian defence | Najdorf variation"];
+Tab_Eco[199] = ["B99","Sicilian defence | Najdorf variation"];
+
+Tab_Eco[200] = ["C00","French Defence | Two knights/Chigorin variation"];
+Tab_Eco[201] = ["C01","French Defence | Exchange variation"];
+Tab_Eco[202] = ["C02","French Defence | Advance variation"];
+Tab_Eco[203] = ["C03","French Defence | Tarrash variation"];
+Tab_Eco[204] = ["C04","French Defence | Tarrash variation"];
+Tab_Eco[205] = ["C05","French Defence | Tarrash variation"];
+Tab_Eco[206] = ["C06","French Defence | Tarrash variation"];
+Tab_Eco[207] = ["C07","French Defence | Tarrash variation"];
+Tab_Eco[208] = ["C08","French Defence | Tarrash variation"];
+Tab_Eco[209] = ["C09","French Defence | Tarrash variation"];
+
+Tab_Eco[210] = ["C10","French Defence | Rubinstein variation"];
+Tab_Eco[211] = ["C11","French Defence | Steinitz variation"];
+Tab_Eco[212] = ["C12","French Defence | MacCutcheon variation"];
+Tab_Eco[213] = ["C13","French Defence | Classical variation"];
+Tab_Eco[214] = ["C14","French Defence | Classical variation"];
+Tab_Eco[215] = ["C15","French Defence | Winawer variation"];
+Tab_Eco[216] = ["C16","French Defence | Winawer variation"];
+Tab_Eco[217] = ["C17","French Defence | Winawer variation"];
+Tab_Eco[218] = ["C18","French Defence | Winawer variation"];
+Tab_Eco[219] = ["C19","French Defence | Winawer variation"];
+
+Tab_Eco[220] = ["C20","Alapin´s opening | Mengarini/Napoleon/Lopez's Opening"];
+Tab_Eco[221] = ["C21","Danish gambit | Centre Game/Danish gambit/Halasz Gambit"];
+Tab_Eco[222] = ["C22","Centre game | Paulsen Attack/Charousek/Kupreichik Variation"];
+Tab_Eco[223] = ["C23","Bishop´s opening | Classical/Philidor variation"];
+Tab_Eco[224] = ["C24","Bishop´s opening | Urusov/Ponziani gambit"];
+Tab_Eco[225] = ["C25","Vienna game | Steinitz/Hamppe/Allgaier gambit"];
+Tab_Eco[226] = ["C26","Vienna game | Falkbeer/Paulsen-Mieses variation"];
+Tab_Eco[227] = ["C27","Vienna game | Alekhine variation/Boden-Kieseritsky gambit"];
+Tab_Eco[228] = ["C28","Vienna game | Main Line"];
+Tab_Eco[229] = ["C29","Vienna gambit | Breyer/Steinitz/Kaufmann variation"];
+
+Tab_Eco[230] = ["C30","King´s gambit | Classical"];
+Tab_Eco[231] = ["C31","King´s gambit | Falkbeer counter-gambit"];
+Tab_Eco[232] = ["C32","King´s gambit | Falkbeer counter-gambit"];
+Tab_Eco[233] = ["C33","King´s gambit | Bishop´s gambit"];
+Tab_Eco[234] = ["C34","King´s gambit | Knight´s gambit"];
+Tab_Eco[235] = ["C35","King´s gambit | Cunningham defence"];
+Tab_Eco[236] = ["C36","King´s gambit | Abbazia defence"];
+Tab_Eco[237] = ["C37","King´s gambit | Muzio gambit"];
+Tab_Eco[238] = ["C38","King´s gambit | Philidor gambit"];
+Tab_Eco[239] = ["C39","King´s gambit | Allgaier/Kieseritsky gambit"];
+
+Tab_Eco[240] = ["C40","Latvian counter-gambit | -"];
+Tab_Eco[241] = ["C41","Philidor´s defence | -"];
+Tab_Eco[242] = ["C42","Petrov´s defence | -"];
+Tab_Eco[243] = ["C43","Petrov´s defence | Modern attack"];
+Tab_Eco[244] = ["C44","Ponziani opening | -"];
+Tab_Eco[245] = ["C45","Scotch opening | -"];
+Tab_Eco[246] = ["C46","Three knights game | -"];
+Tab_Eco[247] = ["C47","Four knights game | -"];
+Tab_Eco[248] = ["C48","Four knights game | -"];
+Tab_Eco[249] = ["C49","Four knights game | -"];
+
+Tab_Eco[250] = ["C50","Giuoco Piano Opening| Tartakower/Four Knights Variation"];
+Tab_Eco[251] = ["C51","Evans gambit| Morphy Attack/Steinitz Variation"];
+Tab_Eco[252] = ["C52","Evans gambit| Levenfish/Alapin-Steinitz Variation"];
+Tab_Eco[253] = ["C53","Giuoco Piano Opening| Tarrasch/Anderssen Variation"];
+Tab_Eco[254] = ["C54","Giuoco Piano Opening| Steinitz/Bernstein Variation"];
+Tab_Eco[255] = ["C55","Two knights defence | Max Lange Attack/Perreux Variation"];
+Tab_Eco[256] = ["C56","Two knights defence | Yurdansky Attack/Canal Variation"];
+Tab_Eco[257] = ["C57","Two knights defence | Fegatello Attack/Fritz Variation"];
+Tab_Eco[258] = ["C58","Two knights defence | Kieseritsky/Maroczy Variation"];
+Tab_Eco[259] = ["C59","Two knights defence | Steinitz/Knorre Variation"];
+
+Tab_Eco[260] = ["C60","Ruy Lopez Opening | Fianchetto/Cozio Defence"];
+Tab_Eco[261] = ["C61","Ruy Lopez Opening | Bird´s defence"];
+Tab_Eco[262] = ["C62","Ruy Lopez Opening | Old Steinitz defence"];
+Tab_Eco[263] = ["C63","Ruy Lopez Opening | Schliemann defence"];
+Tab_Eco[264] = ["C64","Ruy Lopez Opening | Classical defence"];
+//Tab_Eco[265] = ["C65","Ruy Lopez Opening | Berlin defence - Andersson/Duras/Mortimer Variation"];
+//Tab_Eco[266] = ["C66","Ruy Lopez Opening | Berlin defence - Chigorin/Bernstein/Showalter Variation"];
+//Tab_Eco[267] = ["C67","Ruy Lopez Opening | Berlin defence - Zukertort/Pillsbury Variation"];
+Tab_Eco[265] = ["C65","Ruy Lopez Opening | Berlin defence"];
+Tab_Eco[266] = ["C66","Ruy Lopez Opening | Berlin defence"];
+Tab_Eco[267] = ["C67","Ruy Lopez Opening | Berlin defence"];
+Tab_Eco[268] = ["C68","Ruy Lopez Opening | Exchange variation"];
+Tab_Eco[269] = ["C69","Ruy Lopez Opening | Exchange variation"];
+
+Tab_Eco[270] = ["C70","Ruy Lopez Opening | -"];
+Tab_Eco[271] = ["C71","Ruy Lopez Opening | Modern Steinitz defence"];
+Tab_Eco[272] = ["C72","Ruy Lopez Opening | Modern Steinitz defence"];
+Tab_Eco[273] = ["C73","Ruy Lopez Opening | Modern Steinitz defence"];
+Tab_Eco[274] = ["C74","Ruy Lopez Opening | Modern Steinitz defence"];
+Tab_Eco[275] = ["C75","Ruy Lopez Opening | Modern Steinitz defence"];
+Tab_Eco[276] = ["C76","Ruy Lopez Opening | Modern Steinitz defence"];
+Tab_Eco[277] = ["C77","Ruy Lopez Opening | -"];
+Tab_Eco[278] = ["C78","Ruy Lopez Opening | -"];
+Tab_Eco[279] = ["C79","Ruy Lopez Opening | Steinitz defence deferred"];
+
+Tab_Eco[280] = ["C80","Ruy Lopez Opening | Open variation"];
+Tab_Eco[281] = ["C81","Ruy Lopez Opening | Open variation"];
+Tab_Eco[282] = ["C82","Ruy Lopez Opening | Open variation"];
+Tab_Eco[283] = ["C83","Ruy Lopez Opening | Open variation"];
+Tab_Eco[284] = ["C84","Ruy Lopez Opening | Closed variation"];
+Tab_Eco[285] = ["C85","Ruy Lopez Opening | Exchange variation doubly deferred"];
+Tab_Eco[286] = ["C86","Ruy Lopez Opening | Worrall attack"];
+Tab_Eco[287] = ["C87","Ruy Lopez Opening | Averbach variation"];
+Tab_Eco[288] = ["C88","Ruy Lopez Opening | Closed variation"];
+Tab_Eco[289] = ["C89","Ruy Lopez Opening | Marshall counter-attack"];
+
+Tab_Eco[290] = ["C90","Ruy Lopez Opening | Closed variation"];
+Tab_Eco[291] = ["C91","Ruy Lopez Opening | Closed variation"];
+Tab_Eco[292] = ["C92","Ruy Lopez Opening | Closed variation"];
+Tab_Eco[293] = ["C93","Ruy Lopez Opening | Smyslov defence"];
+Tab_Eco[294] = ["C94","Ruy Lopez Opening | Breyer defence"];
+Tab_Eco[295] = ["C95","Ruy Lopez Opening | Breyer defence"];
+Tab_Eco[296] = ["C96","Ruy Lopez Opening | Rossolimo/Borisenko/Keres Defence"];
+Tab_Eco[297] = ["C97","Ruy Lopez Opening | Chigorin defence, Yugoslav System"];
+Tab_Eco[298] = ["C98","Ruy Lopez Opening | Chigorin defence, Rauzer Attack"];
+Tab_Eco[299] = ["C99","Ruy Lopez Opening | Chigorin defence, 12...cxd4"];
+
+
+Tab_Eco[300] = ["D00","Queen´s pawn game | Main line"];
+Tab_Eco[301] = ["D01","Richter-Veresov attack | Main line"];
+Tab_Eco[302] = ["D02","Queen´s pawn game | "];
+Tab_Eco[303] = ["D03","Torre attack | Main line"];
+Tab_Eco[304] = ["D04","Queen´s pawn game | Main line"];
+Tab_Eco[305] = ["D05","Queen´s pawn game | Colle system"];
+Tab_Eco[306] = ["D06","Queen´s Gambit | Main line"];
+Tab_Eco[307] = ["D07","Queen´s Gambit | Chigorin defence"];
+Tab_Eco[308] = ["D08","Queen´s Gambit | Albin counter-gambit"];
+Tab_Eco[309] = ["D09","Queen´s Gambit | Albin counter-gambit"];
+
+Tab_Eco[310] = ["D10","Queen´s Gambit Slav defence | Main line"];
+Tab_Eco[311] = ["D11","Queen´s Gambit Slav defence | Main line"];
+Tab_Eco[312] = ["D12","Queen´s Gambit Slav defence | Main line"];
+Tab_Eco[313] = ["D13","Queen´s Gambit Slav defence | Main line"];
+Tab_Eco[314] = ["D14","Queen´s Gambit Slav defence | Exchange variation"];
+Tab_Eco[315] = ["D15","Queen´s Gambit Slav defence | Tolush-Geller gambit"];
+Tab_Eco[316] = ["D16","Queen´s Gambit Slav defence | "];
+Tab_Eco[317] = ["D17","Queen´s Gambit Slav defence | Czech/Carlsbad/Wiesbaden variation"];
+Tab_Eco[318] = ["D18","Queen´s Gambit Slav defence |  Dutch variation"];
+Tab_Eco[319] = ["D19","Queen´s Gambit Slav defence | Dutch/Saemisch variation"];
+
+Tab_Eco[320] = ["D20","Queen´s gambit accepted | Linares/Schwartz variation"];
+Tab_Eco[321] = ["D21","Queen´s gambit accepted | Borisenko-Furman variation"];
+Tab_Eco[322] = ["D22","Queen´s gambit accepted | Haberditz/Alatortsev variation"];
+Tab_Eco[323] = ["D23","Queen´s gambit accepted | Mannheim variation"];
+Tab_Eco[324] = ["D24","Queen´s gambit accepted | Bogoljubov variation"];
+Tab_Eco[325] = ["D25","Queen´s gambit accepted | Smyslov/Janowsky-Larsen variation"];
+Tab_Eco[326] = ["D26","Queen´s gambit accepted | Furman/Steinitz variation"];
+Tab_Eco[327] = ["D27","Queen´s gambit accepted | Geller/Rubinstein variation"];
+Tab_Eco[328] = ["D28","Queen´s gambit accepted | Flohr variation"];
+Tab_Eco[329] = ["D29","Queen´s gambit accepted | Smyslov variation"];
+
+Tab_Eco[330] = ["D30","Queen´s gambit declined | Capablanca/Vienna/Hastings variation"];
+Tab_Eco[331] = ["D31","Queen´s gambit declined | Semi-Slav variation"];
+Tab_Eco[332] = ["D32","Queen´s gambit declined | Tarrasch defence"];
+Tab_Eco[333] = ["D33","Queen´s gambit declined | Tarrasch defence"];
+Tab_Eco[334] = ["D34","Queen´s gambit declined | Tarrasch/Prague variation"];
+Tab_Eco[335] = ["D35","Queen´s gambit declined | Exchange variation"];
+Tab_Eco[336] = ["D36","Queen´s gambit declined | Exchange/positional line"];
+Tab_Eco[337] = ["D37","Queen´s gambit declined | Classical variation"];
+Tab_Eco[338] = ["D38","Queen´s gambit declined | Ragozin variation"];
+Tab_Eco[339] = ["D39","Queen´s gambit declined | Ragozin/Vienna variation"];
+
+Tab_Eco[340] = ["D40","Queen´s gambit declined | Semi-Tarrasch defence"];
+Tab_Eco[341] = ["D41","Queen´s gambit declined | Semi-Tarrasch defence"];
+Tab_Eco[342] = ["D42","Queen´s gambit declined | Semi-Tarrasch defence"];
+Tab_Eco[343] = ["D43","Queen´s gambit declined | Semi-Slav/Hastings variation"];
+Tab_Eco[344] = ["D44","Queen´s gambit declined | Semi-Slav/Anti-Meran"];
+Tab_Eco[345] = ["D45","Queen´s gambit declined | Stoltz/Rubinstein system"];
+Tab_Eco[346] = ["D46","Queen´s gambit declined | Bogolyubov/Romih variation"];
+Tab_Eco[347] = ["D47","Queen´s gambit declined | Meran variation"];
+Tab_Eco[348] = ["D48","Queen´s gambit declined | Meran variation"];
+Tab_Eco[349] = ["D49","Queen´s gambit declined | Meran variation"];
+
+Tab_Eco[350] = ["D50","Queen´s gambit declined | Semi-Tarrasch/Krause variation"];
+Tab_Eco[351] = ["D51","Queen´s gambit declined | Rochlin/Manhattan variation"];
+Tab_Eco[352] = ["D52","Queen´s gambit declined | Cambridge Springs defence"];
+Tab_Eco[353] = ["D53","Queen´s gambit declined | Lasker variation"];
+Tab_Eco[354] = ["D54","Queen´s gambit declined | Anti-neo-orthodox variation"];
+Tab_Eco[355] = ["D55","Queen´s gambit declined | Neo-orthodox/Petrosian variation"];
+Tab_Eco[356] = ["D56","Queen´s gambit declined | Lasker defence"];
+Tab_Eco[357] = ["D57","Queen´s gambit declined | Lasker/Bernstein variation"];
+Tab_Eco[358] = ["D58","Queen´s gambit declined | Tartakower system"];
+Tab_Eco[359] = ["D59","Queen´s gambit declined | Tartakower variation"];
+
+Tab_Eco[360] = ["D60","Queen´s gambit declined | Orthodox defence"];
+Tab_Eco[361] = ["D61","Queen´s gambit declined | Orthodox/Rubinstein variation"];
+Tab_Eco[362] = ["D62","Queen´s gambit declined | Orthodox defence"];
+Tab_Eco[363] = ["D63","Queen´s gambit declined | Orthodox/Capablanca variation"];
+Tab_Eco[364] = ["D64","Queen´s gambit declined | Orthodox/Rubinstein attack"];
+Tab_Eco[365] = ["D65","Queen´s gambit declined | Orthodox/Rubinstein attack"];
+Tab_Eco[366] = ["D66","Queen´s gambit declined | Orthodox/Fianchetto variation"];
+Tab_Eco[367] = ["D67","Queen´s gambit declined | Orthodox/Bd3 line"];
+Tab_Eco[368] = ["D68","Queen´s gambit declined | Orthodox/classical variation"];
+Tab_Eco[369] = ["D69","Queen´s gambit declined | Orthodox/classical variation"];
+
+Tab_Eco[370] = ["D70","Neo-Gruenfeld defence | Kemeri"];
+Tab_Eco[371] = ["D71","Neo-Gruenfeld defence | 5.cd"];
+Tab_Eco[372] = ["D72","Neo-Gruenfeld defence | Main line"];
+Tab_Eco[373] = ["D73","Neo-Gruenfeld defence | 5.Nf3"];
+Tab_Eco[374] = ["D74","Neo-Gruenfeld defence | 6.cd Nxd5, 7.O-O"];
+Tab_Eco[375] = ["D75","Neo-Gruenfeld defence | 6.cd Nxd5, 7.O-O c5"];
+Tab_Eco[376] = ["D76","Neo-Gruenfeld defence | 6.cd Nxd5, 7.O-O Nb6"];
+Tab_Eco[377] = ["D77","Neo-Gruenfeld defence | 6.O-O"];
+Tab_Eco[378] = ["D78","Neo-Gruenfeld defence | 6.O-O c6"];
+Tab_Eco[379] = ["D79","Neo-Gruenfeld defence | 6.O-O, Main line"];
+
+Tab_Eco[380] = ["D80","Gruenfeld defence | Stockholm/Lundin variation"];
+Tab_Eco[381] = ["D81","Gruenfeld defence | Russian variation"];
+Tab_Eco[382] = ["D82","Gruenfeld defence | 4.Bf4 system"];
+Tab_Eco[383] = ["D83","Gruenfeld defence | Capablanca/Botvinnik variation"];
+Tab_Eco[384] = ["D84","Gruenfeld defence | Gruenfeld gambit accepted"];
+Tab_Eco[385] = ["D85","Gruenfeld defence | Modern exchange variation"];
+Tab_Eco[386] = ["D86","Gruenfeld defence | Exchange/Classical variation"];
+Tab_Eco[387] = ["D87","Gruenfeld defence | Exchange/Spassky variation"];
+Tab_Eco[388] = ["D88","Gruenfeld defence | Spassky variation"];
+Tab_Eco[389] = ["D89","Gruenfeld defence | Exchange/Sokolsky variation"];
+
+Tab_Eco[390] = ["D90","Gruenfeld defence | Three knights variation"];
+Tab_Eco[391] = ["D91","Gruenfeld defence | 5.Bg5 variation"];
+Tab_Eco[392] = ["D92","Gruenfeld defence | 5.Bf4 variation"];
+Tab_Eco[393] = ["D93","Gruenfeld defence | 5.Bf4 variation"];
+Tab_Eco[394] = ["D94","Gruenfeld defence | Makogonov/Opovcensky variation"];
+Tab_Eco[395] = ["D95","Gruenfeld defence | Botvinnik/Pachman variation"];
+Tab_Eco[396] = ["D96","Gruenfeld defence | Russian variation"];
+Tab_Eco[397] = ["D97","Gruenfeld defence | Russian variation"];
+Tab_Eco[398] = ["D98","Gruenfeld defence | Russian/Smyslov variation"];
+Tab_Eco[399] = ["D99","Gruenfeld defence | Smyslov/ugoslav variation"];
+
+Tab_Eco[400] = ["E00","Catalan opening | Neo-Indian attack"];
+Tab_Eco[401] = ["E01","Catalan opening | Closed variation"];
+Tab_Eco[402] = ["E02","Catalan opening | Open variation"];
+Tab_Eco[403] = ["E03","Catalan opening | Open/Alekhine variation"];
+Tab_Eco[404] = ["E04","Catalan opening | Open variation"];
+Tab_Eco[405] = ["E05","Catalan opening | Open/Classical line"];
+Tab_Eco[406] = ["E06","Catalan opening | Closed variation"];
+Tab_Eco[407] = ["E07","Catalan opening | Closed/Botvinnik variation"];
+Tab_Eco[408] = ["E08","Catalan opening | Closed/Zagoryansky variation"];
+Tab_Eco[409] = ["E09","Catalan opening | Closed/Sokolsky variation"];
+
+Tab_Eco[410] = ["E10","Blumenfeld counter-gambit | -"];
+Tab_Eco[411] = ["E11","Bogo-Indian defence | Gruenfeld/Nimzovich variation"];
+Tab_Eco[412] = ["E12","Queen´s Indian defence | Botvinnik/Miles variation"];
+Tab_Eco[413] = ["E13","Queen´s Indian defence | Main line"];
+Tab_Eco[414] = ["E14","Queen´s Indian defence | Averbakh variation"];
+Tab_Eco[415] = ["E15","Queen´s Indian defence | Nimzovich/Rubinstein variation"];
+Tab_Eco[416] = ["E16","Queen´s Indian defence | Capablanca/Yates variation"];
+Tab_Eco[417] = ["E17","Queen´s Indian defence | Old main line"];
+Tab_Eco[418] = ["E18","Queen´s Indian defence | Old main line"];
+Tab_Eco[419] = ["E19","Queen´s Indian defence | Old main line"];
+
+Tab_Eco[420] = ["E20","Nimzo-Indian defence | Romanishin/Kasparov system"];
+Tab_Eco[421] = ["E21","Nimzo-Indian defence | Three knights variation"];
+Tab_Eco[422] = ["E22","Nimzo-Indian defence | Spielmann variation"];
+Tab_Eco[423] = ["E23","Nimzo-Indian defence | Spielmann/Staahlberg variation"];
+Tab_Eco[424] = ["E24","Nimzo-Indian defence | Saemisch/Botvinnik variation"];
+Tab_Eco[425] = ["E25","Nimzo-Indian defence | Saemisch/Keres variation"];
+Tab_Eco[426] = ["E26","Nimzo-Indian defence | Saemisch/O´Kelly variation"];
+Tab_Eco[427] = ["E27","Nimzo-Indian defence | Saemisch variation"];
+Tab_Eco[428] = ["E28","Nimzo-Indian defence | Saemisch variation"];
+Tab_Eco[429] = ["E29","Nimzo-Indian defence | Saemisch/Capablanca variation"];
+
+Tab_Eco[430] = ["E30","Nimzo-Indian defence | Leningrad variation"];
+Tab_Eco[431] = ["E31","Nimzo-Indian defence | Leningrad/Main Line variation"];
+Tab_Eco[432] = ["E32","Nimzo-Indian defence | Classical variation"];
+Tab_Eco[433] = ["E33","Nimzo-Indian defence | Classical/Milner-Barry variation"];
+Tab_Eco[434] = ["E34","Nimzo-Indian defence | Classical/Noa variation"];
+Tab_Eco[435] = ["E35","Nimzo-Indian defence | Classical/Noa variation"];
+Tab_Eco[436] = ["E36","Nimzo-Indian defence | Classical/Botvinnik variation"];
+Tab_Eco[437] = ["E37","Nimzo-Indian defence | Classical/San Remo variation"];
+Tab_Eco[438] = ["E38","Nimzo-Indian defence | Classical variation"];
+Tab_Eco[439] = ["E39","Nimzo-Indian defence | Classical/Pirc variation"];
+
+Tab_Eco[440] = ["E40","Nimzo-Indian defence | Taimanov variation"];
+Tab_Eco[441] = ["E41","Nimzo-Indian defence | Huebner variation"];
+Tab_Eco[442] = ["E42","Nimzo-Indian defence | Rubinstein variation"];
+Tab_Eco[443] = ["E43","Nimzo-Indian defence | Fischer variation"];
+Tab_Eco[444] = ["E44","Nimzo-Indian defence | Fischer variation"];
+Tab_Eco[445] = ["E45","Nimzo-Indian defence | Bronstein variation"];
+Tab_Eco[446] = ["E46","Nimzo-Indian defence | Reshevsky/Simagin variation"];
+Tab_Eco[447] = ["E47","Nimzo-Indian defence | 4.e3 O-O, 5.Bd3"];
+Tab_Eco[448] = ["E48","Nimzo-Indian defence | 4.e3 O-O, 5.Bd3 d5"];
+Tab_Eco[449] = ["E49","Nimzo-Indian defence | Botvinnik system"];
+
+Tab_Eco[450] = ["E50","Nimzo-Indian defence | 4.e3 e8g8, 5.Nf3, Without ...d5"];
+Tab_Eco[451] = ["E51","Nimzo-Indian defence | Ragozin variation"];
+Tab_Eco[452] = ["E52","Nimzo-Indian defence | Main line"];
+Tab_Eco[453] = ["E53","Nimzo-Indian defence | Keres/Gligoric variation"];
+Tab_Eco[454] = ["E54","Nimzo-Indian defence | 4.e3, Gligoric System With 7...dc"];
+Tab_Eco[455] = ["E55","Nimzo-Indian defence | 4.e3, Gligoric System, Bronstein Variation"];
+Tab_Eco[456] = ["E56","Nimzo-Indian defence | 4.e3, Main line With 7...Nc6"];
+Tab_Eco[457] = ["E57","Nimzo-Indian defence | 4.e3, Main line With 8...dc and 9...cd"];
+Tab_Eco[458] = ["E58","Nimzo-Indian defence | 4.e3, Main line With 8...Bxc3"];
+Tab_Eco[459] = ["E59","Nimzo-Indian defence | 4.e3, Main line"];
+
+Tab_Eco[460] = ["E60","King´s Indian Defence | Anti-Gruenfeld, Danube Gambit"];
+Tab_Eco[461] = ["E61","King´s Indian Defence | Smyslov system"];
+Tab_Eco[462] = ["E62","King´s Indian Defence | Fianchetto/Larsen system"];
+Tab_Eco[463] = ["E63","King´s Indian Defence | Fianchetto/Panno variation"];
+Tab_Eco[464] = ["E64","King´s Indian Defence | Fianchetto/Yugoslav system"];
+Tab_Eco[465] = ["E65","King´s Indian Defence | Fianchetto/Yugoslav system"];
+Tab_Eco[466] = ["E66","King´s Indian Defence | Fianchetto/Yugoslav system"];
+Tab_Eco[467] = ["E67","King´s Indian Defence | Fianchetto/Classical variation"];
+Tab_Eco[468] = ["E68","King´s Indian Defence | Fianchetto/Classical variation"];
+Tab_Eco[469] = ["E69","King´s Indian Defence | Fianchetto/Classical Main Line"];
+
+Tab_Eco[470] = ["E70","King´s Indian Defence | Averbakh system"];
+Tab_Eco[471] = ["E71","King´s Indian Defence | Makagonov system"];
+Tab_Eco[472] = ["E72","King´s Indian Defence | Pomar system"];
+Tab_Eco[473] = ["E73","King´s Indian Defence | Averbakh system"];
+Tab_Eco[474] = ["E74","King´s Indian Defence | Averbakh system"];
+Tab_Eco[475] = ["E75","King´s Indian Defence | Averbakh system"];
+Tab_Eco[476] = ["E76","King´s Indian Defence | Four pawns attack"];
+Tab_Eco[477] = ["E77","King´s Indian Defence | Four pawns attack"];
+Tab_Eco[478] = ["E78","King´s Indian Defence | Four pawns attack"];
+Tab_Eco[479] = ["E79","King´s Indian Defence | Four pawns attack"];
+
+Tab_Eco[480] = ["E80","King´s Indian Defence | Saemisch variation"];
+Tab_Eco[481] = ["E81","King´s Indian Defence | Saemisch/Byrne variation"];
+Tab_Eco[482] = ["E82","King´s Indian Defence | Saemisch/Double fianchetto variation"];
+Tab_Eco[483] = ["E83","King´s Indian Defence | Saemisch/Panno formation"];
+Tab_Eco[484] = ["E84","King´s Indian Defence | Saemisch/Panno Main Line"];
+Tab_Eco[485] = ["E85","King´s Indian Defence | Saemisch/Orthodox variation"];
+Tab_Eco[486] = ["E86","King´s Indian Defence | Saemisch/Orthodox"];
+Tab_Eco[487] = ["E87","King´s Indian Defence | Saemisch/Orthodox/Bronstein variation"];
+Tab_Eco[488] = ["E88","King´s Indian Defence | Saemisch/Orthodox"];
+Tab_Eco[489] = ["E89","King´s Indian Defence | Saemisch/Oorthodox Main Line"];
+
+Tab_Eco[490] = ["E90","King´s Indian Defence | Larsen/Zinnowitz variation"];
+Tab_Eco[491] = ["E91","King´s Indian Defence | Kazakh variation"];
+Tab_Eco[492] = ["E92","King´s Indian Defence | Petrosian/Gligoric/Taimanov system"];
+Tab_Eco[493] = ["E93","King´s Indian Defence | Petrosian system"];
+Tab_Eco[494] = ["E94","King´s Indian Defence | Orthodox/Donner variation"];
+Tab_Eco[495] = ["E95","King´s Indian Defence | Orthodox/7...Nbd7 variation"];
+Tab_Eco[496] = ["E96","King´s Indian Defence | Orthodox/7...Nbd7 variation"];
+Tab_Eco[497] = ["E97","King´s Indian Defence | Orthodox/Aronin/Taimanov variation"];
+Tab_Eco[498] = ["E98","King´s Indian Defence | Orthodox/Aronin/Taimanov"];
+Tab_Eco[499] = ["E99","King´s Indian Defence | Orthodox/Aronin/Taimanov/Benko attack"];
+
+

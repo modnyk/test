@@ -1,0 +1,248 @@
+
+.modal { overflow: auto !important; }
+
+.breakline {
+    height: 12px;
+}
+
+.botao_help {
+    font-size: 18px;
+    margin: 12px 10px;
+    padding: 8px;
+    font-weight: bold;
+    color: #006600;
+    background: linear-gradient(180deg, #E5FFE5 0%, #E5FFE5 100%);
+    box-shadow: 0px 3px 2px -1px #777777;
+    text-align: left;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+}
+
+.botao_help_suporte {
+    font-size: 18px;
+    margin: 12px 10px;
+    padding: 8px;
+    font-weight: bold;
+    color: #FFFF99;
+    background: linear-gradient(180deg, #008500 0%, #00B800 100%);
+    box-shadow: 0px 3px 2px -1px #777777;
+    text-align: left;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+}
+
+
+.welcome_par {
+    padding: 0px 0px 12px 0px;
+}
+
+.card_container {
+    position: relative;
+    margin: 8px 8px 20px 8px;
+    background: #ffffff;
+    padding: 2px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 8px -1px #777777;
+}
+
+
+body {
+    width: 100%;
+    text-align: center;
+    font-family: Trebuchet MS, Helvetica, sans-serif;
+    background-image: url(../img/bg_wood_6.jpg);
+}
+
+.navbar {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 12000;
+    box-shadow: 3px 3px 8px -1px #777777;
+    border-top: 1px solid #8A7856;
+    background: linear-gradient(180deg, #E3DDD2 0%, #E3DDD2  100%);
+    padding: 8px 0px;
+}
+
+.section_body {
+    display: none;
+    padding-bottom: 100px;
+    background-image: url(../img/bg_wood_6.jpg);
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+
+.card_label_top {
+    /* background: #eeeeee;   */
+    font-size:9px;
+    padding: 0px 0px 4px 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card_label_bottom {
+    margin-top: -4px;
+    background: #777777;
+    border-radius: 4px;
+    font-size: 10px;
+    padding: 2px 0px 0px 0px;
+    color: #ffffff;
+}
+
+
+.card_label_top_on {
+    background: linear-gradient(180deg, #FFFF99 0%, #FFFFD1 100%);
+    color: #003300;
+    border: 1px solid #339900;
+
+}
+
+.card_label_bottom-on {
+    background: linear-gradient(-90deg, #009900 0%, #00DB00 100%);
+
+}
+
+
+
+
+.card_sel_icon_nivel {
+    width: 28px;
+    height: 28px;
+    margin: 4px 4px 0px 0px;
+}
+
+
+
+
+
+
+.container_card {
+    float: left;
+    position: relative;
+    margin: 10px;
+}
+
+.corner_nivel {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.corner_seta {
+    position: absolute;
+    top: 80;
+    left: 0;
+}
+
+
+.error {
+    background: #FFFF66;
+}
+
+/* white square */
+.white-1e1d7 {
+    /*background-color: #f0d9b5; */
+    background-image: linear-gradient(#f0d9b5, #f0e1ca);
+    color: #b58863;
+}
+
+/* black square */
+.black-3c85d {
+    /*background-color: #b58863; */
+    background-image: linear-gradient(#dca578, #b58863);
+    color: #f0d9b5;
+}
+
+
+.highlight {
+  box-shadow: inset 0 0 3px 3px #0066CC;
+}
+
+.highlight_blue {
+    box-shadow: inset 0 0 3px 3px #0066CC;
+}
+
+.highlight_yellow {
+    box-shadow: inset 0 0 3px 3px #EBEB00;
+}
+
+
+.highlight_orange {
+    box-shadow: inset 0 0 3px 3px #FF6600;
+}
+
+.highlight_pink {
+    box-shadow: inset 0 0 3px 3px #FF00FF;
+}
+
+.highlight_violet {
+    box-shadow: inset 0 0 3px 3px #9933FF;
+}
+
+
+.highlight_white {
+    box-shadow: inset 0 0 3px 3px #FFFFFF;
+}
+
+.highlight_teal {
+    box-shadow: inset 0 0 3px 3px #008080;
+}
+
+.highlight_green {
+    box-shadow: inset 0 0 3px 3px #168E22;
+}
+
+
+
+.chat_box_ic {
+    width: 85%;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #b3ffff;
+    background-color: #b3ffff;
+    border-radius: 4px;
+    text-align: left;
+    float: right;
+    line-height: 120%;
+}
+
+.chat_box_ic_alt {
+    width: 85%;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #b3ffff;
+    background-color: #b3ffff;
+    border-radius: 4px;
+    text-align: left;
+    float: right;
+    line-height: 120%;
+}
+
+.chat_box_user {
+    width: 85%;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ccff99;
+    background-color: #ccff99;
+    border-radius: 4px;
+    text-align: left;
+    line-height: 120%;
+}
+
+.chat_box_user_alt {
+    width: 85%;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ccff99;
+    background-color: #ccff99;
+    border-radius: 4px;
+    text-align: left;
+    line-height: 120%;
+}
+
